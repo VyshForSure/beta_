@@ -5,51 +5,59 @@ import './main.html';
 
 Template.hello.onCreated(function helloOnCreated() {
 
-  this.counter = new ReactiveVar(0);
-  //console.log(this);
+  	this.counter = new ReactiveVar(0);
+  	//console.log(this);
+
+
+});
+
+Template.top.helpers({
+  	isAdminLink() {
+  		if(Meteor.user()){
+  			if(Meteor.user().profile.isAdmin && window.location.pathname === '/supersecretadminpanel'){
+
+  				return true;
+
+  			}
+  		}
+
+  		return false;
+  	},
+
 });
 
 Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
-  getEmail(){
- 	if(Meteor.user().emails)
-  		return Meteor.user().emails[0].address;
-  	else
-  		return '';
-  }
+  	counter() {
+    	return Template.instance().counter.get();
+  	},
+
 });
 
 Template.hello.events({
-  'click .increment' (event, instance) {
-    // increment the counter when button is clicked
-    	instance.counter.set(instance.counter.get() + 1);
-  },
-  'click .logout' (event){
-   		event.preventDefault();
-        Meteor.logout();
-   }
+	'click .increment' : () => {
+		Template.instance().counter.set(Template.instance().counter.get() + 1);
+	}
 });
 
-Template.register.events({
-	'submit form' (event) {
-        event.preventDefault();
-        var rollno = event.target.registerRollNumber.value;
-        var passwordVar = event.target.registerPassword.value;
-        Accounts.createUser({
-            email: rollno + '@iith.ac.in',
-            rollNo: rollno,
-            password: passwordVar
-        });
-	},
-});
-
-Template.login.events({
-    'submit form' (event) {
-        event.preventDefault();
-        var rollno = event.target.loginRollNumber.value;
-        var passwordVar = event.target.loginPassword.value;
-        Meteor.loginWithPassword({email: rollno + '@iith.ac.in'}, passwordVar, () => { console.log("logged in"); });
-    }
+Template.adminPanel.events({
+	'click .submit' : () => {
+		if(!Meteor.user()) return;
+		var rollNo = document.getElementById('rollNumber').value;
+		var hours = document.getElementById('hours').value;
+		var eventName = document.getElementById('eventName').value;
+		var bel = document.getElementById('legend');
+		var i = '';
+		if(!rollNo)
+			i = 'Invalid Roll Number';
+		else if(!hours || hours < 1)
+			i = 'Invalid Number of Hours';
+		else if(!eventName)
+			i = 'ERROR! Invalid Event Name';
+		else{
+			i = 'Submitted';
+			Meteor.call('giveCreditToStudent', rollNo, eventName, hours, Meteor.user()._id);
+		}
+		bel.innerHTML = 'Add Hours by Event - ' + i;
+			
+	}
 });

@@ -5,26 +5,23 @@
 <body>
   <h1>Welcome to National Service Scheme!</h1>
   
-  {{ > top }}
-	
+  {{#if currentUser }}
+
+  	{{ #if currentUser.profile.isAdmin }}
+
+  		{{ > adminPanel }}
+
+  	{{ else }}
+
+      Unauthorized.
+
+    {{  /if }}
+
+  {{ /if }}
+
+{{ >loginButtons}}
+
 </body>
-
-<template name="top">
-	{{#if currentUser }}
-
-  		{{ > hello }}
-  		{{ > info }}
-
-  		{{ #if currentUser.profile.isAdmin }}
-  			{{ #if isAdminLink }}
-  				{{ > adminPanel }}
-  			{{ /if }}
-  		{{ /if }}
-  	{{ /if }}
-
-	{{ >loginButtons}}
-	
-</template>
 
 <template name="hello">
   <button class="increment">Click Me</button>
@@ -45,11 +42,10 @@
   </ul>
 </template>
 
-
 <template name="adminPanel">
   <h2>Administrator Controls</h2>
   <fieldset>
-  	<legend id='legend'> Add Hours by Event </legend>
+  	<legend> Add Hours by Event </legend>
   		<form>
   			<table>
   				<tr>
@@ -58,12 +54,12 @@
   					<th> Event </th>
   				</tr>
   				<tr>
-  					<td> <input type="text" id="rollNumber"></td>
-  					<td> <input type="Number" id="hours"></td>
-  					<td> <input type="text" id="eventName"></td>
+  					<td> <input type="text" name="rollNumber"></td>
+  					<td> <input type="Number" name="hours"></td>
+  					<td> <input type="text" name="eventName"></td>
   				</tr>
   			</table>
-  			<input type="button" class="submit" value="Submit">
+  			<input type="button" name="submit" value="Submit">
   		</form>
   	</fieldset>
 </template>

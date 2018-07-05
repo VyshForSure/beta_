@@ -55,7 +55,8 @@ Template.adminPanel.events({
 			i = 'ERROR! Invalid Event Name';
 		else{
 			i = 'Submitted';
-			Meteor.call('giveCreditToStudent', rollNo, eventName, hours, Meteor.user()._id);
+			Meteor.call('giveCreditToStudent', rollNo, eventName, hours, Meteor.user()._id, Meteor.user().profile.accessTokenExpiry,
+				(err, val) => { console.log(val); });
 		}
 		bel.innerHTML = 'Add Hours by Event - ' + i;
 			

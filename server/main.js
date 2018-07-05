@@ -15,6 +15,18 @@ Meteor.startup(() => {
   	// console.log(Meteor.users.find({}).fetch()[0]);
   	// console.log('Modified ' + Meteor.users.update({}, {$set: {nss: nss}}) + ' documents.');
 
+ //  	ServiceConfiguration.configurations.remove({
+ //  		service: "google"
+	// });
+	
+
+	// ServiceConfiguration.configurations.insert({
+ //  		service: "google",
+ //  		clientId: "123456789",
+ //  		loginStyle: "popup",
+ //  		secret: "8j4ldfjSECRET-HEREalkjf8slk"
+	// });
+
 
   	Accounts.onCreateUser((options, user) => {
   		if (!('profile' in options)) { options.profile = {}; }

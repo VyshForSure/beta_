@@ -1,4 +1,4 @@
-<!doctype html>
+	<!doctype html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -6,19 +6,13 @@
 	<meta name="description" content="Information about events">
 	<meta name="author" content="">
 	<title>ELAN&NVISION</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-	<link rel="icon" href="/home/vysh/_beta/favicon.png">
+	<link rel="icon" href="./beta_/beta_/favicon.png">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 	<style type="text/css">
-		.navbar-default{
-			background-color:#B0D1E8;
-		}
-		.navbar-brand{
-			color:black;
-			
-		}
 		.sidenav {
 			height: 100%;
 			width: 0;
@@ -31,7 +25,6 @@
 			transition: 0.5s;
 			padding-top: 60px;
 		}
-
 		.sidenav a {
 			padding: 8px 8px 8px 32px;
 			text-decoration: none;
@@ -40,11 +33,9 @@
 			display: block;
 			transition: 0.3s;
 		}
-
 		.sidenav a:hover {
 			color: #f1f1f1;
 		}
-
 		.sidenav .closebtn {
 			position: absolute;
 			top: 0;
@@ -52,29 +43,76 @@
 			font-size: 36px;
 			margin-left: 50px;
 		}
-
 		@media screen and (max-height: 450px) {
 			.sidenav {padding-top: 15px;}
 			.sidenav a {font-size: 18px;}
 		}
+		.icon-bar {
+			position: fixed;
+			top: 50%;
+			z-index:1;
+			-webkit-transform: translateY(-50%);
+			-ms-transform: translateY(-50%);
+			transform: translateY(-50%);
+		}
+
+		.icon-bar a {
+			display: block;
+			text-align: center;
+			padding: 16px;
+			transition: all 0.3s ease;
+			color: white;
+			font-size: 20px;
+		}
+
+		.icon-bar a:hover {
+			background-color: #000;
+		}
+
+		.facebook {
+			background: #3B5998;
+			color: white;
+		}
+
+		.twitter {
+			background: #55ACEE;
+			color: white;
+		}
+
+		.instagram {
+			background: #dd4b39;
+			color: white;
+		}
+
+		.youtube {
+			background: #bb0000;
+			color: white;
+		}
+
+
 	</style>
 	<script type="text/javascript">
 		function openNav() {
 			document.getElementById("mySidenav").style.width = "250px";
 		}
-
 		function closeNav() {
 			document.getElementById("mySidenav").style.width = "0";
 		}
 	</script>
 </head>
 <body>
+	<div class="icon-bar">
+		<a href="https://www.facebook.com/elan.iithyderabad/" class="facebook"><i class="fa fa-facebook"></i></a> 
+		<a href="https://twitter.com/elan_iith" class="twitter"><i class="fa fa-twitter"></i></a> 
+		<a href="https://www.instagram.com/elan_and_nvision/" class="instagram"><i class="fa fa-instagram"></i></a>
+		<a href="https://www.youtube.com/user/ElanIITHyderabad" class="youtube"><i class="fa fa-youtube"></i></a> 
+	</div>
 	<div id="mySidenav" class="sidenav">
 		<a href="#" class="closebtn" onclick="closeNav()">&times;</a>
 		<a href="#">Home</a>
-		<a href="#">About Us</a>
+		<a href="#/home/">About Us</a>
 		<a href="#">Sponsers</a>
-		<a href="#">Events</a>
+		<a href="/home/vysh/_beta/events.html">Events</a>
 		<a href="#">Team</a>
 	</div>
 	<div class="navbar navbar-dark bg-dark box-shadow" data-spy="affix">
@@ -124,15 +162,18 @@
 		<br><br><br>
 		<h2 class="text-center" style="padding:15px;">Long and Short Essay</h2>
 		<div class="text-center">
-				<p>Since inception, its fervid tendrils have touched the hearts of every adroit organiser and participant leaving a legacy to be upheld by its family of dedicated students.</p>
+			<p>Since inception, its fervid tendrils have touched the hearts of every adroit organiser and participant leaving a legacy to be upheld by its family of dedicated students.</p>
 		</div>
 	</div>
 	<div class="container-fluid" style="background-color:#F2E2A0;"><br>
 		<footer class="container">
 
 			<div class="row">
-				<div class="col-sm-5">
+				<div class="col-sm-4">
 					<h4><strong>STAY UPDATED</strong></h4><br>
+					
+				</div>
+				<div class="col-sm-1">
 				</div>
 				<div class="col-sm-3">
 					<h4><strong>INFO</strong></h4><br>
@@ -148,15 +189,8 @@
 					<p>Instagram</p>
 				</div><br>
 
-		</footer>
-	</div>
-		<div>
-		<a target="_blank" href="https://twitter.com/elan_iith" ><img class="footerimg" src="/home/vysh/_beta/images/twitter.png" width="3px" height="3px"></a>
-		<a target="_blank" href="https://www.facebook.com/elan.iithyderabad/"><img class="footerimg" src="./beta_/beta_/images/fb.png"></a>
-		<a target="_blank" href="https://www.instagram.com/elan_and_nvision/"><img class="footerimg" src="./beta_/beta_/images/insta.png"></a>
-		<a target="_blank" href="https://www.youtube.com/user/ElanIITHyderabad"><img class="footerimg" src="./beta_/beta_/images/yt.png"></a>
-	</div>
+			</footer>
+		</div>
 
-</body>
-</html>
-
+	</body>
+	</html>

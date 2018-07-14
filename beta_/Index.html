@@ -18,6 +18,7 @@
 	<meta property="og:description" content="ELAN & ηvision 2019: Techno-cultural Fest of IIT Hyderabad">
 	<meta http-equiv="refresh" content="4.999; url=/home/vysh/beta_-master/beta_/Home.html" />
 	<link href="https://fonts.googleapis.com/css?family=Merienda" rel="stylesheet">
+	<link rel="stylesheet" href="index.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -28,68 +29,53 @@
 
 		h1 {
 			font-family: 'Merienda', cursive;
-			font-size: 6vw;
+			font-size: 75px;
 			color: white;
 			letter-spacing: 0.1vw;
 			text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.66);
 			text-align:center;
 		}
-
-		.hero {
-			background-image: radial-gradient(50% 176%, #253854 80%, #061922 100%);
-			min-height: 100vh;
-			position: relative;
-			overflow: hidden;
-			display: flex;
-			justify-content: center;
-			align-content: center;
-
-			&__content {
-				position: relative;
-				align-self: center;
-				padding: 3rem 0;
+		@media screen and (max-width: 1000px) {
+			h1 {
+				font-family: 'Merienda', cursive;
+				font-size: 65px;
+				color: white;
+				letter-spacing: 0.1vw;
+				text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.66);
+				text-align:center;
 			}
 		}
-
-		.snow {
-			position: absolute;
-			min-width: 100vw;
-			min-height: 100vh;
-			height: 100%;
-			width: 100%;
-			top: 0;
-			left: 0;
-		}
-
-		.snow .svg {
-			position: absolute;
-			width: 100%;
-			height: 100%;
-		}
-
-		#snow-top-layer {
-			will-change: transform;
-			transform: translateY(-768px);
-			animation: fall 22.5s infinite linear;
-		}
-
-		#snow-bottom-layer {
-			will-change: transform;
-			transform: translateY(-768px);
-			animation: fall 45s infinite linear;
-		}
-
-		@keyframes fall {
-
-			100% {
-				transform: translateY(0);
+		
+		@media screen and (max-width: 800px) {
+			h1 {
+				font-family: 'Merienda', cursive;
+				font-size: 55px;
+				color: white;
+				letter-spacing: 0.1vw;
+				text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.66);
+				text-align:center;
 			}
 
+		}
+		@media screen and (max-width: 600px) {
+			h1 {
+				font-family: 'Merienda', cursive;
+				font-size: 45px;
+				color: white;
+				letter-spacing: 0.1vw;
+				text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.66);
+				text-align:center;
+			}
 		}
 		img {
 			display: block;
 			margin-left: auto;
 			margin-right: auto;
+			width:35%;
+			height:35%;
+		}
+		.jumbotron {
+			background-color: transparent;
 		}
 	</style>
 	<script>
@@ -135,7 +121,7 @@
 	<div class="hero">
 
 		<div class="snow">
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1536" preserveAspectRatio="xMidYMax slice">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 924 1536" preserveAspectRatio="xMidYMax slice">
 				<g fill="#FFF" fill-opacity=".15" transform="translate(55 42)">
 					<g id="snow-bottom-layer">
 						<ellipse cx="6" cy="1009.5" rx="6" ry="5.5"/>
@@ -208,17 +194,20 @@
 		</div>
 
 		<div class="hero__content">
-			<h1>ELAN & &eta;VISION</h1>
-			<div>
-				<img id="rotate3D" src="images/logo.png" width="25%" height="25%">
-				<script>
-					(function() {
-						y=document.getElementById("rotate3D")
-						clearInterval(rotYINT)
-						rotYINT=setInterval("startYRotate()",50)
-					})();
-				</script>
+			<div class="jumbotron">
+				<h1>ELAN & &eta;VISION</h1>
+				<br>
+				<div>
+					<img id="rotate3D" src="images/logo.png">
+					<script>
+						(function() {
+							y=document.getElementById("rotate3D")
+							clearInterval(rotYINT)
+							rotYINT=setInterval("startYRotate()",50)
+						})();
+					</script>
 
+				</div>
 			</div>
 		</div>
 	</div>

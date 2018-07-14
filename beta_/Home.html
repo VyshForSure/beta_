@@ -17,6 +17,7 @@
 	<meta property="og:type" content="website">
 	<!-- <meta property="og:image" content="https://nvision.org.in/img/logo.png"> -->
 	<meta property="og:description" content="ELAN & ηvision 2019: Techno-cultural Fest of IIT Hyderabad">
+	<link rel="stylesheet" href="home.css">
 	<link href="https://fonts.googleapis.com/css?family=Faster+One|Merienda" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
@@ -59,229 +60,115 @@
 		});
 
 		function openNav() {
-			document.getElementById("mySidenav").style.width = "250px";
+			document.getElementById("mySidenav").style.width = "300px";
 		}
 
 		function closeNav() {
 			document.getElementById("mySidenav").style.width = "0";
 		}
+
+		function myFunction() {
+			document.getElementById("curtainEffect").style.width = "0";
+			document.getElementById("curtaineffect").style.width = "0";
+		}
 		
 	</script>
+	<style type="text/css">
+		/*body prperties*/
+		@media screen and (max-width: 992px) {
+			h1 {
+				font-size:8.5vw;
+			}
+		}
+		/*body prperties*/
+		@media screen and (min-width: 992px) {
+			h1 {
+				font-size:7vw;
+			}
+		}
+		h1{
+			text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.66);
+			letter-spacing: 0.01vw; 
+			transition: 0.5s; 
+			font-family: 'Faster One', cursive; 
+			margin: 0;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin-right: -50%;
+			transform: translate(-50%, -50%);
+		}
+		body {
+			color: white;
+		}
+	</style>
 </head>
-<style type="text/css">
-	/*navbar properties in large screens*/
-	.nav-item {
-		padding-left: 2.5vw;
-		padding-top: 2vw;
-		font-size: 18px; 
+<body class="hero" onload="myFunction()">
+	<div id="curtainEffect" class="leftcurtain"></div>
+	<div id="curtaineffect" class="rightcurtain"></div>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+		<a class="navbar-brand"><img src="images/logo-2.png" width="60px" height="52.95px"><span style="font-family: 'Merienda', cursive; font-size: 25px; margin: 5px;">ELAN & &eta;VISION</span></a>
+		<span id="menuIcon" style="float:right; top:0;font-size:40px;cursor:pointer" onclick="openNav()">&#9776;</span>
+		<div class="collapse navbar-collapse" id="navbarText">
+			<ul id="panel" class="navbar-nav ml-auto">
+				<li id="div1" class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="#">Action</a>
+						<a class="dropdown-item" href="#">Another action</a>
+						<a class="dropdown-item" href="#">Something else here</a>
+					</div>
+				</li>
+				<li id="div2" class="nav-item">
+					<a class="nav-link" href="#">About Us</a>
+				</li>
+				<li id="div3" class="nav-item">
+					<a class="nav-link" href="#">Sponsers</a>
+				</li>
 
-	}
-	.navbar-nav .nav-item .nav-link {
-		color: white;
-	}
-	.dropdown-menu {
-		background-color:pink; 
-	}
-	.dropdown-menu a:hover {
-
-		background-color: #F792F7;
-	}
-	.dropdown-menu .dropdown-item {
-		color:black;
-	}
-	#div1,#div2,#div3,#div4,#div5 {
-		display: none;
-	}
-	#side1,#side2,#side3,#side4 {
-
-	}
-	.footerimg {
-		width: 40px;
-		position: fixed;
-		
-	}
-
-
-	@media screen and (max-width: 800px) {
-		.footerimg {
-			width: 35px;
-
-		}
-	}
-	.nav-link {
-
-		opacity: 0.9;
-		border-radius: 10%;
-		-webkit-transition: opacity 0.35s;
-		transition: opacity 0.35s;
-		-webkit-transition: all 0.3s;
-		-moz-transition: all 0.3s;
-		-o-transition: all 0.3s;
-	}
-	/*social icons*/
-	.footerimg{
-
-		opacity: 0.9;
-		border-radius: 50%;
-		-webkit-transition: opacity 0.35s;
-		transition: opacity 0.35s;
-		-webkit-transition: all 0.3s;
-		-moz-transition: all 0.3s;
-		-o-transition: all 0.3s;
-	}
-	.footerimg:hover,.nav-link:hover{
-
-		opacity: 1;
-		-webkit-box-shadow: 0px 0px 8px 0px rgba(219,237,166,0.5);
-		-moz-box-shadow: 0px 0px 8px 0px rgba(219,237,166,0.5);
-		box-shadow: 0px 0px 8px 0px rgba(219,237,166,0.5);
-
-		-webkit-transform: scale(1.3);
-		-moz-transform: scale(1.3);
-		-ms-transform: scale(1.3);
-		-o-transform: scale(1.3);
-		transform: scale(1.3);
-		-webkit-transition: all 0.3s;
-		-moz-transition: all 0.3s;
-		-o-transition: all 0.3s;
-		transition: all 0.3s;
-	}
-	/*menu icon for small screens*/
-	.sidenav {
-		height: 100%;
-		width: 0;
-		position: fixed;
-		z-index: 1;
-		top: 0;
-		right: 0;
-		background-color: #878BED;
-		opacity:0.8;
-		overflow-x: hidden;
-		transition: 0.5s;
-		padding-top: 60px;	
-		text-align:center;
-	}
-
-	.sidenav a {
-		padding: 8px 8px 8px 32px;
-		text-decoration: none;
-		font-size: 25px;
-		color: white;
-		display: block;
-		transition: 0.3s;
-
-	}
-
-	.sidenav a:hover{
-		color: #f1f1f1;
-	}
-
-	.sidenav .closebtn {
-		position: absolute;
-		top: 0;
-		right: 25px;
-		font-size: 36px;
-		margin-left: 50px;
-	}
-
-	@media screen and (max-height: 450px) {
-		.sidenav {padding-top: 15px;}
-		.sidenav a {font-size: 18px;}
-	}
-	@media screen and (max-width: 992px) {
-		#menuIcon {
-			display: block;
-		}
-		#menu {
-			display: none;
-		}
-	}
-	@media screen and (max-width: 1500px) {
-		#menuIcon {
-			display: none;
-		}
-		#menu {
-			display: block;
-		}
-	}
-	/*body prperties*/
-	h1,h2 {
-		text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.66);
-		letter-spacing: 0.01vw; 
-		transition: 0.5s; 
-		text-align:center; 
-		font-family: 'Faster One', cursive; 
-		font-size: 7vw;
-	}
-	.hero {
-		background-image: radial-gradient(#F567B3 50%, #F5369C 60%, #061922 100%);
-		min-height: 100vh;
-		min-width: 100vw;
-
-	}
-	body {
-		color: white;
-	}
-</style>
-<body>
-	<div class="hero">
-		<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
-			<a class="navbar-brand"><img src="images/logo-2.png" width="60px" height="52.95px"><span style="font-family: 'Merienda', cursive; font-size: 25px; margin: 5px;">ELAN & &eta;VISION</span></a>
-			<span id="menuIcon" style="float:right; top:0;font-size:40px;cursor:pointer" onclick="openNav()">&#9776;</span>
-			<div class="collapse navbar-collapse" id="navbarText">
-				<ul id="panel" class="navbar-nav ml-auto">
-					<li id="div1" class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">Action</a>
-							<a class="dropdown-item" href="#">Another action</a>
-							<a class="dropdown-item" href="#">Something else here</a>
-						</div>
-					</li>
-					<li id="div2" class="nav-item">
-						<a class="nav-link" href="#">About Us</a>
-					</li>
-					<li id="div3" class="nav-item">
-						<a class="nav-link" href="#">Sponsers</a>
-					</li>
-
-					<li id="div4" class="nav-item">
-						<a class="nav-link" href="#">Events</a>
-					</li>
-					<li id="div5" class="nav-item">
-						<a class="nav-link" href="#">Team</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#"><span id="menu" style="font-size:30px;cursor:pointer">&#9776;</a>
-					</li>
-				</ul>
-			</div>
-		</nav><br><br> 
-		<div id="mySidenav" class="sidenav">
-			<a href="javascript:void(0)" id="close" class="closebtn" onclick="closeNav()">&times;</a>
-			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
-			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-				<a class="dropdown-item" href="#">Action</a>
-				<a class="dropdown-item" href="#">Another action</a>
-				<a class="dropdown-item" href="#">Something else here</a>
-			</div>
-			<a class="nav-link" href="#">About</a>
-			<a class="nav-link" href="#">Sponsers</a>
-			<a class="nav-link" href="#">Events</a>
-			<a class="nav-link" href="#">Team</a>
+				<li id="div4" class="nav-item">
+					<a class="nav-link" href="#">Events</a>
+				</li>
+				<li id="div5" class="nav-item">
+					<a class="nav-link" href="#">Team</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#"><span id="menu" style="font-size:30px;cursor:pointer">&#9776;</a>
+				</li>
+			</ul>
 		</div>
-
-		
-		<h1>ELAN & &eta;VISION</h1>
-		<h2>IIT HYDERABAD</h2>
-	<div id="sideBar"><br>
-		<a target="_blank" href="https://twitter.com/elan_iith"><img id="side1" class="footerimg" src="./images/twitter.png"></a><br><br>
-		<a target="_blank" href="https://www.facebook.com/elan.iithyderabad/"><img id="side2" class="footerimg" src="./images/fb.png"></a><br><br>
-		<a target="_blank" href="https://www.instagram.com/elan_and_nvision/"><img id="side3" class="footerimg" src="./images/	insta.png"></a><br><br>
-		<a target="_blank" href="https://www.youtube.com/user/ElanIITHyderabad"><img id="side4" class="footerimg" src="./images/yt.png"></a><br>
+	</nav><br><br> 
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" id="close" class="closebtn" onclick="closeNav()">&times;</a>
+		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
+		<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+			<a class="dropdown-item" href="#">Action</a>
+			<a class="dropdown-item" href="#">Another action</a>
+			<a class="dropdown-item" href="#">Something else here</a>
+		</div>
+		<a class="nav-link" href="#">About</a>
+		<a class="nav-link" href="#">Sponsers</a>
+		<a class="nav-link" href="#">Events</a>
+		<a class="nav-link" href="#">Team</a><br><br>
+		<div class="d-flex justify-content-around">
+			<div><a target="_blank" href="https://twitter.com/elan_iith"><img class="footerimg" src="images/twitter.png"></a></div>
+			<div><a target="_blank" href="https://www.facebook.com/elan.iithyderabad/"><img class="footerimg" src="images/fb.png"></a></div>
+			<div><a target="_blank" href="https://www.instagram.com/elan_and_nvision/"><img class="footerimg" src="images/insta.png"></a></div>
+			<div><a target="_blank" href="https://www.youtube.com/user/ElanIITHyderabad"><img class="footerimg" src="images/yt.png"></a></div>
+		</div>
 	</div>
 </div>
-
-</div>
+<div class="container-fluid">
+	<div class="d-flex flex-column">
+		<div class="p-1"><a target="_blank" href="https://twitter.com/elan_iith"><img id="side1" class="footerimg" src="images/twitter.png"></a></div>
+		<div class="p-1"><a target="_blank" href="https://www.facebook.com/elan.iithyderabad/"><img id="side2" class="footerimg" src="images/fb.png"></a></div>
+		<div class="p-1"><a target="_blank" href="https://www.instagram.com/elan_and_nvision/"><img id="side3" class="footerimg" src="images/insta.png"></a></div>
+		<div class="p-1"><a target="_blank" href="https://www.youtube.com/user/ElanIITHyderabad"><img id="side4" class="footerimg" src="images/yt.png"></a></div>
+	</div>
+	<div>
+		<h1>ELAN & &eta;VISION<br>
+			IIT HYDERABAD</h1>	
+		</div>
+	</div>
 </body>
 </html>

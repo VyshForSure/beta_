@@ -171,7 +171,7 @@
 		}
 	}
 	.hero {
-			background-image: radial-gradient(#F567B3 50%, #F5369C 60%, #061922 100%);
+			background-image: radial-gradient(50% 176%, #253854 20%, #061922 100%);
 			min-height: 100vh;
 			min-width: 100vw;
 		}

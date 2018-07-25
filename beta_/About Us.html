@@ -254,7 +254,7 @@
 		if(lx > Value.numX) lx = Value.numX;
 		if(x < 0) {
 			x = 0;
-			sx = 0;
+			sx = Value.cellSize / 2;
 		}
 		for(; x < lx; x++, sx += Value.cellSize){
 			var y = Math.floor((Value.mouseY - Value.visibility) / Value.cellSize),
@@ -262,7 +262,7 @@
 			sy = y * Value.cellSize + Value.cellSize / 2;
 			if(y < 0) {
 				y = 0;
-				sy = 0;
+				sy = Value.cellSize / 2;
 			}
 			if(ly > Value.numY) ly = Value.numY;
 			for(; y < ly; y++, sy += Value.cellSize){

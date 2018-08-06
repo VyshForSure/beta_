@@ -33,7 +33,6 @@
 				$("#div3").fadeToggle(1500);
 				$("#div4").fadeToggle(1500);
 				$("#div5").fadeToggle(1500);
-
 			});
 		});
 		/*$(document).ready(function(){
@@ -42,12 +41,9 @@
 				$("#side3").fadeToggle(1000);
 				$("#side2").fadeToggle(1000);
 				$("#side1").fadeToggle(1000);
-
 			});
 		});*/
-
 		/*menu icon for small screens*/
-
 		$(document).ready(function(){
 			$("#menuIcon").click(function(){
 				$("#menuIcon").fadeOut("fast");
@@ -58,13 +54,15 @@
 				$("#menuIcon").fadeIn("fast");
 			});
 		});
-
 		function openNav() {
 			document.getElementById("mySidenav").style.width = "300px";
 		}
-
 		function closeNav() {
 			document.getElementById("mySidenav").style.width = "0";
+		}
+		function myFunction() {
+			document.getElementById("curtainEffect").style.width = "0";
+			document.getElementById("curtaineffect").style.width = "0";
 		}
 		
 	</script>
@@ -85,36 +83,36 @@
 			text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.66);
 			letter-spacing: 0.01vw; 
 			transition: 0.5s; 
-			font-family: 'Faster One', cursive; 
+			font-family: 'Merienda',cursive; 
 			margin: 0;
 			position: absolute;
 			top: 50%;
 			left: 50%;
 			margin-right: -50%;
 			transform: translate(-50%, -50%);
+			color:#F06018;
 		}
 		body {
 			color: white;
 		}
 	</style>
 </head>
-<body onresize="bodyResized()">
+<body onload="myFunction()" onresize="bodyResized()">
 	<CANVAS id="canvas" style="position: absolute; pointer-events: none; z-index: -1; width: 100%; height: 100%;"></CANVAS>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
-		<a class="navbar-brand"><img src="images/logo-2.png" width="60px" height="52.95px"><span style="font-family: 'Merienda', cursive; font-size: 25px; margin: 5px;">ELAN & &eta;VISION</span></a>
+		<a class="navbar-brand"><img src="images/logo-2.png" width="60px" height="52.95px"><span style="font-family: 'Merienda', cursive; font-size: 25px; margin: 5px; color:  #F06018;">ELAN & &eta;VISION</span></a>
 		<span id="menuIcon" style="float:right; top:0;font-size:40px;cursor:pointer" onclick="openNav()">&#9776;</span>
 		<div class="collapse navbar-collapse" id="navbarText">
 			<ul id="panel" class="navbar-nav ml-auto">
 				<li id="div1" class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#">Action</a>
-						<a class="dropdown-item" href="#">Another action</a>
-						<a class="dropdown-item" href="#">Something else here</a>
+						<a class="dropdown-item" href="#">Home</a>
+						<a class="dropdown-item" href="#">FAQ's</a>
 					</div>
 				</li>
 				<li id="div2" class="nav-item">
-					<a class="nav-link" href="#">About Us</a>
+					<a class="nav-link" href="About Us.html">About Us</a>
 				</li>
 				<li id="div3" class="nav-item">
 					<a class="nav-link" href="#">Sponsers</a>
@@ -124,7 +122,7 @@
 					<a class="nav-link" href="#">Events</a>
 				</li>
 				<li id="div5" class="nav-item">
-					<a class="nav-link" href="#">Team</a>
+					<a class="nav-link" href="Team.html">Team</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#"><span id="menu" style="font-size:30px;cursor:pointer">&#9776;</a>
@@ -136,14 +134,13 @@
 		<a href="javascript:void(0)" id="close" class="closebtn" onclick="closeNav()">&times;</a>
 		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
 		<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			<a class="dropdown-item" href="#">Action</a>
-			<a class="dropdown-item" href="#">Another action</a>
-			<a class="dropdown-item" href="#">Something else here</a>
+			<a class="dropdown-item" href="#">HOME</a>
+			<a class="dropdown-item" href="#">FAQ's</a>
 		</div>
-		<a class="nav-link" href="#">About</a>
+		<a class="nav-link" href="About Us.html">About</a>
 		<a class="nav-link" href="#">Sponsers</a>
 		<a class="nav-link" href="#">Events</a>
-		<a class="nav-link" href="#">Team</a><br><br>
+		<a class="nav-link" href="Team.html">Team</a><br><br>
 		<div class="d-flex justify-content-around">
 			<div><a target="_blank" href="https://twitter.com/elan_iith"><img class="footerimg" src="images/twitter.png"></a></div>
 			<div><a target="_blank" href="https://www.facebook.com/elan.iithyderabad/"><img class="footerimg" src="images/fb.png"></a></div>
@@ -159,15 +156,15 @@
 		<div class="p-1"><a target="_blank" href="https://www.instagram.com/elan_and_nvision/"><img id="side3" class="footerimg" src="images/insta.png"></a></div>
 		<div class="p-1"><a target="_blank" href="https://www.youtube.com/user/ElanIITHyderabad"><img id="side4" class="footerimg" src="images/yt.png"></a></div>
 	</div>
-</div>
-<img src="images/back1.jpg" id="background-image" hidden="true" />
+	</div>
+	<h1>ELAN & ηVISION</h1>
 </body>
 </html>
+
+
 <script type="text/javascript">
 	Value = {
-		img: document.getElementById("background-image"),
-		imgW: 0, imgH: 0, imgX: 0, imgY: 0,
-		foreground: "rgba(255, 255, 255, ",
+		background: "#085051", foreground: "rgba(208, 139, 63, ",
 		random: [],
 		rad: [],
 		numX: 0, numY: 0,
@@ -186,7 +183,6 @@
 			else return Math.exp(-distSqrd / (this.visibility * this.visibility));
 		}
 	};
-
 	function bodyResized(){
 		canvas = document.getElementById("canvas");
 		canvas.width = $(window).width(); canvas.height = $(window).height(); 
@@ -195,52 +191,45 @@
 		Value.numY = Math.floor(canvas.height / Value.cellSize);
 		Value.random = Array.from({length: Value.numX * Value.numY}, () => Math.random());
 		Value.rad = Array.from(Value.random, (x) => Value.minRad + x * Value.radius);
-		var ratio = Value.img.height / Value.img.width;
-		if(canvas.width < canvas.height){
-			Value.imgW = canvas.width;
-			Value.imgH = Value.imgW * ratio;
-		}
-		else{
-			Value.imgH = canvas.height;
-			Value.imgW = Value.imgH / ratio;
-		}
-		Value.imgX = (canvas.width - Value.imgW)/2; Value.imgY = (canvas.height - Value.imgH)/2;
 	}
-
 	function draw(){
-		
-		pen.drawImage(Value.img, Value.imgX, Value.imgY, Value.imgW, Value.imgH);	
-
+		pen.fillStyle = Value.background;
+		pen.fillRect(0, 0, canvas.width, canvas.height);
 		var waveTime = new Date().getTime() * Value.wave.freq;
 		var x = Math.floor((Value.mouseX - Value.visibility) / Value.cellSize), 
-		lx = x + Math.ceil(2 * Value.visibility / Value.cellSize);
+		lx = x + Math.ceil(2 * Value.visibility / Value.cellSize),
+		sx = x * Value.cellSize + Value.cellSize / 2;
 		if(lx > Value.numX) lx = Value.numX;
-		if(x < 0) x = 0;
-		var sx = x * Value.cellSize + Value.cellSize / 2;
-
+		if(x < 0) {
+			x = 0;
+			sx = Value.cellSize / 2;
+		}
 		for(; x < lx; x++, sx += Value.cellSize){
 			var y = Math.floor((Value.mouseY - Value.visibility) / Value.cellSize),
-			ly = y + Math.ceil(2 * Value.visibility / Value.cellSize);
-			if(y < 0) y = 0;
+			ly = y + Math.ceil(2 * Value.visibility / Value.cellSize),
+			sy = y * Value.cellSize + Value.cellSize / 2;
+			if(y < 0) {
+				y = 0;
+				sy = Value.cellSize / 2;
+			}
 			if(ly > Value.numY) ly = Value.numY;
-			var sy = y * Value.cellSize + Value.cellSize / 2;
-
 			for(; y < ly; y++, sy += Value.cellSize){
 				var idx = x + Value.numY * y;
 				var disp = {h: Value.wave.amp * Math.sin(Value.random[idx] * Value.wave.waveVect.x * sx + waveTime), 
 					k: Value.wave.amp * Math.sin(Value.random[idx] * Value.wave.waveVect.y * sy + waveTime)};
-				var dist2 = (sx + disp.h - Value.mouseX)*(sx + disp.h - Value.mouseX) + (sy + disp.k - Value.mouseY)*(sy + disp.k - Value.mouseY);
-				pen.beginPath();
-				pen.fillStyle = Value.foreground + (Value.visibility*Value.visibility - dist2)/(Value.visibility*Value.visibility) + ")";
-				pen.arc(sx + disp.h, sy + disp.k, Value.rad[idx], 0, 2 * 3.1416);
-				pen.fill();
+					var dist2 = (sx + disp.h - Value.mouseX)*(sx + disp.h - Value.mouseX) + (sy + disp.k - Value.mouseY)*(sy + disp.k - Value.mouseY);
+					pen.beginPath();
+					pen.fillStyle = Value.foreground + (Value.visibility*Value.visibility - dist2)/(Value.visibility*Value.visibility) + ")";
+					pen.arc(sx + disp.h, sy + disp.k, Value.rad[idx], 0, 2 * 3.1416);
+					pen.closePath();
+					pen.fill();
+				}
 			}
 		}
-	}
-	document.addEventListener('mousemove', function(event){
-		Value.mouseX = event.clientX;
-		Value.mouseY = event.clientY;
-	});
-	bodyResized();
-	setInterval(draw, 1000/60);
-</script>
+		document.addEventListener('mousemove', function(event){
+			Value.mouseX = event.clientX;
+			Value.mouseY = event.clientY;
+		});
+		bodyResized();
+		setInterval(draw, 1000/60);
+	</script>

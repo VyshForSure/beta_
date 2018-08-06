@@ -17,7 +17,6 @@
 	<meta property="og:type" content="website">
 	<!-- <meta property="og:image" content="https://nvision.org.in/img/logo.png"> -->
 	<meta property="og:description" content="ELAN & ηvision 2019: Techno-cultural Fest of IIT Hyderabad">
-	<link rel="stylesheet" href="home.css">
 	<link rel="stylesheet" href="about.css">
 	<link href="https://fonts.googleapis.com/css?family=Old+Standard+TT" rel="stylesheet"> 
 	<link href="https://fonts.googleapis.com/css?family=Faster+One|Merienda" rel="stylesheet">
@@ -95,12 +94,11 @@
 		body {
 			color: white;
 		}
-		
 	</style>
 	<script>
 		document.addEventListener('DOMContentLoaded',function(event){
   // array with texts to type in typewriter
-  var dataText = [ "Elan & &eta;vision, the most anticipated and grandiose festival of IIT Hyderabad, is back with a congl omerate of splendiferous events to galvanize the mob. Since inception, its fervid tendrils have touched the hearts of every adroit organiser and participant leaving a legacy to be upheld by its family of dedicated students.<br><br>Elan and &eta;vision is an elegant brew of culture, innovation and feverish exhilaration stimulating an atmosphere of intense competitions and professional performances.With a carefully fabricated range of events, covering varied genres in art, music and technology, we have something for everyone."];
+  var dataText = [ "Elan & &eta;vision, the most anticipated and grandiose festival of IIT Hyderabad, is back with a congl omerate of splendiferous events to galvanize the mob. Since inception, its fervid tendrils have touched the hearts of every adroit organiser and participant leaving a legacy to be upheld by its family of dedicated students.<br><br>Elan and &eta;vision is an elegant brew of culture, innovation and feverish exhilaration stimulating an atmosphere of intense competitions and professional performances.With a carefully fabricated range of events, covering varied genres in art, music and technology, we have something for everyone.<br><br>Elan & &eta;vision 2018, arguably the grandest techno-cultural fiesta you will ever come across, promises an eximious experience for spectators and participants alike."];
   
   // type one text in the typwriter
   // keeps calling itself until the text is finished
@@ -153,9 +151,8 @@
 				<li id="div1" class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#">Action</a>
-						<a class="dropdown-item" href="#">Another action</a>
-						<a class="dropdown-item" href="#">Something else here</a>
+						<a class="dropdown-item" href="Home.html">Home</a>
+						<a class="dropdown-item" href="#">FAQ's</a>
 					</div>
 				</li>
 				<li id="div2" class="nav-item">
@@ -169,7 +166,7 @@
 					<a class="nav-link" href="#">Events</a>
 				</li>
 				<li id="div5" class="nav-item">
-					<a class="nav-link" href="#">Team</a>
+					<a class="nav-link" href="Team.html">Team</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#"><span id="menu" style="font-size:30px;cursor:pointer">&#9776;</a>
@@ -182,8 +179,7 @@
 		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
 		<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 			<a class="dropdown-item" href="#">Action</a>
-			<a class="dropdown-item" href="#">Another action</a>
-			<a class="dropdown-item" href="#">Something else here</a>
+			<a class="dropdown-item" href="#">FAQ's</a>
 		</div>
 		<a class="nav-link" href="#">About</a>
 		<a class="nav-link" href="#">Sponsers</a>
@@ -199,14 +195,17 @@
 </div>
 <div class="container-fluid">
 	<div class="row">
-	<div style="" class="col-2">
+		<div style="" class="col-1">
 			<div class="p-1"><a target="_blank" href="https://twitter.com/elan_iith"><img id="side1" class="footerimg" src="images/twitter.png"></a></div>
 			<div class="p-1"><a target="_blank" href="https://www.facebook.com/elan.iithyderabad/"><img id="side2" class="footerimg" src="images/fb.png"></a></div>
 			<div class="p-1"><a target="_blank" href="https://www.instagram.com/elan_and_nvision/"><img id="side3" class="footerimg" src="images/insta.png"></a></div>
 			<div class="p-1"><a target="_blank" href="https://www.youtube.com/user/ElanIITHyderabad"><img id="side4" class="footerimg" src="images/yt.png"></a></div>
 		</div>
-		<div id="move" class="col-lg-3" style="font-family: 'Old Standard TT', serif; font-size: 50px;">About Us</div>
-		<div id="typewriter" class="col-lg-6 col-md-10"></div>
+		<div class="col-lg-3">
+			<div style="font-family: 'Old Standard TT', serif; font-size: 50px; text-align:left;"><u>About Us</u></div><br>
+			<div style="font-family: 'Old Standard TT', serif; font-size: 30px; text-align:left;">Play Video</div>
+		</div>
+		<div id="typewriter" class="col-lg-7 col-md-10"></div>
 	</div>
 </div>
 
@@ -233,7 +232,6 @@
 			else return Math.exp(-distSqrd / (this.visibility * this.visibility));
 		}
 	};
-
 	function bodyResized(){
 		canvas = document.getElementById("canvas");
 		canvas.width = $(window).width(); canvas.height = $(window).height(); 
@@ -246,7 +244,6 @@
 	function draw(){
 		pen.fillStyle = Value.background;
 		pen.fillRect(0, 0, canvas.width, canvas.height);
-
 		var waveTime = new Date().getTime() * Value.wave.freq;
 		var x = Math.floor((Value.mouseX - Value.visibility) / Value.cellSize), 
 		lx = x + Math.ceil(2 * Value.visibility / Value.cellSize),

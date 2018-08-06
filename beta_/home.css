@@ -4,7 +4,7 @@
 	.nav-item {
 		padding-left: 2.5vw;
 		padding-top: 2vw;
-		font-size: 18px; 
+		font-size: 20px; 
 
 	}
 	.navbar-nav .nav-item .nav-link {
@@ -15,7 +15,7 @@
 	}
 	.dropdown-menu a:hover {
 
-		background-color: #F792F7;
+		background-color: #FAA570;
 	}
 	.dropdown-menu .dropdown-item {
 		color:black;
@@ -80,7 +80,7 @@
 		z-index: 1;
 		top: 0;
 		right: 0;
-		background-color: #878BED;
+		background-color: #EDB337;
 		opacity:0.8;
 		overflow-x: hidden;
 		transition: 0.5s;
@@ -95,7 +95,6 @@
 		color: white;
 		display: block;
 		transition: 0.3s;
-
 	}
 
 	.sidenav a:hover{

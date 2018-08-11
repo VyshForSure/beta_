@@ -16,11 +16,19 @@ Meteor.startup(() => {
   	// console.log(Meteor.users.findOne({isAdmin: true}));
   	// console.log(Meteor.users.find({}).fetch()[0]);
   	// console.log('Modified ' + Meteor.users.update({}, {$set: {nss: nss}}) + ' documents.');
-  	
+  	ServiceConfiguration.configurations.remove({
+  		service: "google"
+	});
+	ServiceConfiguration.configurations.insert({
+  		service: "google",
+  		clientId: "871001074249-fc9fd21o3k87s4n2an01l3t1tbuufgjq.apps.googleusercontent.com",
+		loginStyle: "popup",
+		secret: "ulQSkZdjXf-gbXZ0xdLQWSS9"
+	});
 
   	//		NSS@iith.ac.in
   	// Client ID: 871001074249-fc9fd21o3k87s4n2an01l3t1tbuufgjq.apps.googleusercontent.com
-  	// Client Scrt: fs-BFCTi_nHFe_hNew94kS2i
+  	// Client Scrt: ulQSkZdjXf-gbXZ0xdLQWSS9
 
 
 
@@ -96,7 +104,7 @@ HTML _ Admin Panel
 Implicit
 	Time stamp of entry, Name of Admin
 Data from the Spreadsheet (In this order only)
-	Name RollNO hours category
+	Name, RollNO, hours, category
 
 user{
 	totalHours: 

@@ -3,29 +3,25 @@ import { Meteor } from 'meteor/meteor';
 Meteor.startup(() => {
 
   	console.log("\n\n\tServer Started.\n\n");
+  	console.log("ISSUE: Contains clientId on abhiagar97@gmail.com, replace.");
+  	console.log("ISSUE: Allows sign in with non iith.ac.in emails, fix.");
+  	console.log("ISSUE: Maintain an Array of hoursByCategory, add");
+  	console.log("ISSUE: Add category field to event, add");
 
-  	// console.log(Meteor.users.find({}).fetch());
+  	// Meteor.users.remove({});	
 
-  	Meteor.users.remove({});	
-
-  	// console.log('YOLO'); 
   	console.log('DB constains ' + Meteor.users.find({}).count() + ' documents.');
   	console.log('DB constains ' + Meteor.users.find({isAdmin: true}).count() + ' Admins.\n');
+
   	// console.log(Meteor.users.findOne({isAdmin: true}));
   	// console.log(Meteor.users.find({}).fetch()[0]);
   	// console.log('Modified ' + Meteor.users.update({}, {$set: {nss: nss}}) + ' documents.');
+  	
 
- //  	ServiceConfiguration.configurations.remove({
- //  		service: "google"
-	// });
-	
+  	//		NSS@iith.ac.in
+  	// Client ID: 871001074249-fc9fd21o3k87s4n2an01l3t1tbuufgjq.apps.googleusercontent.com
+  	// Client Scrt: fs-BFCTi_nHFe_hNew94kS2i
 
-	// ServiceConfiguration.configurations.insert({
- //  		service: "google",
- //  		clientId: "123456789",
- //  		loginStyle: "popup",
- //  		secret: "8j4ldfjSECRET-HEREalkjf8slk"
-	// });
 
 
   	Accounts.onCreateUser((options, user) => {
@@ -52,9 +48,8 @@ Meteor.startup(() => {
 			'profile.accessTokenExpiry': t.services.google.expiresAt
 		}});
 
-		console.log(t.nss.events);
-
   	});
+
 
 });
 
@@ -94,6 +89,40 @@ Meteor.methods({
 	},
 });
 
+/*
 
+HTML _ Admin Panel
+	URL, NAME of Spreadsheet, Date of Event, Name of Event
+Implicit
+	Time stamp of entry, Name of Admin
+Data from the Spreadsheet (In this order only)
+	Name RollNO hours category
 
+user{
+	totalHours: 
+	hourseByCategory: []
+	events: [
+		{	
+			adminName: adminName, 
+			hours: hours, 
+			eventName: eventName,
+			time: <timeStamp of DB chnage>
+			timeofEvent: <time when the event happened>
+			category:
+			urlOfSpreadsheet: 
+		},
+		{	
+			adminName: adminName, 
+			hours: hours, 
+			eventName: eventName,
+			time: <timeStamp of DB chnage>
+			timeofEvent: <time when the event happened>
+			category:
+			urlOfSpreadsheet: 
+		},
+		....
+	]
+}
+
+*/
 

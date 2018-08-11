@@ -14,11 +14,7 @@ Template.hello.onCreated(function helloOnCreated() {
 Template.top.helpers({
   	isAdminLink() {
   		if(Meteor.user()){
-  			if(Meteor.user().profile.isAdmin && window.location.pathname === '/supersecretadminpanel'){
-
-  				return true;
-
-  			}
+  			return Meteor.user().profile.isAdmin && window.location.pathname === '/supersecretadminpanel';
   		}
 
   		return false;
@@ -45,18 +41,21 @@ Template.adminPanel.events({
 		var rollNo = document.getElementById('rollNumber').value;
 		var hours = document.getElementById('hours').value;
 		var eventName = document.getElementById('eventName').value;
-		var bel = document.getElementById('legend');
-		var i = '';
+		var i = '', bel = document.getElementById('legend');
 		if(!rollNo)
 			i = 'Invalid Roll Number';
-		else if(!hours || hours < 1)
+		else if(!hours)
 			i = 'Invalid Number of Hours';
 		else if(!eventName)
 			i = 'ERROR! Invalid Event Name';
 		else{
 			i = 'Submitted';
 			Meteor.call('giveCreditToStudent', rollNo, eventName, hours, Meteor.user()._id, Meteor.user().profile.accessTokenExpiry,
-				(err, val) => { console.log(val); });
+				(err, val) => { 
+					if(err) console.log(err);
+					else bel.innerHTML = val;
+				}
+			);
 		}
 		bel.innerHTML = 'Add Hours by Event - ' + i;
 			

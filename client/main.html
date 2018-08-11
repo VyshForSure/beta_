@@ -12,15 +12,14 @@
 <template name="top">
 	{{#if currentUser }}
 
-  		{{ > hello }}
-  		{{ > info }}
+  	{{ > hello }}
+  	{{ > info }}
 
-  		{{ #if currentUser.profile.isAdmin }}
-  			{{ #if isAdminLink }}
-  				{{ > adminPanel }}
-  			{{ /if }}
-  		{{ /if }}
-  	{{ /if }}
+  	{{ #if isAdminLink }}
+  			{{ > adminPanel }}
+  	{{ /if }} 
+
+  {{ /if }}
 
 	{{ >loginButtons}}
 	

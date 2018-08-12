@@ -31,6 +31,24 @@
   <br>
   <p> This is only availabe after you login. </p>
 <p> Your Total Hours: <STRONG> {{ currentUser.profile.nss.totalHours }}</STRONG> </p>
+  <fieldset>
+    <legend > Check Yours Hours by Category </legend>
+    <table>
+      <tr>
+        <th> Categories == </th>
+        {{#each header in headers}}
+          <th>{{ header }} || </th>
+        {{/each}}
+      </tr>
+      <tr>
+        <th> Hours == </th>
+        {{#each entry in entries}}
+          <th>{{ entry }} || </th>
+        {{/each}}
+      </tr>
+    
+    </table>
+  </fieldset>
 
 </template>
 
@@ -52,17 +70,20 @@
   		<form>
   			<table>
   				<tr>
-  					<th> Roll Number </th>
-  					<th> Hours </th>
-  					<th> Event </th>
+  					<th> Name of The SpreadSheet </th>
+  					<th> WorkSheet Index </th>
+            <th> Name of the Event </th>
+            <th> Date of the Event </th>
   				</tr>
   				<tr>
-  					<td> <input type="text" id="rollNumber"></td>
-  					<td> <input type="Number" id="hours"></td>
-  					<td> <input type="text" id="eventName"></td>
+  					<td> <input type="text" id="nameSheet"></td>
+  					<td> <input type="Number" id="idxSheet"></td>
+            <td> <input type="text" id="eventName"></td>
+            <td> <input type="date" id="eventDate"></td>
   				</tr>
   			</table>
   			<input type="button" class="submit" value="Submit">
+        <input type="button" class="test" value="Test">
   		</form>
   	</fieldset>
 </template>

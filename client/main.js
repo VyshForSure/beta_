@@ -26,6 +26,12 @@ Template.hello.helpers({
   	counter() {
     	return Template.instance().counter.get();
   	},
+  	headers(){
+  		return Object.keys(Meteor.user().profile.nss.hoursByCategory);
+  	},
+  	entries(){
+  		return Object.values(Meteor.user().profile.nss.hoursByCategory);
+  	}
 
 });
 
@@ -38,25 +44,52 @@ Template.hello.events({
 Template.adminPanel.events({
 	'click .submit' : () => {
 		if(!Meteor.user()) return;
-		var rollNo = document.getElementById('rollNumber').value;
-		var hours = document.getElementById('hours').value;
+		var name = document.getElementById('nameSheet').value;
+		var idx = document.getElementById('idxSheet').value;
 		var eventName = document.getElementById('eventName').value;
-		var i = '', bel = document.getElementById('legend');
-		if(!rollNo)
-			i = 'Invalid Roll Number';
-		else if(!hours)
-			i = 'Invalid Number of Hours';
-		else if(!eventName)
-			i = 'ERROR! Invalid Event Name';
+		var eventDate = document.getElementById('eventDate').value;
+		var bel = document.getElementById('legend');
+		if(!name)
+			i = 'Invalid SpreadSheet Name';
+		else if(!idx)
+			i = 'Invalid WorkSheet Index';
 		else{
-			i = 'Submitted';
-			Meteor.call('giveCreditToStudent', rollNo, eventName, hours, Meteor.user()._id, Meteor.user().profile.accessTokenExpiry,
+			i = 'Submitted and waiting for response...';
+			Meteor.call('processSheet',
+			 	name,
+				idx,
+				eventName,
+				eventDate,
+				Meteor.user()._id, 
+				Meteor.user().profile.accessTokenExpiry,
 				(err, val) => { 
-					if(err) console.log(err);
+					if(err) bel.innerHTML = err;
 					else bel.innerHTML = val;
 				}
 			);
 		}
+		bel.innerHTML = 'Add Hours by Sheet - ' + i;
+			
+	},
+
+
+	'click .test' : () => {
+		var bel = document.getElementById('legend');
+		if(!Meteor.user()) return;
+		Meteor.call('giveCreditToStudent',
+		 	'ep17btech11001',
+			'sample Event Name',
+			'12/09/2018',
+			'54', 
+			'1',
+			Meteor.user()._id, 
+			Meteor.user().profile.accessTokenExpiry,
+			'no url for single credit testing',
+			(err, val) => { 
+				if(err) bel.innerHTML = err;
+				else bel.innerHTML = val;
+			}
+		);
 		bel.innerHTML = 'Add Hours by Event - ' + i;
 			
 	}

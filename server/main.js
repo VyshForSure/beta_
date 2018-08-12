@@ -2,14 +2,15 @@ import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(() => {
 
-	var spreadsheetName = 'LOL';
-  	var serviceEmail = 'nss-iith-meteor@nss-iith.iam.gserviceaccount.com'; 
-  	var result = Meteor.call("spreadsheet/fetch2", spreadsheetName, "1", {email: serviceEmail});
+	// var spreadsheetName = 'LOL';
+ //  	var serviceEmail = 'nss-iith-meteor@nss-iith.iam.gserviceaccount.com'; 
+ //  	var result = Meteor.call("spreadsheet/fetch2", spreadsheetName, "1", {email: serviceEmail});
 
-  	console.log(result);
+  	// console.log(result);
 
   	console.log("\n\n\tServer Started.\n\n");
   	console.log("ISSUE: Allows sign in with non iith.ac.in emails, fix.");
+  	console.log("ISSUE: Allow credit to ghost roll numbers, fix.");
 
   	// Meteor.users.remove({});
 
@@ -20,15 +21,16 @@ Meteor.startup(() => {
   	// console.log(Meteor.users.find({}).fetch()[0]);
   	// console.log('Modified ' + Meteor.users.update({}, {$set: {nss: nss}}) + ' documents.');
 
- //  	ServiceConfiguration.configurations.remove({
- //  		service: "google"
-	// });
-	// ServiceConfiguration.configurations.insert({
- 	// 	service: "google",
- 	// 	clientId: "871001074249-fc9fd21o3k87s4n2an01l3t1tbuufgjq.apps.googleusercontent.com",
-	// 	loginStyle: "popup", //This is for nss@iith.ac.in
-	// 	secret: "ulQSkZdjXf-gbXZ0xdLQWSS9"
-	// });
+  	ServiceConfiguration.configurations.remove({
+  		service: "google"
+	});
+	ServiceConfiguration.configurations.insert({
+ 		service: "google",
+ 		clientId: "871001074249-fc9fd21o3k87s4n2an01l3t1tbuufgjq.apps.googleusercontent.com",
+		loginStyle: "popup", //This is for nss@iith.ac.in
+		secret: "ulQSkZdjXf-gbXZ0xdLQWSS9",
+		serviceEmail: "nss-iith-meteor@nss-iith.iam.gserviceaccount.com"
+	});
 
   	Accounts.onCreateUser((options, user) => {
   		if (!('profile' in options)) { options.profile = {}; }
@@ -50,7 +52,8 @@ Meteor.startup(() => {
   		// Set NSS Data So that User can read their profile
   		var t = Meteor.users.findOne({_id: loginDetails.user._id});
 		Meteor.users.update({_id: loginDetails.user._id}, {$set:{
-			'profile.nss': t.nss,
+			'profile.nss.totalHours': t.nss.totalHours,
+			'profile.nss.hoursByCategory': t.nss.hoursByCategory,
 			'profile.isAdmin': t.isAdmin,
 			'profile.accessTokenExpiry': t.services.google.expiresAt
 		}});
@@ -59,17 +62,17 @@ Meteor.startup(() => {
 
 });
 
-	makeEvent = (adminName, hours, eventName, category, urlGoogleSheet, eventDate) => {
+	makeEvent = (adminName, hours, eventName, category, googleSheetId, eventDate) => {
 		var today = new Date();
 		return {
 			adminName: adminName, 
-			hours:hours, 
+			hours: hours, 
 			eventName: eventName,
 			time: today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() 
 			+ '@' + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds(),
 			eventDate: eventDate,
 			category: category,
-			urlGoogleSheet: urlGoogleSheet
+			googleSheetId: googleSheetId
 		};
 	}
 
@@ -77,35 +80,87 @@ Meteor.startup(() => {
 		return !isNaN(parseFloat(n)) && isFinite(n);
 	}
 
-Meteor.methods({
-	giveCreditToStudent: (rollNo, eventName, eventDate, hours, category, adminId, tokenExpiry, urlGoogleSheet) => {
+	authenticate = (adminId, tokenExpiry) => {
 		var admin = Meteor.users.findOne({_id: adminId});
-		if(!admin) return 'Access Token is invalid.';
-		if(!admin.isAdmin) return 'Access Denied.';
-		if(!isValidNumber(hours)) return 'Hours is an invalid figure';
-		if(admin.services.google.expiresAt !== tokenExpiry) return 'Access Token has expired, please log in again.';
+		var res = { success: false, msg: 'admin not found'};
 
-		var student = Meteor.users.findOne({rollNo: rollNo.toLowerCase()});
-
-		if(!student) {
-			return 'Roll Number not found.';
+		if(!admin) res.msg = 'Access Token is invalid.';
+		else if(!admin.isAdmin) res.msg = 'Access Denied.';
+		else if(admin.services.google.expiresAt !== tokenExpiry) res.msg = 'Access Token has expired, please log in again.';
+		else {
+			res.success = true;
+			res.msg = admin.name;
 		}
 
-		var event = makeEvent(admin.name, hours, eventName, category, urlGoogleSheet, eventDate);
+		return res;
+	}
+
+	roundToOneDecimal = (value) => {
+  		return Number(Math.round(value+'e1')+'e-1');
+	}
+
+	creditStudent = (rollNo, adminName, hours, eventName, category, googleSheetId, eventDate) => {
+		var student = Meteor.users.findOne({rollNo: rollNo.toLowerCase()});
+
+		if(!student) return 'Roll Number not found.';
+		if(!isValidNumber(hours)) return 'Hours is an invalid figure';
+
+		var event = makeEvent(adminName, hours, eventName, category, googleSheetId, eventDate);
 		var hoursByCategory = student.nss.hoursByCategory;
 		if(hoursByCategory[category]) 
-			hoursByCategory[category] = parseFloat(hours) + parseFloat(hoursByCategory[category]);
+			hoursByCategory[category] = roundToOneDecimal(parseFloat(hours) + parseFloat(hoursByCategory[category]));
 		else 
-			hoursByCategory[category] = hours;
-		student.nss.totalHours = parseFloat(student.nss.totalHours) + parseFloat(hours);
+			hoursByCategory[category] = roundToOneDecimal(hours);
+		student.nss.totalHours = roundToOneDecimal(parseFloat(student.nss.totalHours) + parseFloat(hours));
 		student.nss.events.push(event);
 
 		Meteor.users.update({_id: student._id}, {$set:{ 'nss': student.nss }});
-
-		console.log(student.nss)
-
 		return 'Success, hours credited to Roll Number ' + rollNo;
+	}
 
+Meteor.methods({
+	giveCreditToStudent: (rollNo, eventName, eventDate, hours, category, adminId, tokenExpiry, googleSheetId) => {
+		var auth = authenticate(adminId, tokenExpiry);
+		if(!auth.success) return auth.msg;
+
+		var adminName = auth.msg;
+		
+		return creditStudent(rollNo, adminName, hours, eventName, category, googleSheetId, eventDate);
+
+	},
+
+	processSheet: (sheetName, sheetIdx, eventName, eventDate, adminId, tokenExpiry) => {
+		var auth = authenticate(adminId, tokenExpiry);
+		if(!auth.success) return auth.msg;
+
+		var adminName = auth.msg;
+		var serviceEmail = ServiceConfiguration.configurations.findOne({ service: "google" }).serviceEmail;
+
+		var data = Meteor.call("spreadsheet/fetch2", sheetName, sheetIdx, {email: serviceEmail});
+
+		if(!data) return 'Spreadsheet Not Found';
+
+		var iMax = parseInt(data.info.lastRow) + 1;
+		var x = 2, errCount = 0, doneCount = 0, notFoundCount = 0;
+		while(x < iMax){
+			var row = data.rows[x];
+			var res = creditStudent(row[2], adminName, row[3], eventName, row[4], data.info.spreadsheetId, eventDate);
+			if(res.startsWith('Success')) doneCount++;
+			else if(res.startsWith('Hours')){
+				errCount++;
+				console.log('Row ' + x + ' has an invalid hours entry, ignoring.');	
+			} 
+			else if(res.startsWith('Roll')){
+				notFoundCount++;
+				console.log('Row ' + x + ' has a roll number not present in the DB, ignoring');			
+			} 
+			x++;
+		}
+
+		return 'Done Processing ' +(iMax - 1) +' entries, ' 
+			+ doneCount + ' students credited, ' 
+			+ notFoundCount + ' Roll Nos not found, ' 
+			+ errCount + ' invalid hour entries.';
 	},
 });
 

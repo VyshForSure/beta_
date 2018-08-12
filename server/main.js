@@ -2,13 +2,16 @@ import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(() => {
 
-  	console.log("\n\n\tServer Started.\n\n");
-  	console.log("ISSUE: Contains clientId on abhiagar97@gmail.com, replace.");
-  	console.log("ISSUE: Allows sign in with non iith.ac.in emails, fix.");
-  	console.log("ISSUE: Maintain an Array of hoursByCategory, add");
-  	console.log("ISSUE: Add category field to event, add");
+	var spreadsheetName = 'LOL';
+  	var serviceEmail = 'nss-iith-meteor@nss-iith.iam.gserviceaccount.com'; 
+  	var result = Meteor.call("spreadsheet/fetch2", spreadsheetName, "1", {email: serviceEmail});
 
-  	// Meteor.users.remove({});	
+  	console.log(result);
+
+  	console.log("\n\n\tServer Started.\n\n");
+  	console.log("ISSUE: Allows sign in with non iith.ac.in emails, fix.");
+
+  	// Meteor.users.remove({});
 
   	console.log('DB constains ' + Meteor.users.find({}).count() + ' documents.');
   	console.log('DB constains ' + Meteor.users.find({isAdmin: true}).count() + ' Admins.\n');
@@ -16,21 +19,16 @@ Meteor.startup(() => {
   	// console.log(Meteor.users.findOne({isAdmin: true}));
   	// console.log(Meteor.users.find({}).fetch()[0]);
   	// console.log('Modified ' + Meteor.users.update({}, {$set: {nss: nss}}) + ' documents.');
-  	ServiceConfiguration.configurations.remove({
-  		service: "google"
-	});
-	ServiceConfiguration.configurations.insert({
-  		service: "google",
-  		clientId: "871001074249-fc9fd21o3k87s4n2an01l3t1tbuufgjq.apps.googleusercontent.com",
-		loginStyle: "popup",
-		secret: "ulQSkZdjXf-gbXZ0xdLQWSS9"
-	});
 
-  	//		NSS@iith.ac.in
-  	// Client ID: 871001074249-fc9fd21o3k87s4n2an01l3t1tbuufgjq.apps.googleusercontent.com
-  	// Client Scrt: ulQSkZdjXf-gbXZ0xdLQWSS9
-
-
+ //  	ServiceConfiguration.configurations.remove({
+ //  		service: "google"
+	// });
+	// ServiceConfiguration.configurations.insert({
+ 	// 	service: "google",
+ 	// 	clientId: "871001074249-fc9fd21o3k87s4n2an01l3t1tbuufgjq.apps.googleusercontent.com",
+	// 	loginStyle: "popup", //This is for nss@iith.ac.in
+	// 	secret: "ulQSkZdjXf-gbXZ0xdLQWSS9"
+	// });
 
   	Accounts.onCreateUser((options, user) => {
   		if (!('profile' in options)) { options.profile = {}; }
@@ -41,7 +39,8 @@ Meteor.startup(() => {
 
   		user.nss = {
   			totalHours: 0,
-  			events: [{}]
+  			hoursByCategory: {},
+  			events: new Array()
   		};
   		user.isAdmin = false;
   		return user;
@@ -55,29 +54,35 @@ Meteor.startup(() => {
 			'profile.isAdmin': t.isAdmin,
 			'profile.accessTokenExpiry': t.services.google.expiresAt
 		}});
-
   	});
 
 
 });
 
-
-	makeEvent = (adminName, hours, eventName) => {
+	makeEvent = (adminName, hours, eventName, category, urlGoogleSheet, eventDate) => {
 		var today = new Date();
 		return {
 			adminName: adminName, 
 			hours:hours, 
 			eventName: eventName,
 			time: today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() 
-			+ '@' + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
+			+ '@' + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds(),
+			eventDate: eventDate,
+			category: category,
+			urlGoogleSheet: urlGoogleSheet
 		};
 	}
 
+	isValidNumber = (n) => {
+		return !isNaN(parseFloat(n)) && isFinite(n);
+	}
+
 Meteor.methods({
-	giveCreditToStudent: (rollNo, eventName, hours, adminId, tokenExpiry) => {
+	giveCreditToStudent: (rollNo, eventName, eventDate, hours, category, adminId, tokenExpiry, urlGoogleSheet) => {
 		var admin = Meteor.users.findOne({_id: adminId});
 		if(!admin) return 'Access Token is invalid.';
 		if(!admin.isAdmin) return 'Access Denied.';
+		if(!isValidNumber(hours)) return 'Hours is an invalid figure';
 		if(admin.services.google.expiresAt !== tokenExpiry) return 'Access Token has expired, please log in again.';
 
 		var student = Meteor.users.findOne({rollNo: rollNo.toLowerCase()});
@@ -86,13 +91,20 @@ Meteor.methods({
 			return 'Roll Number not found.';
 		}
 
-		Meteor.users.update({_id: student._id}, {$set:{
-			'nss.totalHours': (parseInt(student.nss.totalHours) + parseInt(hours)),
-			'nss.events': (student.nss.events.concat([makeEvent(admin.name, hours, eventName)]))
-		}});
+		var event = makeEvent(admin.name, hours, eventName, category, urlGoogleSheet, eventDate);
+		var hoursByCategory = student.nss.hoursByCategory;
+		if(hoursByCategory[category]) 
+			hoursByCategory[category] = parseFloat(hours) + parseFloat(hoursByCategory[category]);
+		else 
+			hoursByCategory[category] = hours;
+		student.nss.totalHours = parseFloat(student.nss.totalHours) + parseFloat(hours);
+		student.nss.events.push(event);
+
+		Meteor.users.update({_id: student._id}, {$set:{ 'nss': student.nss }});
+
+		console.log(student.nss)
 
 		return 'Success, hours credited to Roll Number ' + rollNo;
-		// var student = Meteor.users.findOne({})
 
 	},
 });
@@ -108,7 +120,7 @@ Data from the Spreadsheet (In this order only)
 
 user{
 	totalHours: 
-	hourseByCategory: []
+	hoursByCategory: []
 	events: [
 		{	
 			adminName: adminName, 
@@ -133,4 +145,3 @@ user{
 }
 
 */
-

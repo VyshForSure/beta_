@@ -9,8 +9,9 @@ Meteor.startup(() => {
   	// console.log(result);
 
   	console.log("\n\n\tServer Started.\n\n");
-  	console.log("ISSUE: Allows sign in with non iith.ac.in emails, fix.");
+
   	console.log("ISSUE: Allow credit to ghost roll numbers, fix.");
+  	console.log("ISSUE: Secure Queries, fix");
 
   	// Meteor.users.remove({});
 
@@ -32,6 +33,8 @@ Meteor.startup(() => {
 		serviceEmail: "nss-iith-meteor@nss-iith.iam.gserviceaccount.com"
 	});
 
+	Accounts.config({ restrictCreationByEmailDomain: 'iith.ac.in' });
+
   	Accounts.onCreateUser((options, user) => {
   		if (!('profile' in options)) { options.profile = {}; }
   		if (!('providers' in options.profile)) { options.profile.providers = {}; }
@@ -51,10 +54,16 @@ Meteor.startup(() => {
   	Accounts.onLogin((loginDetails) => {
   		// Set NSS Data So that User can read their profile
   		var t = Meteor.users.findOne({_id: loginDetails.user._id});
+
+  		//UnComment this to make admin the people who log in
+  // 		Meteor.users.update({_id: loginDetails.user._id}, {$set:{
+		// 	'isAdmin' : true
+		// }});
+
 		Meteor.users.update({_id: loginDetails.user._id}, {$set:{
+			'profile.isAdmin' : t.isAdmin,
 			'profile.nss.totalHours': t.nss.totalHours,
 			'profile.nss.hoursByCategory': t.nss.hoursByCategory,
-			'profile.isAdmin': t.isAdmin,
 			'profile.accessTokenExpiry': t.services.google.expiresAt
 		}});
   	});
@@ -118,6 +127,10 @@ Meteor.startup(() => {
 		return 'Success, hours credited to Roll Number ' + rollNo;
 	}
 
+	queryRollNumbers = (selector) => {
+		return Meteor.users.find(selector, { fields: {rollNo: 1}}).fetch();
+	}
+
 Meteor.methods({
 	giveCreditToStudent: (rollNo, eventName, eventDate, hours, category, adminId, tokenExpiry, googleSheetId) => {
 		var auth = authenticate(adminId, tokenExpiry);
@@ -162,6 +175,28 @@ Meteor.methods({
 			+ notFoundCount + ' Roll Nos not found, ' 
 			+ errCount + ' invalid hour entries.';
 	},
+
+	totalHoursLessThan: (compVal) => {
+		return queryRollNumbers({ 'nss.totalHours' : {$lt: compVal} });
+	},
+
+	totalHoursGreaterThan: (compVal) => {
+		return queryRollNumbers({ 'nss.totalHours' : {$gt: compVal} });
+	},
+
+	categoryHoursGreaterThan: (compVal, category) => {
+		var t = 'nss.hoursByCategory.' + String(category);
+		var d = {};
+		d[t] = { $gt: compVal };
+		return queryRollNumbers(d);
+	},
+	categoryHoursLessThan: (compVal, category) => {
+		var t = 'nss.hoursByCategory.' + String(category);
+		var d = {};
+		d[t] = { $lt: compVal };
+		return queryRollNumbers(d);
+	}
+
 });
 
 /*

@@ -62,8 +62,7 @@ Meteor.startup(() => {
 
 		Meteor.users.update({_id: loginDetails.user._id}, {$set:{
 			'profile.isAdmin' : t.isAdmin,
-			'profile.nss.totalHours': t.nss.totalHours,
-			'profile.nss.hoursByCategory': t.nss.hoursByCategory,
+			'profile.nss': t.nss,
 			'profile.accessTokenExpiry': t.services.google.expiresAt
 		}});
   	});
@@ -113,6 +112,13 @@ Meteor.startup(() => {
 
 		if(!student) return 'Roll Number not found.';
 		if(!isValidNumber(hours)) return 'Hours is an invalid figure';
+		if(!isValidNumber(category)) return 'Category is an invalid figure';
+
+		category = parseFloat(category);
+		hours = parseFloat(hours);
+
+		if(hours > 60) return 'Hours value exceeds software limit';
+		if(category < 0 || category > 9) 'Category value transcends software limit';
 
 		var event = makeEvent(adminName, hours, eventName, category, googleSheetId, eventDate);
 		var hoursByCategory = student.nss.hoursByCategory;
@@ -154,26 +160,31 @@ Meteor.methods({
 		if(!data) return 'Spreadsheet Not Found';
 
 		var iMax = parseInt(data.info.lastRow) + 1;
-		var x = 2, errCount = 0, doneCount = 0, notFoundCount = 0;
+		var x = 2, invalidHoursCount = 0, doneCount = 0, notFoundCount = 0, inavlidCategCount = 0;
 		while(x < iMax){
 			var row = data.rows[x];
 			var res = creditStudent(row[2], adminName, row[3], eventName, row[4], data.info.spreadsheetId, eventDate);
 			if(res.startsWith('Success')) doneCount++;
 			else if(res.startsWith('Hours')){
-				errCount++;
+				invalidHoursCount++;
 				console.log('Row ' + x + ' has an invalid hours entry, ignoring.');	
 			} 
 			else if(res.startsWith('Roll')){
 				notFoundCount++;
-				console.log('Row ' + x + ' has a roll number not present in the DB, ignoring');			
+				console.log('Row ' + x + ' has a roll number not present in the DB, ignoring');
 			} 
+			else if(res.startsWith('Category')){
+				inavlidCategCount++;
+				console.log('Row ' + x + ' has an invalid category entry, ignoring');
+			}
 			x++;
 		}
 
 		return 'Done Processing ' +(iMax - 1) +' entries, ' 
 			+ doneCount + ' students credited, ' 
 			+ notFoundCount + ' Roll Nos not found, ' 
-			+ errCount + ' invalid hour entries.';
+			+ invalidHoursCount + ' invalid hour entries.'
+			+ inavlidCategCount + ' invalid hour entries.';
 	},
 
 	totalHoursLessThan: (compVal) => {

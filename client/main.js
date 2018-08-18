@@ -26,11 +26,17 @@ Template.hello.helpers({
   	counter() {
     	return Template.instance().counter.get();
   	},
-  	headers(){
+  	categories(){
   		return Object.keys(Meteor.user().profile.nss.hoursByCategory);
   	},
-  	entries(){
+  	hoursInCategory(){
   		return Object.values(Meteor.user().profile.nss.hoursByCategory);
+  	},
+  	headers(){
+  		return Meteor.user().profile.nss.events.map((s) => s.eventName);
+  	},
+  	entries(){
+  		return Meteor.user().profile.nss.events.map((s) => s.hours);
   	}
 
 });

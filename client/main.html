@@ -36,6 +36,25 @@
     <table>
       <tr>
         <th> Categories == </th>
+        {{#each event in categories}}
+          <th>{{ event }} || </th>
+        {{/each}}
+      </tr>
+      <tr>
+        <th> Hours == </th>
+        {{#each entry in hoursInCategory}}
+          <th>{{ entry }} || </th>
+        {{/each}}
+      </tr>
+    
+    </table>
+  </fieldset>
+
+  <fieldset>
+    <legend > Check Yours Hours by Event </legend>
+    <table>
+      <tr>
+        <th> Events == </th>
         {{#each header in headers}}
           <th>{{ header }} || </th>
         {{/each}}

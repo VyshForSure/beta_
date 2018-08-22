@@ -98,7 +98,8 @@
 	<script>
 		document.addEventListener('DOMContentLoaded',function(event){
   // array with texts to type in typewriter
-  var dataText = [ "Elan & &eta;vision, the most anticipated and grandiose festival of IIT Hyderabad, is back with a congl omerate of splendiferous events to galvanize the mob. Since inception, its fervid tendrils have touched the hearts of every adroit organiser and participant leaving a legacy to be upheld by its family of dedicated students.<br><br>Elan and &eta;vision is an elegant brew of culture, innovation and feverish exhilaration stimulating an atmosphere of intense competitions and professional performances.With a carefully fabricated range of events, covering varied genres in art, music and technology, we have something for everyone.<br><br>Elan & &eta;vision 2018, arguably the grandest techno-cultural fiesta you will ever come across, promises an eximious experience for spectators and participants alike."];
+
+  var dataText = [ "Elan & &eta;vision, the most anticipated and grandiose festival of IIT Hyderabad, is back with a conglomerate of splendiferous events to galvanize the mob. Since inception, its fervid tendrils have touched the hearts of every adroit organiser and participant leaving a legacy to be upheld by its family of dedicated students.<br><br>Elan & &eta;vision is an elegant brew of culture, innovation and feverish exhilaration stimulating an atmosphere of intense competitions and professional performances.With a carefully fabricated range of events, covering varied genres in art, music and technology, we have something for everyone.<br><br>Elan & &eta;vision 2018, arguably the grandest techno-cultural fiesta you will ever come across, promises an eximious experience for spectators and participants alike."];
   
   // type one text in the typwriter
   // keeps calling itself until the text is finished
@@ -209,11 +210,14 @@
 	</div>
 </div>
 
+<img src="images/back1.jpg" id="background-image" hidden="true" />
 </body>
 </html>
 <script type="text/javascript">
 	Value = {
-		background: "#085051", foreground: "rgba(208, 139, 63, ",
+		img: document.getElementById("background-image"),
+		imgW: 0, imgH: 0, imgX: 0, imgY: 0,
+		foreground: "rgba(255, 255, 255, ",
 		random: [],
 		rad: [],
 		numX: 0, numY: 0,
@@ -240,45 +244,52 @@
 		Value.numY = Math.floor(canvas.height / Value.cellSize);
 		Value.random = Array.from({length: Value.numX * Value.numY}, () => Math.random());
 		Value.rad = Array.from(Value.random, (x) => Value.minRad + x * Value.radius);
+		var ratio = Value.img.height / Value.img.width;
+		if(canvas.width < canvas.height){
+			Value.imgW = canvas.width;
+			Value.imgH = Value.imgW * ratio;
+		}
+		else{
+			Value.imgH = canvas.height;
+			Value.imgW = Value.imgH / ratio;
+		}
+		Value.imgX = (canvas.width - Value.imgW)/2; Value.imgY = (canvas.height - Value.imgH)/2;
 	}
+
 	function draw(){
-		pen.fillStyle = Value.background;
-		pen.fillRect(0, 0, canvas.width, canvas.height);
+		
+		pen.drawImage(Value.img, Value.imgX, Value.imgY, Value.imgW, Value.imgH);	
+
 		var waveTime = new Date().getTime() * Value.wave.freq;
 		var x = Math.floor((Value.mouseX - Value.visibility) / Value.cellSize), 
-		lx = x + Math.ceil(2 * Value.visibility / Value.cellSize),
-		sx = x * Value.cellSize + Value.cellSize / 2;
+		lx = x + Math.ceil(2 * Value.visibility / Value.cellSize);
 		if(lx > Value.numX) lx = Value.numX;
-		if(x < 0) {
-			x = 0;
-			sx = Value.cellSize / 2;
-		}
+		if(x < 0) x = 0;
+		var sx = x * Value.cellSize + Value.cellSize / 2;
+
 		for(; x < lx; x++, sx += Value.cellSize){
 			var y = Math.floor((Value.mouseY - Value.visibility) / Value.cellSize),
-			ly = y + Math.ceil(2 * Value.visibility / Value.cellSize),
-			sy = y * Value.cellSize + Value.cellSize / 2;
-			if(y < 0) {
-				y = 0;
-				sy = Value.cellSize / 2;
-			}
+			ly = y + Math.ceil(2 * Value.visibility / Value.cellSize);
+			if(y < 0) y = 0;
 			if(ly > Value.numY) ly = Value.numY;
+			var sy = y * Value.cellSize + Value.cellSize / 2;
+
 			for(; y < ly; y++, sy += Value.cellSize){
 				var idx = x + Value.numY * y;
 				var disp = {h: Value.wave.amp * Math.sin(Value.random[idx] * Value.wave.waveVect.x * sx + waveTime), 
 					k: Value.wave.amp * Math.sin(Value.random[idx] * Value.wave.waveVect.y * sy + waveTime)};
-					var dist2 = (sx + disp.h - Value.mouseX)*(sx + disp.h - Value.mouseX) + (sy + disp.k - Value.mouseY)*(sy + disp.k - Value.mouseY);
-					pen.beginPath();
-					pen.fillStyle = Value.foreground + (Value.visibility*Value.visibility - dist2)/(Value.visibility*Value.visibility) + ")";
-					pen.arc(sx + disp.h, sy + disp.k, Value.rad[idx], 0, 2 * 3.1416);
-					pen.closePath();
-					pen.fill();
-				}
+				var dist2 = (sx + disp.h - Value.mouseX)*(sx + disp.h - Value.mouseX) + (sy + disp.k - Value.mouseY)*(sy + disp.k - Value.mouseY);
+				pen.beginPath();
+				pen.fillStyle = Value.foreground + (Value.visibility*Value.visibility - dist2)/(Value.visibility*Value.visibility) + ")";
+				pen.arc(sx + disp.h, sy + disp.k, Value.rad[idx], 0, 2 * 3.1416);
+				pen.fill();
 			}
 		}
-		document.addEventListener('mousemove', function(event){
-			Value.mouseX = event.clientX;
-			Value.mouseY = event.clientY;
-		});
-		bodyResized();
-		setInterval(draw, 1000/60);
-	</script>
+	}
+	document.addEventListener('mousemove', function(event){
+		Value.mouseX = event.clientX;
+		Value.mouseY = event.clientY;
+	});
+	bodyResized();
+	setInterval(draw, 1000/60);
+</script>

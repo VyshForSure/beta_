@@ -49,10 +49,6 @@
 		function closeNav() {
 			document.getElementById("mySidenav").style.width = "0";
 		}
-		function myFunction() {
-			document.getElementById("curtainEffect").style.width = "0";
-			document.getElementById("curtaineffect").style.width = "0";
-		}
 		
 	</script>
 	<style type="text/css">
@@ -76,72 +72,143 @@
 		}
 	</style>
 </head>
-<body style="
-    background-image:    url(images/eh1.jpg);
-    background-size:     cover;                    
-    background-repeat:   no-repeat;
-    background-position: center center;  ">
+<body onresize="bodyResized()" >
+	<CANVAS id="canvas" style="position: absolute; pointer-events: none; z-index: -1; width: 100%; height: 100%;"></CANVAS>
 	<div>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
-		<a class="navbar-brand"><img src="images/logo-2.png" width="60px" height="52.95px"><span style="font-family: 'Merienda', cursive; font-size: 25px; margin: 5px; color:  #F06018;">ELAN & &eta;VISION</span></a>
-		<span id="menuIcon" style="float:right; top:0;font-size:40px;cursor:pointer" onclick="openNav()">&#9776;</span>
-		<div class="collapse navbar-collapse" id="navbarText">
-			<ul id="panel" class="navbar-nav ml-auto">
-				<li id="div1" class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#">Home</a>
-						<a class="dropdown-item" href="#">FAQ's</a>
-					</div>
-				</li>
-				<li id="div2" class="nav-item">
-					<a class="nav-link" href="About Us.html">About Us</a>
-				</li>
-				<li id="div3" class="nav-item">
-					<a class="nav-link" href="#">Sponsers</a>
-				</li>
-
-				<li id="div4" class="nav-item">
-					<a class="nav-link" href="#">Events</a>
-				</li>
-				<li id="div5" class="nav-item">
-					<a class="nav-link" href="Team.html">Team</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#"><span id="menu" style="font-size:30px;cursor:pointer">&#9776;</a>
-				</li>
-			</ul>
-		</div>
-	</nav><br><br> 
-	<div id="mySidenav" class="sidenav">
-		<a href="javascript:void(0)" id="close" class="closebtn" onclick="closeNav()">&times;</a>
-		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
-		<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			<a class="dropdown-item" href="#">HOME</a>
-			<a class="dropdown-item" href="#">FAQ's</a>
-		</div>
-		<a class="nav-link" href="About Us.html">About</a>
-		<a class="nav-link" href="#">Sponsers</a>
-		<a class="nav-link" href="#">Events</a>
-		<a class="nav-link" href="Team.html">Team</a><br><br>
-		<div class="d-flex justify-content-around">
-			<div><a target="_blank" href="https://twitter.com/elan_iith"><img class="footerimg" src="images/twitter.png"></a></div>
-			<div><a target="_blank" href="https://www.facebook.com/elan.iithyderabad/"><img class="footerimg" src="images/fb.png"></a></div>
-			<div><a target="_blank" href="https://www.instagram.com/elan_and_nvision/"><img class="footerimg" src="images/insta.png"></a></div>
-			<div><a target="_blank" href="https://www.youtube.com/user/ElanIITHyderabad"><img class="footerimg" src="images/yt.png"></a></div>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+			<a class="navbar-brand"><img src="images/logo-2.png" width="60px" height="52.95px">
+				<span style="font-family: 'Merienda', cursive; font-size: 25px; margin: 5px; color:  #F06018;">ELAN & &eta;VISION</span>
+			</a>
+			<span id="menuIcon" style="float:right; top:0;font-size:40px;cursor:pointer" onclick="openNav()">&#9776;</span>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul id="panel" class="navbar-nav ml-auto">
+					<li id="div1" class="nav-item">
+						<a class="nav-link" href="home.html">Home</a>
+					</li>
+					<li id="div2" class="nav-item">
+						<a class="nav-link" href="About Us.html">About Us</a>
+					</li>
+					<li id="div3" class="nav-item">
+						<a class="nav-link" href="workshops.html">Workshops</a>
+					</li>
+					<li id="div5" class="nav-item">
+						<a class="nav-link" href="Team.html">Team</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#"><span id="menu" style="font-size:30px;cursor:pointer">&#9776;</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<br><br> 
+		<div id="mySidenav" class="sidenav">
+			<a href="javascript:void(0)" id="close" class="closebtn" onclick="closeNav()">&times;</a>
+			<a class="nav-link dropdown-toggle" href="#">Home</a>
+			<a class="nav-link" href="About Us.html">About</a>
+			<a class="nav-link" href="Team.html">Team</a><br><br>
+			<div class="d-flex justify-content-around">
+				<div><a target="_blank" href="https://twitter.com/elan_iith"><img class="footerimg" src="images/twitter.png"></a></div>
+				<div><a target="_blank" href="https://www.facebook.com/elan.iithyderabad/"><img class="footerimg" src="images/fb.png"></a></div>
+				<div><a target="_blank" href="https://www.instagram.com/elan_and_nvision/"><img class="footerimg" src="images/insta.png"></a></div>
+				<div><a target="_blank" href="https://www.youtube.com/user/ElanIITHyderabad"><img class="footerimg" src="images/yt.png"></a></div>
+			</div>
 		</div>
 	</div>
-</div>
-<div class="container-fluid">
-	<div class="d-flex flex-column">
-		<div class="p-1"><a target="_blank" href="https://twitter.com/elan_iith"><img id="side1" class="footerimg" src="images/twitter.png"></a></div>
-		<div class="p-1"><a target="_blank" href="https://www.facebook.com/elan.iithyderabad/"><img id="side2" class="footerimg" src="images/fb.png"></a></div>
-		<div class="p-1"><a target="_blank" href="https://www.instagram.com/elan_and_nvision/"><img id="side3" class="footerimg" src="images/insta.png"></a></div>
-		<div class="p-1"><a target="_blank" href="https://www.youtube.com/user/ElanIITHyderabad"><img id="side4" class="footerimg" src="images/yt.png"></a></div>
+	<div class="container-fluid">
+		<div class="d-flex flex-column">
+			<div class="p-1"><a target="_blank" href="https://twitter.com/elan_iith"><img id="side1" class="footerimg" src="images/twitter.png"></a></div>
+			<div class="p-1"><a target="_blank" href="https://www.facebook.com/elan.iithyderabad/"><img id="side2" class="footerimg" src="images/fb.png"></a></div>
+			<div class="p-1"><a target="_blank" href="https://www.instagram.com/elan_and_nvision/"><img id="side3" class="footerimg" src="images/insta.png"></a></div>
+			<div class="p-1"><a target="_blank" href="https://www.youtube.com/user/ElanIITHyderabad"><img id="side4" class="footerimg" src="images/yt.png"></a></div>
+		</div>
 	</div>
-</div>
 
+<img src="images/back1.jpg" id="background-image" hidden="true" /> 
+<img src="images/eh1.jpg" id="workshop-image" style=" width: 75%; height: 75%; position: absolute; left: 50%; top: 50%;
+    	transform: translate(-50%, -50%);"/>
 </div>
 </body>
 </html>
 
+
+<script type="text/javascript">
+	Value = {
+		work: document.getElementById("workshop-image"), 
+		img: document.getElementById("background-image"),
+		imgW: 0, imgH: 0, imgX: 0, imgY: 0,
+		foreground: "rgba(255, 255, 255, ",
+		random: [],
+		rad: [],
+		numX: 0, numY: 0,
+		radius: 15, minRad: 1,
+		cellSize: 100,
+		wave: {
+			amp: 30,
+			waveVect: {x: 0.414, y: 0.414},
+			freq: 0.001	
+		},
+		mouseX: 0, mouseY: 0,
+		visibility: 350,
+		viewFunct: function(distSqrd){
+			if(distSqrd > this.visibility * this.visibility) return 0;
+			else if(distSqrd < 0) return 1;
+			else return Math.exp(-distSqrd / (this.visibility * this.visibility));
+		}
+	};
+	function bodyResized(){
+		canvas = document.getElementById("canvas");
+		canvas.width = $(window).width(); canvas.height = $(window).height(); 
+		pen  = canvas.getContext("2d");
+		Value.numX = Math.floor(canvas.width / Value.cellSize);
+		Value.numY = Math.floor(canvas.height / Value.cellSize);
+		Value.random = Array.from({length: Value.numX * Value.numY}, () => Math.random());
+		Value.rad = Array.from(Value.random, (x) => Value.minRad + x * Value.radius);
+		var ratio = Value.img.height / Value.img.width;
+		if(canvas.width < canvas.height){
+			Value.imgW = canvas.width;
+			Value.imgH = Value.imgW * ratio;
+		}
+		else{
+			Value.imgH = canvas.height;
+			Value.imgW = Value.imgH / ratio;
+		}
+		Value.imgX = (canvas.width - Value.imgW)/2; Value.imgY = (canvas.height - Value.imgH)/2;
+	}
+
+	function draw(){
+		pen.drawImage(Value.img, Value.imgX, Value.imgY, Value.imgW, Value.imgH);
+		// pen.drawImage(Value.work, canvas.width/3, canvas.height/3, canvas.width/3, Value.work.height / Value.work.width * canvas.width / 3);
+
+		var waveTime = new Date().getTime() * Value.wave.freq;
+		var x = Math.floor((Value.mouseX - Value.visibility) / Value.cellSize), 
+		lx = x + Math.ceil(2 * Value.visibility / Value.cellSize);
+		if(lx > Value.numX) lx = Value.numX;
+		if(x < 0) x = 0;
+		var sx = x * Value.cellSize + Value.cellSize / 2;
+
+		for(; x < lx; x++, sx += Value.cellSize){
+			var y = Math.floor((Value.mouseY - Value.visibility) / Value.cellSize),
+			ly = y + Math.ceil(2 * Value.visibility / Value.cellSize);
+			if(y < 0) y = 0;
+			if(ly > Value.numY) ly = Value.numY;
+			var sy = y * Value.cellSize + Value.cellSize / 2;
+
+			for(; y < ly; y++, sy += Value.cellSize){
+				var idx = x + Value.numY * y;
+				var disp = {h: Value.wave.amp * Math.sin(Value.random[idx] * Value.wave.waveVect.x * sx + waveTime), 
+					k: Value.wave.amp * Math.sin(Value.random[idx] * Value.wave.waveVect.y * sy + waveTime)};
+				var dist2 = (sx + disp.h - Value.mouseX)*(sx + disp.h - Value.mouseX) + (sy + disp.k - Value.mouseY)*(sy + disp.k - Value.mouseY);
+				pen.beginPath();
+				pen.fillStyle = Value.foreground + (Value.visibility*Value.visibility - dist2)/(Value.visibility*Value.visibility) + ")";
+				pen.arc(sx + disp.h, sy + disp.k, Value.rad[idx], 0, 2 * 3.1416);
+				pen.fill();
+			}
+		}
+	}
+	document.addEventListener('mousemove', function(event){
+		Value.mouseX = event.clientX;
+		Value.mouseY = event.clientY;
+	});
+	bodyResized();
+	setInterval(draw, 1000/60);
+</script>

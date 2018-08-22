@@ -15,7 +15,6 @@
 	<meta property="og:site_name" content="ELAN & ηvision 2019">
 	<meta property="og:title" content="ELAN & ηvision 2019">
 	<meta property="og:type" content="website">
-	<!-- <meta property="og:image" content="https://nvision.org.in/img/logo.png"> -->
 	<meta property="og:description" content="ELAN & ηvision 2019: Techno-cultural Fest of IIT Hyderabad">
 	<link rel="stylesheet" href="home.css">
 	<link href="https://fonts.googleapis.com/css?family=Faster+One|Merienda" rel="stylesheet">
@@ -25,25 +24,15 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 	<script>
-		/*menu icon for large screens*/
 		$(document).ready(function(){
 			$("#menu").click(function(){
-				$("#div1").fadeToggle(1500);
-				$("#div2").fadeToggle(1500);
-				$("#div3").fadeToggle(1500);
-				$("#div4").fadeToggle(1500);
-				$("#div5").fadeToggle(1500);
+				$("#div1").fadeToggle(500);
+				$("#div2").fadeToggle(500);
+				$("#div3").fadeToggle(500);
+				$("#div4").fadeToggle(500);
+				$("#div5").fadeToggle(500);
 			});
 		});
-		/*$(document).ready(function(){
-			$("#menu").click(function(){
-				$("#side4").fadeToggle(1000);
-				$("#side3").fadeToggle(1000);
-				$("#side2").fadeToggle(1000);
-				$("#side1").fadeToggle(1000);
-			});
-		});*/
-		/*menu icon for small screens*/
 		$(document).ready(function(){
 			$("#menuIcon").click(function(){
 				$("#menuIcon").fadeOut("fast");
@@ -60,20 +49,14 @@
 		function closeNav() {
 			document.getElementById("mySidenav").style.width = "0";
 		}
-		function myFunction() {
-			document.getElementById("curtainEffect").style.width = "0";
-			document.getElementById("curtaineffect").style.width = "0";
-		}
 		
 	</script>
 	<style type="text/css">
-		/*body prperties*/
 		@media screen and (max-width: 992px) {
 			h1 {
 				font-size:8.5vw;
 			}
 		}
-		/*body prperties*/
 		@media screen and (min-width: 992px) {
 			h1 {
 				font-size:7vw;
@@ -83,7 +66,7 @@
 			text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.66);
 			letter-spacing: 0.01vw; 
 			transition: 0.5s; 
-			font-family: 'Merienda',cursive; 
+			font-family: 'Verdana',cursive; 
 			margin: 0;
 			position: absolute;
 			top: 50%;
@@ -97,55 +80,46 @@
 		}
 	</style>
 </head>
-<body onload="myFunction()" onresize="bodyResized()">
+<body onresize="bodyResized()">
 	<CANVAS id="canvas" style="position: absolute; pointer-events: none; z-index: -1; width: 100%; height: 100%;"></CANVAS>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
-		<a class="navbar-brand"><img src="images/logo-2.png" width="60px" height="52.95px"><span style="font-family: 'Merienda', cursive; font-size: 25px; margin: 5px;">ELAN & &eta;VISION</span></a>
-		<span id="menuIcon" style="float:right; top:0;font-size:40px;cursor:pointer" onclick="openNav()">&#9776;</span>
-		<div class="collapse navbar-collapse" id="navbarText">
-			<ul id="panel" class="navbar-nav ml-auto">
-				<li id="div1" class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="Home.html">Home</a>
-						<a class="dropdown-item" href="#">FAQ's</a>
-					</div>
-				</li>
-				<li id="div2" class="nav-item">
-					<a class="nav-link" href="About Us.html">About Us</a>
-				</li>
-				<li id="div3" class="nav-item">
-					<a class="nav-link" href="#">Sponsers</a>
-				</li>
-
-				<li id="div4" class="nav-item">
-					<a class="nav-link" href="workshops.html">Events</a>
-				</li>
-				<li id="div5" class="nav-item">
-					<a class="nav-link" href="Team.html">Team</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#"><span id="menu" style="font-size:30px;cursor:pointer">&#9776;</a>
-				</li>
-			</ul>
-		</div>
-	</nav><br><br> 
-	<div id="mySidenav" class="sidenav">
-		<a href="javascript:void(0)" id="close" class="closebtn" onclick="closeNav()">&times;</a>
-		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
-		<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			<a class="dropdown-item" href="#">Action</a>
-			<a class="dropdown-item" href="#">FAQ's</a>
-		</div>
-		<a class="nav-link" href="About Us.html">About</a>
-		<a class="nav-link" href="#">Sponsers</a>
-		<a class="nav-link" href="workshops.html">Events</a>
-		<a class="nav-link" href="#">Team</a><br><br>
-		<div class="d-flex justify-content-around">
-			<div><a target="_blank" href="https://twitter.com/elan_iith"><img class="footerimg" src="images/twitter.png"></a></div>
-			<div><a target="_blank" href="https://www.facebook.com/elan.iithyderabad/"><img class="footerimg" src="images/fb.png"></a></div>
-			<div><a target="_blank" href="https://www.instagram.com/elan_and_nvision/"><img class="footerimg" src="images/insta.png"></a></div>
-			<div><a target="_blank" href="https://www.youtube.com/user/ElanIITHyderabad"><img class="footerimg" src="images/yt.png"></a></div>
+	<div>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+			<a class="navbar-brand"><img src="images/logo-2.png" width="60px" height="52.95px">
+				<span style="font-family: 'Merienda', cursive; font-size: 25px; margin: 5px; color:  #F06018;">ELAN & &eta;VISION</span>
+			</a>
+			<span id="menuIcon" style="float:right; top:0;font-size:40px;cursor:pointer" onclick="openNav()">&#9776;</span>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul id="panel" class="navbar-nav ml-auto">
+					<li id="div1" class="nav-item">
+						<a class="nav-link" href="home.html">Home</a>
+					</li>
+					<li id="div2" class="nav-item">
+						<a class="nav-link" href="About Us.html">About Us</a>
+					</li>
+					<li id="div3" class="nav-item">
+						<a class="nav-link" href="workshops.html">Workshops</a>
+					</li>
+					<li id="div5" class="nav-item">
+						<a class="nav-link" href="Team.html">Team</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#"><span id="menu" style="font-size:30px;cursor:pointer">&#9776;</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<br><br> 
+		<div id="mySidenav" class="sidenav">
+			<a href="javascript:void(0)" id="close" class="closebtn" onclick="closeNav()">&times;</a>
+			<a class="nav-link dropdown-toggle" href="#">Home</a>
+			<a class="nav-link" href="About Us.html">About</a>
+			<a class="nav-link" href="Team.html">Team</a><br><br>
+			<div class="d-flex justify-content-around">
+				<div><a target="_blank" href="https://twitter.com/elan_iith"><img class="footerimg" src="images/twitter.png"></a></div>
+				<div><a target="_blank" href="https://www.facebook.com/elan.iithyderabad/"><img class="footerimg" src="images/fb.png"></a></div>
+				<div><a target="_blank" href="https://www.instagram.com/elan_and_nvision/"><img class="footerimg" src="images/insta.png"></a></div>
+				<div><a target="_blank" href="https://www.youtube.com/user/ElanIITHyderabad"><img class="footerimg" src="images/yt.png"></a></div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -161,8 +135,7 @@
 		<div id="typewriter" class="col-lg-7 col-md-10"></div>
 	</div>
 </div>
-
-	<h1>ELAN & ηVISION</h1>
+	<h1>A miracle is being brewed</h1>
 	
 <img src="images/back1.jpg" id="background-image" hidden="true" />
 </body>

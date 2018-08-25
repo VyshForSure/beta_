@@ -128,14 +128,23 @@
 		<div class="col-lg-1 col-md-10"></div>
 	</div>
 
-<img src="images/back1.jpg" id="background-image" hidden="true" /> 
-<img src="images/eh1.jpg" id="workshop-image" style=" width: 50%; height: 50%; position: absolute; left: 50%; top: 50%;
-    	transform: translate(-50%, -75%);"/>
-<p style="position: absolute; left: 50%; top: 75%; transform: translateX(-50%);" > Elan & &eta;vision presents a workshop on Ethical Hacking! </p>
-<a href="https://www.townscript.com/e/ethical-hacking-121002"><button type="button" class="btn btn-primary" style="position: absolute; left: 49%; top: 85%; "> Register </button></a>
-<a href="https://www.townscript.com/e/elan-nvision-accommodation-031242"><button type="button" class="btn btn-primary" style="position: absolute; left: 35%; top: 85%; "> Accomodation </button></a>
-<a href="transport.html"><button type="button" class="btn btn-primary" style="position: absolute; left: 60%; top: 85%; "> Transport </button></a>
-</div>
+		<img src="images/back1.jpg" id="background-image" hidden="true" /> 
+		<img src="images/eh1.jpg" id="workshop-image" style=" width: 50%; height: 50%; position: absolute; left: 50%; top: 50%;
+		    	transform: translate(-50%, -75%);"/>
+		<p style="position: absolute; left: 50%; top: 75%; transform: translateX(-50%);" > Elan & &eta;vision presents a workshop on Ethical Hacking! </p>
+		<a href="https://www.townscript.com/e/ethical-hacking-121002">
+			<button type="button" class="btn btn-primary" style="position: absolute; left: 32%; top: 85%; "> Register </button>
+		</a>
+		<a href="https://www.townscript.com/e/elan-nvision-accommodation-031242">
+			<button type="button" class="btn btn-primary" style="position: absolute; left: 41%; top: 85%; "> Accomodation </button>
+		</a>
+		<a href="Rules.html">
+			<button type="button" class="btn btn-primary" style="position: absolute; left: 53%; top: 85%; "> Rules </button>
+		</a>
+		<a href="transport.html">
+			<button type="button" class="btn btn-primary" style="position: absolute; left: 60%; top: 85%; "> Transport </button>
+		</a>
+	</div>
 </body>
 </html>
 
@@ -186,7 +195,6 @@
 
 	function draw(){
 		pen.drawImage(Value.img, Value.imgX, Value.imgY, Value.imgW, Value.imgH);
-		// pen.drawImage(Value.work, canvas.width/3, canvas.height/3, canvas.width/3, Value.work.height / Value.work.width * canvas.width / 3);
 
 		var waveTime = new Date().getTime() * Value.wave.freq;
 		var x = Math.floor((Value.mouseX - Value.visibility) / Value.cellSize), 

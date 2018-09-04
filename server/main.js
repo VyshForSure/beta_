@@ -2,11 +2,22 @@ import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(() => {
 
-	// var spreadsheetName = 'LOL';
- //  	var serviceEmail = 'nss-iith-meteor@nss-iith.iam.gserviceaccount.com'; 
- //  	var result = Meteor.call("spreadsheet/fetch2", spreadsheetName, "1", {email: serviceEmail});
-
-  	// console.log(result);
+	var mysql = require('mysql');
+	var connection = mysql.createConnection({
+		host     : 'localhost',
+		user     : 'me',
+		password : 'secret',
+		database : 'my_db'
+	});
+	 
+	connection.connect();
+	 
+	connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
+		if (error) throw error;
+		console.log('The solution is: ', results[0].solution);
+	});
+	 
+	connection.end();
 
   	console.log("\n\n\tServer Started.\n\n");
 
@@ -18,9 +29,16 @@ Meteor.startup(() => {
   	console.log('DB constains ' + Meteor.users.find({}).count() + ' documents.');
   	console.log('DB constains ' + Meteor.users.find({isAdmin: true}).count() + ' Admins.\n');
 
-  	// console.log(Meteor.users.findOne({isAdmin: true}));
-  	// console.log(Meteor.users.find({}).fetch()[0]);
-  	// console.log('Modified ' + Meteor.users.update({}, {$set: {nss: nss}}) + ' documents.');
+  	const Ghosts = new Mongo.Collection('ghosts');
+
+  	/* Schema for a ghost entry: 
+  	{
+		rollNo: 'xy17btech11yyy',
+		name: 'Some Name',
+		isAdmin: false,
+		nss: { totalHours: 10.2, hoursByCategory: {0: 5, 1: 5.2}, events: [Array] }
+  	}
+	*/
 
   	ServiceConfiguration.configurations.remove({
   		service: "google"
@@ -42,11 +60,19 @@ Meteor.startup(() => {
   		user.rollNo = user.services.google.email.split('@')[0].toLowerCase();
   		user.name = user.services.google.name.toLowerCase();
 
-  		user.nss = {
-  			totalHours: 0,
-  			hoursByCategory: {},
-  			events: new Array()
-  		};
+  		var ghost = Ghosts.findOne({ rollNo: rollNo });
+
+  		if(ghost){
+  			user.nss = ghost.nss;
+  		}
+  		else{
+  			user.nss = {
+	  			totalHours: 0,
+	  			hoursByCategory: {},
+	  			events: new Array()
+  			};
+  		}
+  		
   		user.isAdmin = false;
   		return user;
   	});
@@ -108,7 +134,12 @@ Meteor.startup(() => {
 	}
 
 	creditStudent = (rollNo, adminName, hours, eventName, category, googleSheetId, eventDate) => {
+		var set = Meteor.users;
 		var student = Meteor.users.findOne({rollNo: rollNo.toLowerCase()});
+		if(!student) {
+			student = Ghosts.findOne({rollNo: rollNo.toLowerCase()});
+			set = Ghosts;
+		}
 
 		if(!student) return 'Roll Number not found.';
 		if(!isValidNumber(hours)) return 'Hours is an invalid figure';
@@ -129,7 +160,7 @@ Meteor.startup(() => {
 		student.nss.totalHours = roundToOneDecimal(parseFloat(student.nss.totalHours) + parseFloat(hours));
 		student.nss.events.push(event);
 
-		Meteor.users.update({_id: student._id}, {$set:{ 'nss': student.nss }});
+		set.update({_id: student._id}, {$set:{ 'nss': student.nss }});
 		return 'Success, hours credited to Roll Number ' + rollNo;
 	}
 
@@ -209,40 +240,3 @@ Meteor.methods({
 	}
 
 });
-
-/*
-
-HTML _ Admin Panel
-	URL, NAME of Spreadsheet, Date of Event, Name of Event
-Implicit
-	Time stamp of entry, Name of Admin
-Data from the Spreadsheet (In this order only)
-	Name, RollNO, hours, category
-
-user{
-	totalHours: 
-	hoursByCategory: []
-	events: [
-		{	
-			adminName: adminName, 
-			hours: hours, 
-			eventName: eventName,
-			time: <timeStamp of DB chnage>
-			timeofEvent: <time when the event happened>
-			category:
-			urlOfSpreadsheet: 
-		},
-		{	
-			adminName: adminName, 
-			hours: hours, 
-			eventName: eventName,
-			time: <timeStamp of DB chnage>
-			timeofEvent: <time when the event happened>
-			category:
-			urlOfSpreadsheet: 
-		},
-		....
-	]
-}
-
-*/

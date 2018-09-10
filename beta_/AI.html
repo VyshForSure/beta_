@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width"/>
+	<title>ELAN & &eta;vision'19</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Elan & ηVision is the techno-cultural fest of IIT Hyderabad.">
+	<meta name="copyright" content="ELAN & ηvision 2019">
+	<meta name="author" content="ELAN & ηvision 2019  ">
+	<meta name="keyword" content="workshops, iith, techy workshops, robotics, android, elan,nvision,elan & nvision,vision,techno,tech,management,technical,iit hyderabad, iit,fest, competitions,events,event,hyderabad,iith,students,robots,sponsors,games,workshops,kludge,infero,cephid,ecell,e-cell,robotics,equilibria,torque,electronica">
+	<meta name="theme-color" content="#283389">
+	<meta property="og:site_name" content="ELAN & ηvision 2019">
+	<meta property="og:title" content="ELAN & ηvision 2019">
+	<meta property="og:type" content="website">
+	<meta property="og:description" content="ELAN & ηvision 2019: Techno-cultural Fest of IIT Hyderabad">
+	<link rel="stylesheet" href="about.css">
+	<link href="https://fonts.googleapis.com/css?family=Faster+One|Merienda" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#menu").click(function(){
+				$("#div1").fadeToggle(500);
+				$("#div2").fadeToggle(500);
+				$("#div3").fadeToggle(500);
+				$("#div4").fadeToggle(500);
+				$("#div5").fadeToggle(500);
+			});
+		});
+		$(document).ready(function(){
+			$("#menuIcon").click(function(){
+				$("#menuIcon").fadeOut("fast");
+			});
+		});
+		$(document).ready(function(){
+			$("#close").click(function(){
+				$("#menuIcon").fadeIn("fast");
+			});
+		});
+		function openNav() {
+			document.getElementById("mySidenav").style.width = "300px";
+		}
+		function closeNav() {
+			document.getElementById("mySidenav").style.width = "0";
+		}
+		
+	</script>
+	<style type="text/css">
+		@media screen and (max-width: 992px) {
+			h1 {  font-size:8.5vw;  }
+
+		}
+		@media screen and (max-width: 576px) {
+			.cb {
+				display:none;
+			}
+		}
+		@media screen and (min-width: 576px) {
+			#ed {
+				display:none;
+			}
+		}
+		@media screen and (min-width: 992px) {
+			h1 {  font-size:7vw;  }
+		}
+		h1{
+			margin: 0;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin-right: -50%;
+			transform: translate(-50%, -50%);
+		}
+		@media screen and (min-width: 992px) {
+			body {
+				color: white;
+				background-image:url(images/5.png);
+				background-repeat:no-repeat;
+				background-size:cover;
+			}
+		}
+		@media screen and (max-width: 992px) {
+			body {
+				color: white;
+				background-image:url(images/7.png);
+				background-repeat:no-repeat;
+				background-size:cover;
+			}
+		}
+		.nav-item .nav-link {
+			background:transparent;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+			<a class="navbar-brand"><img src="images/logo-2.png" width="60px" height="52.95px"><span style="font-family: 'Merienda', cursive; font-size: 25px; margin: 5px;">ELAN & &eta;VISION</span></a>
+			<span id="menuIcon" style="float:right; top:0;font-size:40px;cursor:pointer" onclick="openNav()">&#9776;</span>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul id="panel" class="navbar-nav ml-auto">
+					<li id="div1" class="nav-item">
+						<a class="nav-link" href="Home.html">Home</a>
+					</li>
+					<li id="div2" class="nav-item">
+						<a class="nav-link" href="About Us.html">About</a>
+					</li>
+					<li id="div3" class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Workshops</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="AI.html">workshop(AI)</a>
+							<a class="dropdown-item" href="AR.html">workshops(AR)</a>
+														<a class="dropdown-item" href="Rules.html">Rules</a>
+							<a class="dropdown-item" href="transport.html">Transport</a>
+						</div>
+					</li>
+					<li id="div5" class="nav-item">
+						<a class="nav-link" href="Team.html">Team</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#"><span id="menu" style="font-size:30px;cursor:pointer">&#9776;</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<br><br> 
+		<div id="mySidenav" class="sidenav">
+			<a href="javascript:void(0)" id="close" class="closebtn" onclick="closeNav()">&times;</a>
+			<a class="nav-link" href="Home.html">Home</a>
+			<a class="nav-link" href="About Us.html">About</a>
+			<a class="nav-link dropdown-toggle" href="workshops.html" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Workshops</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+				<a class="dropdown-item" href="AI.html">workshop(AI)</a>
+				<a class="dropdown-item" href="AR.html">workshops(AR)</a>
+				<a class="dropdown-item" href="Rules.html">Rules</a>
+				<a class="dropdown-item" href="transport.html">Transport</a>
+			</div>
+			<a class="nav-link" href="Team.html">Team</a><br><br>
+			<div class="d-flex justify-content-around">
+				<div><a target="_blank" href="https://twitter.com/elan_iith"><img class="footerimg" src="images/twitter.png"></a></div>
+				<div><a target="_blank" href="https://www.facebook.com/elan.iithyderabad/"><img class="footerimg" src="images/fb.png"></a></div>
+				<div><a target="_blank" href="https://www.instagram.com/elan_and_nvision/"><img class="footerimg" src="images/insta.png"></a></div>
+				<div><a target="_blank" href="https://www.youtube.com/user/ElanIITHyderabad"><img class="footerimg" src="images/yt.png"></a></div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div style="" class="col-1">
+				<div class="p-1"><a target="_blank" href="https://twitter.com/elan_iith"><img id="side1" class="footerimg" src="images/twitter.png"></a></div>
+				<div class="p-1"><a target="_blank" href="https://www.facebook.com/elan.iithyderabad/"><img id="side2" class="footerimg" src="images/fb.png"></a></div>
+				<div class="p-1"><a target="_blank" href="https://www.instagram.com/elan_and_nvision/"><img id="side3" class="footerimg" src="images/insta.png"></a></div>
+				<div class="p-1"><a target="_blank" href="https://www.youtube.com/user/ElanIITHyderabad"><img id="side4" class="footerimg" src="images/yt.png"></a></div>
+			</div>
+			<div id="ed" style="text-align:center;" class="col-md-10">
+				<h3 style="text-decoration:underline;">  <a href="images/eh1.jpg">Artificial Intelligence & Machine Learning </a></h3><br>
+				<h4>NO PRE-REQUISITES</h4><br>
+				<p>Certificate from Elan&nvision</p><br>
+				<p>VENUE : IIT HYDERABAD,KANDI</p><br>
+				<p>DATE : 15th&16th Seotember</p><br>
+				<p>Duration : 8 hours/Day</p><br>
+				<p>FEE : 1200 PER HEAD</p><br><br>
+				<a href="https://goo.gl/forms/52exb5VNFp35mWdz2">
+					<button type="button" class="btn btn-primary" style="position: absolute; left: 2%; top: 85%; "> Register </button>
+				</a>
+				<a href="https://www.townscript.com/e/elan-nvision-accommodation-122010">
+					<button type="button" class="btn btn-primary" style="position: absolute; left: 32%; top: 85%; "> Accomodation </button>
+					<a class="dropdown-item" href="https://docs.google.com/document/d/1-mlO0-vp41l">	<button type="button" class="btn btn-primary" style="position: absolute; left: 75%; top: 85%; "> Details</button>
+					</div>
+
+				</div>
+
+
+
+			</div>	
+			<a href="images/eh1.jpg" class="cb"><img src="images/eh1.jpg" style=" width: auto; height: 60%; position: absolute; left: 50%; top: 50%;transform: translate(-50%, -65%);"/></a>
+
+
+			<p class="cb" style="position: absolute; left: 50%; top: 75%; transform: translateX(-50%);" > Elan & &eta;vision presents a workshop on Artificial Intelligence & Machine Learning  </p>
+			<a class="cb" href="https://goo.gl/forms/52exb5VNFp35mWdz2">
+				<button type="button" class="btn btn-primary" style="position: absolute; left: 20%; top: 85%; "> Register </button>
+			</a>
+			<a class="cb" href="https://www.townscript.com/e/elan-nvision-accommodation-122010">
+				<button type="button" class="btn btn-primary" style="position: absolute; left: 45%; top: 85%; "> Accomodation </button>
+			</a>
+								<a class="cb" class="dropdown-item" href="https://docs.google.com/document/d/1-mlO0-vp41l">	<button type="button" class="btn btn-primary" style="position: absolute; left: 75%; top: 85%; "> Details</button>
+					</div>
+		</body>
+		</html>

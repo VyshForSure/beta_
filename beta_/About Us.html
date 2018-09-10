@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width"/>
+	<title>About | ELAN & &eta;vision'19</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Elan & ηVision is the techno-cultural fest of IIT Hyderabad.">
+	<meta name="copyright" content="ELAN & ηvision 2019">
+	<meta name="author" content="ELAN & ηvision 2019  ">
+	<meta name="keyword" content="workshops, iith, techy workshops, robotics, android, elan,nvision,elan & nvision,vision,techno,tech,management,technical,iit hyderabad, iit,fest, competitions,events,event,hyderabad,iith,students,robots,sponsors,games,workshops,kludge,infero,cephid,ecell,e-cell,robotics,equilibria,torque,electronica">
+	<meta name="theme-color" content="#283389">
+	<meta property="og:site_name" content="ELAN & ηvision 2019">
+	<meta property="og:title" content="ELAN & ηvision 2019">
+	<meta property="og:type" content="website">
+	<!-- <meta property="og:image" content="https://nvision.org.in/img/logo.png"> -->
+	<meta property="og:description" content="ELAN & ηvision 2019: Techno-cultural Fest of IIT Hyderabad">
+	<link rel="stylesheet" href="about.css">
+	<link href="https://fonts.googleapis.com/css?family=Old+Standard+TT" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Faster+One|Merienda" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#menu").click(function(){
+				$("#div1").fadeToggle(500);
+				$("#div2").fadeToggle(500);
+				$("#div3").fadeToggle(500);
+				$("#div4").fadeToggle(500);
+				$("#div5").fadeToggle(500);
+			});
+		});
+		$(document).ready(function(){
+			$("#menuIcon").click(function(){
+				$("#menuIcon").fadeOut("fast");
+			});
+		});
+		$(document).ready(function(){
+			$("#close").click(function(){
+				$("#menuIcon").fadeIn("fast");
+			});
+		});
+		function openNav() {
+			document.getElementById("mySidenav").style.width = "300px";
+		}
+		function closeNav() {
+			document.getElementById("mySidenav").style.width = "0";
+		}
+		
+	</script>
+	<style type="text/css">
+		@media screen and (max-width: 992px) {
+			h1 {
+				font-size:8.5vw;
+			}
+		}
+		@media screen and (min-width: 992px) {
+			h1 {
+				font-size:7vw;
+			}
+		}
+		
+		@media screen and (min-width: 992px) {
+			body {
+				color: white;
+				background-image:url(images/5.png);
+				background-repeat:no-repeat;
+				background-size:cover;
+			}
+		}
+		@media screen and (max-width: 992px) {
+			body {
+				color: white;
+				background-image:url(images/7.png);
+				background-repeat:no-repeat;
+				background-size:cover;
+			}
+		}
+	</style>
+	<script>
+		if ( $(window).width() > 992){
+			document.addEventListener('DOMContentLoaded',function(event){
+				var dataText = [ "Elan & &eta;vision, the most anticipated and grandiose festival of IIT Hyderabad, is back with a conglomerate of splendiferous events to galvanize the mob. Since inception, its fervid tendrils have touched the hearts of every adroit organiser and participant leaving a legacy to be upheld by its family of dedicated students.<br><br>Elan & &eta;vision is an elegant brew of culture, innovation and feverish exhilaration stimulating an atmosphere of intense competitions and professional performances. With a carefully fabricated range of events, covering varied genres in art, music and technology, we have something for everyone.<br><br>Elan & &eta;vision 2018, arguably the grandest techno-cultural fiesta you will ever come across, promises an eximious experience for spectators and participants alike."];
+
+				function typeWriter(text, i, fnCallback) {
+					if (i < (text.length)) {
+						document.querySelector("#typewriter").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
+						setTimeout(function() {
+							typeWriter(text, i + 1, fnCallback)
+						}, 0.1);
+					}
+					else if (typeof fnCallback == 'function') {
+						setTimeout(fnCallback, 700);
+					}
+				}
+				function StartTextAnimation(i) {
+					if (typeof dataText[i] == 'undefined'){
+						setTimeout(function() {
+							StartTextAnimation(0);
+						},200000);
+					}
+					if (i < dataText[i].length) {
+						typeWriter(dataText[i], 0, function(){
+							StartTextAnimation(i + 1);
+						});
+					}
+				}
+				StartTextAnimation(0);
+			});
+		}
+	</script>
+</head>
+<body>
+	
+	<div>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+			<a class="navbar-brand"><img src="images/logo-2.png" width="60px" height="52.95px"><span style="font-family: 'Merienda', cursive; font-size: 25px; margin: 5px;">ELAN & &eta;VISION</span></a>
+
+			<span id="menuIcon" style="float:right; top:0;font-size:40px;cursor:pointer" onclick="openNav()">&#9776;</span>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul id="panel" class="navbar-nav ml-auto">
+					<li id="div1" class="nav-item">
+						<a class="nav-link" href="Home.html">Home</a>
+					</li>
+					<li id="div2" class="nav-item">
+						<a class="nav-link" href="About Us.html">About</a>
+					</li>
+					<li id="div3" class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="workshops.html" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Workshops</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="AI.html">workshop(AI)</a>
+							<a class="dropdown-item" href="AR.html">workshops(AR)</a>
+							<a class="dropdown-item" href="Rules.html">Rules</a>
+							<a class="dropdown-item" href="transport.html">Transport</a>
+						</div>
+					</li>
+					<li id="div5" class="nav-item">
+						<a class="nav-link" href="Team.html">Team</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#"><span id="menu" style="font-size:30px;cursor:pointer">&#9776;</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<br><br> 
+		<div id="mySidenav" class="sidenav">
+			<a href="javascript:void(0)" id="close" class="closebtn" onclick="closeNav()">&times;</a>
+			<a class="nav-link" href="Home.html">Home</a>
+			<a class="nav-link" href="About Us.html">About</a>
+			<a class="nav-link dropdown-toggle" href="workshops.html" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Workshops</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+				<a class="dropdown-item" href="AI.html">workshop(AI)</a>
+				<a class="dropdown-item" href="AR.html">workshops(AR)</a>
+				<a class="dropdown-item" href="Rules.html">Rules</a>
+				<a class="dropdown-item" href="transport.html">Transport</a>
+			</div>
+			<a class="nav-link" href="Team.html">Team</a><br><br>
+			<div class="d-flex justify-content-around">
+				<div><a target="_blank" href="https://twitter.com/elan_iith"><img class="footerimg" src="images/twitter.png"></a></div>
+				<div><a target="_blank" href="https://www.facebook.com/elan.iithyderabad/"><img class="footerimg" src="images/fb.png"></a></div>
+				<div><a target="_blank" href="https://www.instagram.com/elan_and_nvision/"><img class="footerimg" src="images/insta.png"></a></div>
+				<div><a target="_blank" href="https://www.youtube.com/user/ElanIITHyderabad"><img class="footerimg" src="images/yt.png"></a></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<div style="" class="col-1">
+			<div class="p-1"><a target="_blank" href="https://twitter.com/elan_iith"><img id="side1" class="footerimg" src="images/twitter.png"></a></div>
+			<div class="p-1"><a target="_blank" href="https://www.facebook.com/elan.iithyderabad/"><img id="side2" class="footerimg" src="images/fb.png"></a></div>
+			<div class="p-1"><a target="_blank" href="https://www.instagram.com/elan_and_nvision/"><img id="side3" class="footerimg" src="images/insta.png"></a></div>
+			<div class="p-1"><a target="_blank" href="https://www.youtube.com/user/ElanIITHyderabad"><img id="side4" class="footerimg" src="images/yt.png"></a></div>
+		</div>
+		<div class="col-lg-3">
+			<div style="font-family: 'Old Standard TT', serif; font-size: 50px; text-align:left;"><u>About Us</u></div><br>
+		</div>
+		<div id="typewriter" class="col-lg-7 col-md-10">Elan & &eta;vision, the most anticipated and grandiose festival of IIT Hyderabad, is back with a conglomerate of splendiferous events to galvanize the mob. Since inception, its fervid tendrils have touched the hearts of every adroit organiser and participant leaving a legacy to be upheld by its family of dedicated students.<br><br>Elan & &eta;vision is an elegant brew of culture, innovation and feverish exhilaration stimulating an atmosphere of intense competitions and professional performances. With a carefully fabricated range of events, covering varied genres in art, music and technology, we have something for everyone.<br><br>Elan & &eta;vision 2018, arguably the grandest techno-cultural fiesta you will ever come across, promises an eximious experience for spectators and participants alike.</div>
+	</div>
+</div>
+</body>
+</html>

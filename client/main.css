@@ -1,4 +1,61 @@
 body {
-  padding: 10px;
-  font-family: sans-serif;
+	padding: 10px;
+	font-family: sans-serif;
+	background: #303030;
+}
+img {
+	height: 100%;
+	width: 100%;
+}
+.starter-template {
+	padding: 3rem 1.5rem;
+	text-align: center;
+	color: grey;
+}
+.nav-item {
+	display: inline;
+	padding: 3%;
+}
+.heading {
+	width: 70%;
+	font-size: 2.5rem;
+	float: left;
+	color: darkgrey;
+}
+.navbar-nav {
+	padding: 1.5rem;
+	width: 25%;
+	float: right;
+	margin: 0;
+}
+h2, table, legend {
+	color: darkgrey;
+}
+table {
+	margin: 0 0 40px 0;
+	width: 100%;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+	display: table;
+}
+tr {
+	color: lightgrey;
+  display: table-row;
+  background: grey;
+}
+tr:nth-child(even){
+   background: lightgrey;
+}
+td {
+	color: #101010;
+	display: table-cell;
+	padding: 1rem;
+	padding-bottom: 0.35rem;
+}
+th {
+	display: table-row;
+	font-size: 3rem;
+	padding: 1rem; 
+}
+.logout {
+	text-align: center;
 }

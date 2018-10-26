@@ -3,100 +3,100 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
-Template.hello.onCreated(function helloOnCreated() {
+FlowRouter.route('/caportal', {
+	action(){
+		BlazeLayout.render('top');
+	}
+});
 
-  	this.counter = new ReactiveVar(0);
-  	//console.log(this);
+FlowRouter.route('/*', {
+	action(){
+		window.location.href='/Home.html';
+	}
+});
 
-
+Template.top.onCreated(function topOnCreated() {
 });
 
 Template.top.helpers({
-  	isAdminLink() {
+  	isAdmin() {
   		if(Meteor.user()){
-  			return Meteor.user().profile.isAdmin && window.location.pathname === '/supersecretadminpanel';
+  			return Meteor.user().profile.isAdmin;
   		}
-
   		return false;
   	},
-
 });
 
-Template.hello.helpers({
-  	counter() {
-    	return Template.instance().counter.get();
+Template.info.helpers({
+  	entries() {
+  		Meteor.call('getPosts', 0, 100,
+  		(err, val) => { 
+  			var list = document.getElementById('table');
+  			for(var i = 0; i < val.length; i++){
+  				var row = document.createElement('tr');
+  				var content = document.createElement('td');
+  				var time = document.createElement('td');
+  				var admin = document.createElement('td');
+  				content.innerHTML = val[i].content;
+  				time.innerHTML = val[i].time.toLocaleDateString();
+  				admin.innerHTML = val[i].adminName;
+  				row.appendChild(content);
+  				row.appendChild(time);
+  				row.appendChild(admin);
+  				list.appendChild(row);
+  			}
+		});
   	},
-  	categories(){
-  		return Object.keys(Meteor.user().profile.nss.hoursByCategory);
+  	getScore() {
+  		if(Meteor.user()){
+  			return Meteor.user().profile.score;
+  		}
+  		return false;
   	},
-  	hoursInCategory(){
-  		return Object.values(Meteor.user().profile.nss.hoursByCategory);
-  	},
-  	headers(){
-  		return Meteor.user().profile.nss.events.map((s) => s.eventName);
-  	},
-  	entries(){
-  		return Meteor.user().profile.nss.events.map((s) => s.hours);
-  	}
-
-});
-
-Template.hello.events({
-	'click .increment' : () => {
-		Template.instance().counter.set(Template.instance().counter.get() + 1);
-	}
 });
 
 Template.adminPanel.events({
 	'click .submit' : () => {
 		if(!Meteor.user()) return;
-		var name = document.getElementById('nameSheet').value;
-		var idx = document.getElementById('idxSheet').value;
-		var eventName = document.getElementById('eventName').value;
-		var eventDate = document.getElementById('eventDate').value;
+		var content = document.getElementById('content').value;
 		var bel = document.getElementById('legend');
-		if(!name)
-			i = 'Invalid SpreadSheet Name';
-		else if(!idx)
-			i = 'Invalid WorkSheet Index';
+		if(!content)
+			i = 'Invalid Content';
 		else{
 			i = 'Submitted and waiting for response...';
-			Meteor.call('processSheet',
-			 	name,
-				idx,
-				eventName,
-				eventDate,
-				Meteor.user()._id, 
-				Meteor.user().profile.accessTokenExpiry,
-				(err, val) => { 
+			Meteor.call('submitContent',
+			 	content, 
+			 	new Date(),
+			 	Meteor.user()._id,
+			 	(err, val) => { 
 					if(err) bel.innerHTML = err;
 					else bel.innerHTML = val;
 				}
 			);
 		}
-		bel.innerHTML = 'Add Hours by Sheet - ' + i;
-			
+		bel.innerHTML = i;
 	},
-
-
-	'click .test' : () => {
-		var bel = document.getElementById('legend');
+	'click .update' : () => {
 		if(!Meteor.user()) return;
-		Meteor.call('giveCreditToStudent',
-		 	'ep17btech11001',
-			'sample Event Name',
-			'12/09/2018',
-			'54', 
-			'1',
-			Meteor.user()._id, 
-			Meteor.user().profile.accessTokenExpiry,
-			'no url for single credit testing',
-			(err, val) => { 
-				if(err) bel.innerHTML = err;
-				else bel.innerHTML = val;
-			}
-		);
-		bel.innerHTML = 'Add Hours by Event - ' + i;
-			
+		var score = document.getElementById('delScore').value;
+		var email = document.getElementById('idOfCA').value;
+		var bel = document.getElementById('legend');
+		if(!content)
+			i = 'Invalid Content';
+		else if(!email)
+			i = 'Invalid email of CA';
+		else{
+			i = 'Submitted and waiting for response...';
+			Meteor.call('updateScore',
+			 	score, 
+			 	email,
+			 	Meteor.user()._id,
+			 	(err, val) => { 
+					if(err) bel.innerHTML = err;
+					else bel.innerHTML = val;
+				}
+			);
+		}
+		bel.innerHTML = i;
 	}
 });

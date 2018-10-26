@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width"/>
+	<title>Transportation | ELAN & &eta;vision'19</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Elan & ηVision is the techno-cultural fest of IIT Hyderabad.">
+	<meta name="copyright" content="ELAN & ηvision 2019">
+	<meta name="author" content="ELAN & ηvision 2019  ">
+	<meta name="keyword" content="workshops, iith, techy workshops, robotics, android, elan,nvision,elan & nvision,vision,techno,tech,management,technical,iit hyderabad, iit,fest, competitions,events,event,hyderabad,iith,students,robots,sponsors,games,workshops,kludge,infero,cephid,ecell,e-cell,robotics,equilibria,torque,electronica">
+	<meta name="theme-color" content="#283389">
+	<meta property="og:site_name" content="ELAN & ηvision 2019">
+	<meta property="og:title" content="ELAN & ηvision 2019">
+	<meta property="og:type" content="website">
+	<!-- <meta property="og:image" content="https://nvision.org.in/img/logo.png"> -->
+	<meta property="og:description" content="ELAN & ηvision 2019: Techno-cultural Fest of IIT Hyderabad">
+	<link rel="stylesheet" href="about.css">
+	<link href="https://fonts.googleapis.com/css?family=Old+Standard+TT" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Faster+One|Merienda" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#menu").click(function(){
+				$("#div1").fadeToggle(500);
+				$("#div2").fadeToggle(500);
+				$("#div3").fadeToggle(500);
+				$("#div4").fadeToggle(500);
+				$("#div5").fadeToggle(500);
+			});
+		});
+		$(document).ready(function(){
+			$("#menuIcon").click(function(){
+				$("#menuIcon").fadeOut("fast");
+			});
+		});
+		$(document).ready(function(){
+			$("#close").click(function(){
+				$("#menuIcon").fadeIn("fast");
+			});
+		});
+		function openNav() {
+			document.getElementById("mySidenav").style.width = "300px";
+		}
+		function closeNav() {
+			document.getElementById("mySidenav").style.width = "0";
+		}
+		
+	</script>
+	<style type="text/css">
+		@media screen and (max-width: 992px) {
+			h1 {
+				font-size:8.5vw;
+			}
+		}
+		@media screen and (min-width: 992px) {
+			h1 {
+				font-size:7vw;
+			}
+		}
+		body {
+			color: white;
+		}
+		td,th{
+			text-align:center;
+			color:white;
+		}
+		th {
+		
+			font-size: 20px; 
+		}
+	</style>
+
+</head>
+<body onresize="bodyResized()">
+	<CANVAS id="canvas" style="position: absolute; pointer-events: none; z-index: -1; width: 100%; height: 100%;"></CANVAS>
+	
+	<div>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+			<a class="navbar-brand"><img src="images/logo-2.png" width="60px" height="52.95px">
+				<span> <img src="images/TextLogo.png" style="height: 35%; width: 35%;"></span>
+			</a>
+			<span id="menuIcon" style="float:right; top:0;font-size:40px;cursor:pointer" onclick="openNav()">&#9776;</span>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul id="panel" class="navbar-nav ml-auto">
+					<li id="div1" class="nav-item">
+						<a class="nav-link" href="Home.html">Home</a>
+					</li>
+					<li id="div2" class="nav-item">
+						<a class="nav-link" href="About Us.html">About Us</a>
+					</li>
+					<li id="div3" class="nav-item">
+						<a class="nav-link" href="workshops.html">Workshops</a>
+					</li>
+					<li id="div5" class="nav-item">
+						<a class="nav-link" href="Team.html">Team</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#"><span id="menu" style="font-size:30px;cursor:pointer">&#9776;</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<br><br> 
+		<div id="mySidenav" class="sidenav">
+			<a href="javascript:void(0)" id="close" class="closebtn" onclick="closeNav()">&times;</a>
+			<a class="nav-link dropdown-toggle" href="Home.html">Home</a>
+			<a class="nav-link" href="About Us.html">About</a>
+			<a class="nav-link" href="Team.html">Team</a><br><br>
+			<div class="d-flex justify-content-around">
+				<div><a target="_blank" href="https://twitter.com/elan_iith"><img class="footerimg" src="images/twitter.png"></a></div>
+				<div><a target="_blank" href="https://www.facebook.com/elan.iithyderabad/"><img class="footerimg" src="images/fb.png"></a></div>
+				<div><a target="_blank" href="https://www.instagram.com/elan_and_nvision/"><img class="footerimg" src="images/insta.png"></a></div>
+				<div><a target="_blank" href="https://www.youtube.com/user/ElanIITHyderabad"><img class="footerimg" src="images/yt.png"></a></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<div style="" class="col-2">
+			<div class="p-1"><a target="_blank" href="https://twitter.com/elan_iith"><img id="side1" class="footerimg" src="images/twitter.png"></a></div>
+			<div class="p-1"><a target="_blank" href="https://www.facebook.com/elan.iithyderabad/"><img id="side2" class="footerimg" src="images/fb.png"></a></div>
+			<div class="p-1"><a target="_blank" href="https://www.instagram.com/elan_and_nvision/"><img id="side3" class="footerimg" src="images/insta.png"></a></div>
+			<div class="p-1"><a target="_blank" href="https://www.youtube.com/user/ElanIITHyderabad"><img id="side4" class="footerimg" src="images/yt.png"></a></div>
+		</div>
+		<div class="col-lg-8">
+			<table class="table table-striped table-dark">
+				<thead>
+					<tr>
+
+						<th scope="col">#</th>
+						<th scope="col">Lingampally-IITH(Starts At)</th>
+						<th scope="col">IITH-Lingampally(Starts At)</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">1</th>
+						<td>9:15</td>
+						<td>11:30</td>
+					
+					</tr>
+					<tr>
+						<th scope="row">2</th>
+						<td>13:15</td>
+						<td>13:15</td>
+		
+					</tr>
+					<tr>
+						<th scope="row">3</th>
+						<td>15:00</td>
+						<td>14:45</td>
+		
+					</tr>
+					<tr>
+						<th scope="row">4</th>
+						<td>17:00</td>
+						<td>17:45</td>
+		
+					</tr>
+					<tr>
+						<th scope="row">5</th>
+						<td>19:15</td>
+						<td>19:00</td>
+		
+					</tr>
+					<tr>
+						<th scope="row">6</th>
+						<td>22:15</td>
+						<td>20:45</td>
+		
+					</tr>
+				</tbody>
+			</table> 
+		</div>
+		<div id="typewriter" class="col-lg- col-md-10"></div>
+	</div>
+</div>
+
+<img src="images/back1.jpg" id="background-image" hidden="true" />
+</body>
+</html>
+<script type="text/javascript">
+	Value = {
+		img: document.getElementById("background-image"),
+		imgW: 0, imgH: 0, imgX: 0, imgY: 0,
+		foreground: "rgba(255, 255, 255, ",
+		random: [],
+		rad: [],
+		numX: 0, numY: 0,
+		radius: 15, minRad: 1,
+		cellSize: 100,
+		wave: {
+			amp: 30,
+			waveVect: {x: 0.414, y: 0.414},
+			freq: 0.001	
+		},
+		mouseX: 0, mouseY: 0,
+		visibility: 350,
+		viewFunct: function(distSqrd){
+			if(distSqrd > this.visibility * this.visibility) return 0;
+			else if(distSqrd < 0) return 1;
+			else return Math.exp(-distSqrd / (this.visibility * this.visibility));
+		}
+	};
+	function bodyResized(){
+		canvas = document.getElementById("canvas");
+		canvas.width = $(window).width(); canvas.height = $(window).height(); 
+		pen  = canvas.getContext("2d");
+		Value.numX = Math.floor(canvas.width / Value.cellSize);
+		Value.numY = Math.floor(canvas.height / Value.cellSize);
+		Value.random = Array.from({length: Value.numX * Value.numY}, () => Math.random());
+		Value.rad = Array.from(Value.random, (x) => Value.minRad + x * Value.radius);
+		var ratio = Value.img.height / Value.img.width;
+		if(canvas.width < canvas.height){
+			Value.imgW = canvas.width;
+			Value.imgH = Value.imgW * ratio;
+		}
+		else{
+			Value.imgH = canvas.height;
+			Value.imgW = Value.imgH / ratio;
+		}
+		Value.imgX = (canvas.width - Value.imgW)/2; Value.imgY = (canvas.height - Value.imgH)/2;
+	}
+
+	function draw(){
+		
+		pen.drawImage(Value.img, Value.imgX, Value.imgY, Value.imgW, Value.imgH);	
+
+		var waveTime = new Date().getTime() * Value.wave.freq;
+		var x = Math.floor((Value.mouseX - Value.visibility) / Value.cellSize), 
+		lx = x + Math.ceil(2 * Value.visibility / Value.cellSize);
+		if(lx > Value.numX) lx = Value.numX;
+		if(x < 0) x = 0;
+		var sx = x * Value.cellSize + Value.cellSize / 2;
+
+		for(; x < lx; x++, sx += Value.cellSize){
+			var y = Math.floor((Value.mouseY - Value.visibility) / Value.cellSize),
+			ly = y + Math.ceil(2 * Value.visibility / Value.cellSize);
+			if(y < 0) y = 0;
+			if(ly > Value.numY) ly = Value.numY;
+			var sy = y * Value.cellSize + Value.cellSize / 2;
+
+			for(; y < ly; y++, sy += Value.cellSize){
+				var idx = x + Value.numY * y;
+				var disp = {h: Value.wave.amp * Math.sin(Value.random[idx] * Value.wave.waveVect.x * sx + waveTime), 
+					k: Value.wave.amp * Math.sin(Value.random[idx] * Value.wave.waveVect.y * sy + waveTime)};
+					var dist2 = (sx + disp.h - Value.mouseX)*(sx + disp.h - Value.mouseX) + (sy + disp.k - Value.mouseY)*(sy + disp.k - Value.mouseY);
+					pen.beginPath();
+					pen.fillStyle = Value.foreground + (Value.visibility*Value.visibility - dist2)/(Value.visibility*Value.visibility) + ")";
+					pen.arc(sx + disp.h, sy + disp.k, Value.rad[idx], 0, 2 * 3.1416);
+					pen.fill();
+				}
+			}
+		}
+		document.addEventListener('mousemove', function(event){
+			Value.mouseX = event.clientX;
+			Value.mouseY = event.clientY;
+		});
+		bodyResized();
+		setInterval(draw, 1000/60);
+	</script>

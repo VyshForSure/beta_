@@ -1,108 +1,106 @@
 <head>
-  <title>NSS-Hours-App</title>
+  <title>CA Portal</title>
 </head>
 
 <body>
-  <h1>Welcome to National Service Scheme!</h1>
-  
   {{ > top }}
-	
 </body>
 
 <template name="top">
 	{{#if currentUser }}
-
-  	{{ > hello }}
   	{{ > info }}
-
-  	{{ #if isAdminLink }}
-  			{{ > adminPanel }}
-  	{{ /if }} 
-
+    {{#if isAdmin }}
+      {{ > adminPanel }}
+    {{ /if }}
+  {{else}}
+    {{ > home }}
   {{ /if }}
-
-	{{ >loginButtons}}
-	
-</template>
-
-<template name="hello">
-  <button class="increment">Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-  <br>
-  <p> This is only availabe after you login. </p>
-<p> Your Total Hours: <STRONG> {{ currentUser.profile.nss.totalHours }}</STRONG> </p>
-  <fieldset>
-    <legend > Check Yours Hours by Category </legend>
-    <table>
-      <tr>
-        <th> Categories == </th>
-        {{#each event in categories}}
-          <th>{{ event }} || </th>
-        {{/each}}
-      </tr>
-      <tr>
-        <th> Hours == </th>
-        {{#each entry in hoursInCategory}}
-          <th>{{ entry }} || </th>
-        {{/each}}
-      </tr>
-    
-    </table>
-  </fieldset>
-
-  <fieldset>
-    <legend > Check Yours Hours by Event </legend>
-    <table>
-      <tr>
-        <th> Events == </th>
-        {{#each header in headers}}
-          <th>{{ header }} || </th>
-        {{/each}}
-      </tr>
-      <tr>
-        <th> Hours == </th>
-        {{#each entry in entries}}
-          <th>{{ entry }} || </th>
-        {{/each}}
-      </tr>
-    
-    </table>
-  </fieldset>
-
 </template>
 
 <template name="info">
-  <h2>Learn Meteor!</h2>
-  <ul>
-    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
-    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
-    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
-    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
-  </ul>
+  <h2>Latest Posts</h2>
+  <fieldset>    
+    <table id='table'>
+      <tr>
+        <th class="col-lg-6"> Content </th>
+        <th class="col-lg-4"> Time </th>
+        <th class="col-lg-4"> Admin </th>
+      </tr>
+      {{ entries }}
+    </table>
+  </fieldset>
+  <h2> Your Score: <a id="score">{{ getScore }} </a> </h2>
+  <div class="logout"> {{ >loginButtons }} </div>
 </template>
-
 
 <template name="adminPanel">
   <h2>Administrator Controls</h2>
   <fieldset>
-  	<legend id='legend'> Add Hours by Event </legend>
+  	<legend id='legend'> Add Post to CA Feed </legend>
   		<form>
   			<table>
   				<tr>
-  					<th> Name of The SpreadSheet </th>
-  					<th> WorkSheet Index </th>
-            <th> Name of the Event </th>
-            <th> Date of the Event </th>
+  					<th class="col-lg-4"> Content </th>
+            <th class="col-lg-4"> Add Score </th>
   				</tr>
   				<tr>
-  					<td> <input type="text" id="nameSheet"></td>
-  					<td> <input type="Number" id="idxSheet"></td>
-            <td> <input type="text" id="eventName"></td>
-            <td> <input type="date" id="eventDate"></td>
+  					<td> <input type="text" id="content"></td>
+            <td> 
+              Score: <input type="number" id="delScore">
+              Name of CA: <input type="email" id="idOfCA">
+           </td>
   				</tr>
   			</table>
-  			<input type="button" class="submit" value="Submit">
-        <input type="button" class="test" value="Test">
+  			<input type="button" class="submit" value="Submit Post">
+        <input type="button" class="update" value="Add Score">
   		</form>
   	</fieldset>
+</template>
+
+<template name="home">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <h1 class="heading"> 
+        Welcome to Elan & ηvision's Campus Ambassador's Portal 
+      </h1>
+      <!--
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto ">
+          <li class="nav-item active" >
+            <a class="nav-link" href="#">Home </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Disabled</a>
+          </li>
+        </ul>
+      </div>
+    -->
+    </nav>
+
+    <main role="main" class="container">
+      <img src="banner.jpg" />
+      <div class="starter-template" >
+        <h1>CAMPUS AMBASSADOR PROGRAMME</h1>
+        <p class="lead"> 
+          This is a call for college students across the city to become 
+          Campus Ambassadors for ELAN & ηvision 2019, 
+          the techno-cultural fest of IIT Hyderabad. ELAN and ​η​vision is Hyderabad’s 
+          largest techno-cultural fest. With thousands of participants and the likes 
+          of Nikhil Chinappa, Benny Dayal and Kailash Kher, the fest has previously 
+          partnered with Cyient, British Council among others. 
+
+          The Campus Ambassador Programme is a chance for you to be a part of this fest 
+          as more than just a participant. 
+          You will be a point of contact for ELAN & ηvision 2019 and your college. 
+          The primary goal you will be expected to accomplish will be to promote 
+          our events in your college and especially connect us with your clubs.
+        </p>
+
+        <div class="logout"> {{ >loginButtons }} </div>
+
+      </div>
+    </main>
+
 </template>

@@ -23,3 +23,6 @@ accounts-ui
 google-config-ui
 service-configuration
 ongoworks:google-spreadsheets
+kadira:flow-router
+kadira:blaze-layout
+twbs:bootstrap

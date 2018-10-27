@@ -30,29 +30,28 @@ Meteor.startup(() => {
   		user.name = user.services.google.name.toLowerCase();
   		user.isAdmin = false;
       user.score = 0;
+      user.phoneNumber = "";
   		return user;
   	});
 
   	Accounts.onLogin((loginDetails) => {
   		var t = Meteor.users.findOne({_id: loginDetails.user._id});
 
-      // Meteor.users.update({_id: loginDetails.user._id}, {$set:{
-      //     // 'isAdmin' : true
-      //     'score' : t.score + 1
-      // }});
-
   		Meteor.users.update({_id: loginDetails.user._id}, {$set:{
         'profile.isAdmin' : t.isAdmin,
-        'profile.score' : t.score
+        'profile.score' : t.score,
+        'profile.phoneNumber' : t.phoneNumber
 	    }});
 
     });
 });
 
-makeDocument = (content, time, adminName) => {
+makeDocument = (content, time, expiry, score, adminName) => {
   return {
     content: content,
     time: time,
+    expiry: expiry,
+    score: score,
     adminName: adminName
   };
 }
@@ -64,16 +63,24 @@ updateScore = (id, newScore) => {
 }
 
 Meteor.methods({
-	submitContent: (content, time, id) => {
+	submitContent: (content, time, expiry, score, id) => {
     // console.log('submitContent() called, content:', content);
     var user = Meteor.users.findOne({_id: id});
 
     if(!user.isAdmin) return 'Access Denied';
+    if(isNaN(parseFloat(score))) score = 1;
 
-    Posts.insert(makeDocument(content, time, user.name));
+    Posts.insert(makeDocument(content, time, expiry, score, user.name));
 
     return 'Process Completed';
 	},
+
+  removePost: (adminId, postId) => {
+    var user = Meteor.users.findOne({_id: adminId});
+    if(!user.isAdmin) return 'Access Denied';
+    return Posts.remove({ _id: postId});
+
+  },
 
   getPosts: (start, end) => {
     // console.log('getPosts() called');
@@ -81,6 +88,16 @@ Meteor.methods({
     if(t < 0) t = 10;
     if(start < 0) start = 0;
     return Posts.find({}, { limit: t, skip: start, sort: {time: -1} }).fetch();
+  },
+
+  getCAs: (id) => {
+    var user = Meteor.users.findOne({_id: id});
+    if(!user.isAdmin) return 'Access Denied';
+
+    return Meteor.users.find({}, {
+      fields: {score: 1, name: 1, 'services.google.email': 1, phoneNumber: 1},
+      sort: { score: -1 }
+    }).fetch();
   },
   
   updateScore: (score, Email) => {
@@ -94,7 +111,14 @@ Meteor.methods({
     else updateScore(user._id, parseFloat(user.score) + parseFloat(score));
     
     return 'Score successfully updated';
+  },
+
+  registerNumber: (id, phoneNumber) => {
+    var user = Meteor.users.findOne({_id: id});
+    if(!user) return 'User not Found';
+
+    Meteor.users.update({ _id: id }, { $set: {phoneNumber: phoneNumber} });
+
+    return 'Number Registered successfully, please log in again to continue.';
   }
-
-
 });

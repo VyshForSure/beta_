@@ -8,13 +8,26 @@
 
 <template name="top">
 	{{#if currentUser }}
-  	{{ > info }}
-    {{#if isAdmin }}
-      {{ > adminPanel }}
+    {{ #if isPhoneRegistered }}
+    	{{ > info }}
+      {{#if isAdmin }}
+        {{ > adminPanel }}
+      {{ /if }}
+    {{ else }}
+      {{ > registerNumber }}
     {{ /if }}
   {{else}}
     {{ > home }}
   {{ /if }}
+</template>
+
+<template name="registerNumber">
+  <div>
+    <h2 id="ThisNeedsToBeSomething"> Please Enter your Phone Number: </h2>
+    <div> <input type="number" id="actualNumber"></div>
+    <div> <input type="button" value="Register" id="addNumber"></div>
+  </div>
+  <div class="logout"> {{ >loginButtons }} </div>
 </template>
 
 <template name="info">
@@ -23,8 +36,12 @@
     <table id='table'>
       <tr>
         <th class="col-lg-6"> Content </th>
-        <th class="col-lg-4"> Time </th>
-        <th class="col-lg-4"> Admin </th>
+        <th class="col-lg-2"> Time Added </th>
+        <th class="col-lg-2"> Expiry </th>
+        <th class="col-lg-1"> Value </th>
+          {{ #if isAdmin }}
+            <th class="col-lg-1"> Admin </th>
+          {{ /if }}
       </tr>
       {{ entries }}
     </table>
@@ -44,17 +61,35 @@
             <th class="col-lg-4"> Add Score </th>
   				</tr>
   				<tr>
-  					<td> <input type="text" id="content"></td>
+  					<td>
+              Content: <input type="text" id="content">
+              Score: <input type="number" id="postScore">
+              Task Expiry: <input type="date" id="postExpiry">
+            </td>
             <td> 
               Score: <input type="number" id="delScore">
-              Name of CA: <input type="email" id="idOfCA">
-           </td>
+              Email of CA: <input type="email" id="idOfCA">
+            </td>
   				</tr>
+          <tr>
+            <td><input type="button" class="submit" value="Submit Post"></td>
+            <td><input type="button" class="update" value="Add Score"></td>
+          </tr>
   			</table>
-  			<input type="button" class="submit" value="Submit Post">
-        <input type="button" class="update" value="Add Score">
   		</form>
   	</fieldset>
+    <fieldset>
+      <legend id='listLegend'> CAs Registered </legend>
+      <table id='catable'>
+        <tr>
+          <th class="col-lg-3"> Name </th>
+          <th class="col-lg-3"> Score </th>
+          <th class="col-lg-3"> Email </th>
+          <th class="col-lg-3"> Phone Number </th>
+        </tr>
+          {{ caentries }}
+      </table>
+    </fieldset>
 </template>
 
 <template name="home">

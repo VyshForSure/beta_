@@ -1,5 +1,6 @@
 <head>
   <title>CA Portal</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto+Slab" rel="stylesheet">
 </head>
 
 <body>
@@ -7,6 +8,12 @@
 </body>
 
 <template name="top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+    <a href="Home.html">
+      <span><img src="images/TextLogo.png" style="height: 25%; width: 20%;"></span>
+    </a>
+    <span id="menuIcon" class="logout" style="float:right; margin: 5 5; font-size:30px; cursor:pointer">{{ >loginButtons }}</span>
+  </nav>
 	{{#if currentUser }}
     {{ #if isPhoneRegistered }}
     	{{ > info }}
@@ -27,95 +34,83 @@
     <div> <input type="number" id="actualNumber"></div>
     <div> <input type="button" value="Register" id="addNumber"></div>
   </div>
-  <div class="logout"> {{ >loginButtons }} </div>
 </template>
 
 <template name="info">
-  <h2>Latest Posts</h2>
-  <fieldset>    
-    <table id='table'>
-      <tr>
-        <th class="col-lg-6"> Content </th>
-        <th class="col-lg-2"> Time Added </th>
-        <th class="col-lg-2"> Expiry </th>
-        <th class="col-lg-1"> Value </th>
-          {{ #if isAdmin }}
-            <th class="col-lg-1"> Admin </th>
-          {{ /if }}
-      </tr>
-      {{ entries }}
-    </table>
-  </fieldset>
-  <h2> Your Score: <a id="score">{{ getScore }} </a> </h2>
-  <div class="logout"> {{ >loginButtons }} </div>
+  <div class="container">
+    <h2>Latest Tasks | Your Score: <span id="score">{{ getScore }} </span> </h2>
+    <fieldset>    
+      <table id='table' style="text-align: center">
+        <tr>
+          <th class="col-lg-5"> Content </th>
+          <th class="col-lg-2"> Added </th>
+          <th class="col-lg-3"> Complete By </th>
+          <th class="col-lg-2"> Score </th>
+            {{ #if isAdmin }}
+              <th class="col-lg-1"> Admin </th>
+            {{ /if }}
+        </tr>
+        {{ entries }}
+      </table>
+    </fieldset>
+  </div>
+  <!-- <div class="logout"> {{ >loginButtons }} </div> -->
 </template>
 
 <template name="adminPanel">
-  <h2>Administrator Controls</h2>
-  <fieldset>
-  	<legend id='legend'> Add Post to CA Feed </legend>
-  		<form>
-  			<table>
-  				<tr>
-  					<th class="col-lg-4"> Content </th>
-            <th class="col-lg-4"> Add Score </th>
-  				</tr>
-  				<tr>
-  					<td>
-              Content: <input type="text" id="content">
-              Score: <input type="number" id="postScore">
-              Task Expiry: <input type="date" id="postExpiry">
-            </td>
-            <td> 
-              Score: <input type="number" id="delScore">
-              Email of CA: <input type="email" id="idOfCA">
-            </td>
-  				</tr>
-          <tr>
-            <td><input type="button" class="submit" value="Submit Post"></td>
-            <td><input type="button" class="update" value="Add Score"></td>
-          </tr>
-  			</table>
-  		</form>
-  	</fieldset>
+  <div class="container">
+    <h2>Administrator Controls</h2>
     <fieldset>
-      <legend id='listLegend'> CAs Registered </legend>
-      <table id='catable'>
-        <tr>
-          <th class="col-lg-3"> Name </th>
-          <th class="col-lg-3"> Score </th>
-          <th class="col-lg-3"> Email </th>
-          <th class="col-lg-3"> Phone Number </th>
-        </tr>
-          {{ caentries }}
-      </table>
-    </fieldset>
+    	<legend id='legend'> Add Post to CA Feed </legend>
+    		<form>
+    			<table>
+    				<tr>
+    					<th class="col-lg-4"> Content </th>
+              <th class="col-lg-4"> Add Score </th>
+    				</tr>
+    				<tr>
+    					<td>
+                Content: <input type="text" id="content">
+                Score: <input type="number" id="postScore">
+                Task Expiry: <input type="date" id="postExpiry">
+              </td>
+              <td> 
+                Score: <input type="number" id="delScore">
+                Email of CA: <input type="email" id="idOfCA">
+              </td>
+    				</tr>
+            <tr>
+              <td><input type="button" class="submit" value="Submit Post"></td>
+              <td><input type="button" class="update" value="Add Score"></td>
+            </tr>
+    			</table>
+    		</form>
+    	</fieldset>
+      <fieldset>
+        <legend id='listLegend'> CAs Registered </legend>
+        <table id='catable'>
+          <tr>
+            <th class="col-lg-3"> Name </th>
+            <th class="col-lg-3"> Score </th>
+            <th class="col-lg-3"> Email </th>
+            <th class="col-lg-3"> Phone Number </th>
+          </tr>
+            {{ caentries }}
+        </table>
+      </fieldset>
+  </div>
 </template>
 
 <template name="home">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <h1 class="heading"> 
-        Welcome to Elan & ηvision's Campus Ambassador's Portal 
-      </h1>
-      <!--
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto ">
-          <li class="nav-item active" >
-            <a class="nav-link" href="#">Home </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Disabled</a>
-          </li>
-        </ul>
-      </div>
-    -->
-    </nav>
-
     <main role="main" class="container">
-      <img src="banner.jpg" />
+      <div class="page-header">
+        <h1 class="heading"> 
+          Welcome to Elan & ηvision's Campus Ambassador's Portal 
+        </h1>
+      </div>
+      <div class="container" style="text-align: center">
+        <img src="banner.jpg" style="width: 80%; margin: auto auto" />
+      </div>
       <div class="starter-template" >
         <h1>CAMPUS AMBASSADOR PROGRAMME</h1>
         <p class="lead"> 
@@ -133,7 +128,7 @@
           our events in your college and especially connect us with your clubs.
         </p>
 
-        <div class="logout"> {{ >loginButtons }} </div>
+        <div class="logout" style="margin: auto auto; font-size:20px; cursor:pointer"> {{ >loginButtons }} </div>
 
       </div>
     </main>

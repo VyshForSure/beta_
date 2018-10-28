@@ -1,7 +1,8 @@
 body {
 	padding: 10px;
-	font-family: sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	background: #303030;
+	color: white;
 }
 img {
 	height: 100%;
@@ -10,17 +11,18 @@ img {
 .starter-template {
 	padding: 3rem 1.5rem;
 	text-align: center;
-	color: grey;
+	color: white;
 }
 .nav-item {
 	display: inline;
 	padding: 3%;
 }
 .heading {
-	width: 70%;
-	font-size: 2.5rem;
-	float: left;
-	color: darkgrey;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 3.5rem;
+	text-align: center;
+	margin: auto auto;
+	color: white;
 }
 .navbar-nav {
 	padding: 1.5rem;
@@ -55,7 +57,36 @@ th {
 	display: table-row;
 	font-size: 3rem;
 	padding: 1rem; 
+	text-align: center;
 }
 .logout {
 	text-align: center;
+	height: 3rem;
+}
+
+.nav-item {
+	padding-left: 2.5vw;
+	padding-top: 2vw;
+	font-size: 20px; 
+
+}
+.navbar-nav .nav-item .nav-link {
+	color: white;
+}
+.dropdown-menu {
+	background-color:pink; 
+}
+.dropdown-menu a:hover {
+
+	background-color: #FAA570;
+}
+.dropdown-menu .dropdown-item {
+	color:black;
+}
+#div1,#div2,#div3,#div4,#div5 {
+	display: none;
+}
+.footerimg {
+	width: 40px;
+	
 }

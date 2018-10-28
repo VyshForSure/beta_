@@ -3,7 +3,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
-FlowRouter.route('/caportal', {
+FlowRouter.route('/ca', {
 	action(){
 		// BlazeLayout.render('top');
 	}
@@ -41,15 +41,12 @@ Template.info.helpers({
   			for(var i = 0; i < val.length; i++){
   				var row = document.createElement('tr');
   				var content = document.createElement('td');
-  				var time = document.createElement('td');
   				var expiry = document.createElement('td');
   				var admin = document.createElement('td');
   				content.innerHTML = val[i].content;
-  				time.innerHTML = val[i].time.toLocaleDateString();
   				expiry.innerHTML = val[i].expiry.toLocaleDateString();
   				admin.innerHTML = val[i].score;
   				row.appendChild(content);
-  				row.appendChild(time);
   				row.appendChild(expiry);
   				row.appendChild(admin);
   				if(Meteor.user() && Meteor.user().profile.isAdmin){
@@ -120,7 +117,8 @@ Template.registerNumber.events({
 			heading.innerHTML = "Please Enter your Correct 10 digit Phone Number";
 			return;
 		}
-		Meteor.call('registerNumber', Meteor.user()._id, t, (err, val) => { heading.innerHTML = val; });
+		Meteor.call('registerNumber', Meteor.user()._id, t, 
+			(err, val) => { heading.innerHTML = val; });
 	}
 });
 

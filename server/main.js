@@ -27,7 +27,7 @@ Meteor.startup(() => {
   		if (!('profile' in options)) { options.profile = {}; }
   		if (!('providers' in options.profile)) { options.profile.providers = {}; }
 	  	
-  		user.name = user.services.google.name.toLowerCase();
+  		user.name = user.services.google.name;
   		user.isAdmin = false;
       user.score = 0;
       user.phoneNumber = "";
@@ -38,6 +38,7 @@ Meteor.startup(() => {
   		var t = Meteor.users.findOne({_id: loginDetails.user._id});
 
   		Meteor.users.update({_id: loginDetails.user._id}, {$set:{
+        'profile.name' : t.name,
         'profile.isAdmin' : t.isAdmin,
         'profile.score' : t.score,
         'profile.phoneNumber' : t.phoneNumber

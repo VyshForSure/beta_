@@ -1,7 +1,7 @@
 html, body {
 	padding: 10px;
 	font-family: 'Montserrat', sans-serif;
-	/*background: url('images/back2.jpg');*/
+	background: url('images/back1.jpg');
 	/*background-repeat: no-repeat;*/
     background-size: 100% 100%;
 	color: white;
@@ -9,6 +9,10 @@ html, body {
 	width: 100%;
 	margin: 0;
 	padding: 0;
+}
+
+.login-display-name {
+	display: none !important;
 }
 
 .bg-image {
@@ -54,7 +58,10 @@ img {
 	float: right;
 	margin: 0;
 }
-h2, table, legend {
+h2 {
+	color: white;
+}
+table, legend {
 	color: darkgrey;
 }
 table {
@@ -85,6 +92,15 @@ th {
 	padding: 1rem; 
 	text-align: center;
 }
+
+.orange-link {
+	color: orange;
+}
+
+.orange-link:hover { 
+    color: orange;
+}
+
 .logout {
 	text-align: center;
 	height: 3rem;

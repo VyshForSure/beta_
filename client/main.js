@@ -33,6 +33,9 @@ Template.top.helpers({
 });
 
 Template.info.helpers({
+	getName() {
+		return Meteor.user().profile.name;
+	},
   	entries() {
   		Meteor.call('getPosts', 0, 100,
   		(err, val) => { 

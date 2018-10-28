@@ -15,7 +15,7 @@
     <a href="Home.html">
       <span><img src="images/TextLogo.png" style="height: 25%; width: 20%;"></span>
     </a>
-    <span id="menuIcon" class="logout" style="float:right; margin: 5 5; font-size:30px; cursor:pointer">{{ >loginButtons }}</span>
+    <span id="menuIcon" class="logout" style="float:right; margin: 5px 5px; font-size:30px; cursor:pointer">{{ >loginButtons }}</span>
   </nav>
 	{{#if currentUser }}
     {{ #if isPhoneRegistered }}
@@ -33,18 +33,26 @@
 
 <template name="registerNumber">
   <div class="container" style="margin: auto auto">
-    <h2 id="ThisNeedsToBeSomething"> Please Enter your details: </h2>
-    <div> <p class="col-lg-2"> Phone Number: </p>
-      <input type="number" id="actualNumber" style="color: black !important"></div>
-    <div> <p class="col-lg-2"> College Name: </p> 
-      <input type="text" id="collegeName" style="color: black !important"></div>
-    <div> <p class="col-lg-2"> City: </p>
-      <input type="text" id="city" style="color: black !important"></div>
-    <div> <input type="button" value="Register" id="addNumber" style="color: black !important"></div>
+    <div class="row" style="margin-top: 20vh">
+      <h2 id="ThisNeedsToBeSomething" class="heading" style="margin-bottom: 20px"> Please Enter your details: </h2>
+      <div class="col-lg-4" style="font-size: 1.4em; text-align: center">
+        Phone Number:<br> <input type="number" id="actualNumber" style="color: black !important">
+      </div>
+      <div class="col-lg-4" style="font-size: 1.4em; text-align: center">
+        College Name:<br> <input type="text" id="collegeName" style="color: black !important">
+      </div>
+      <div class="col-lg-4" style="font-size: 1.4em; text-align: center">
+        City:<br> <input type="text" id="city" style="color: black !important">
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 10px"> <input type="button" value="Register" id="addNumber" style="color: black !important"></div>
   </div>
 </template>
 
 <template name="info">
+  <h1 class="heading"> 
+    Welcome, {{ getName }} 
+  </h1>
   <div class="container">
     <h2>Latest Tasks | Your Score: <span id="score">{{ getScore }} </span> </h2>
     <fieldset>    
@@ -60,6 +68,11 @@
         {{ entries }}
       </table>
     </fieldset>
+    <p class="lead" style="text-align: center">
+      You will receive tasks here on a frequent basis. Every task will have a score associated with it. <br>
+      Make sure you've added our Campus Ambassador Managers on WhatsApp - <a class="orange-link" href="tel:+918411970205">+91 84119 70205</a> <br>
+      Once you finish a task, make sure to contact your Managers and submit proof, and receive your points!
+    </p>
   </div>
   <!-- <div class="logout"> {{ >loginButtons }} </div> -->
 </template>
@@ -112,30 +125,41 @@
 
 <template name="home">
     <main role="main" class="container">
-      <div class="page-header">
+      <div style="margin: 40px 0 20px; padding-bottom: 9px">
         <h1 class="heading"> 
-          Welcome to Elan & ηvision's Campus Ambassador's Portal 
+          CAMPUS AMBASSADOR PROGRAMME 
         </h1>
       </div>
       <div class="container" style="text-align: center">
         <img src="banner.jpg" style="width: 80%; margin: auto auto" />
       </div>
       <div class="starter-template" >
-        <h1>CAMPUS AMBASSADOR PROGRAMME</h1>
+        <!-- <h1>CAMPUS AMBASSADOR PROGRAMME</h1> -->
         <p class="lead"> 
           This is a call for college students across the city to become 
-          Campus Ambassadors for ELAN & ηvision 2019, 
+          Campus Ambassadors for <strong>ELAN & ηvision 2019</strong>, 
           the techno-cultural fest of IIT Hyderabad. ELAN and ​η​vision is Hyderabad’s 
-          largest techno-cultural fest. With thousands of participants and the likes 
-          of Nikhil Chinappa, Benny Dayal and Kailash Kher, the fest has previously 
-          partnered with Cyient, British Council among others. 
+          largest techno-cultural fest, with a footfall of <strong>over 9,000</strong>. With thousands of participants and the likes 
+          of <strong>Nikhil Chinappa, Benny Dayal and Kailash Kher</strong>, the fest has previously 
+          partnered with <strong>Cyient, KTM, MTv Beats</strong> among others.
+        </p>
 
+        <p class="lead">
           The Campus Ambassador Programme is a chance for you to be a part of this fest 
           as more than just a participant. 
           You will be a point of contact for ELAN & ηvision 2019 and your college. 
           The primary goal you will be expected to accomplish will be to promote 
           our events in your college and especially connect us with your clubs.
         </p>
+        <br>
+        <h1>Perks</h1>
+        <p class="lead">
+          Internship Oppurtunities <br>
+          VIP Passes for Concert <br>
+          Free Merchandise <br>
+          Perks and discounts for all major events <br>
+        </p>
+        <br>
 
         <div class="logout" style="margin: auto auto; font-size:20px; cursor:pointer"> {{ >loginButtons }} </div>
 

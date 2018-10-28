@@ -1,7 +1,9 @@
 body {
 	padding: 10px;
 	font-family: 'Montserrat', sans-serif;
-	background: #303030;
+	background: url('images/back1.jpg');
+	background-repeat: no-repeat;
+    background-size: 100% 100%;
 	color: white;
 }
 img {
@@ -50,8 +52,10 @@ tr:nth-child(even){
 td {
 	color: #101010;
 	display: table-cell;
-	padding: 1rem;
+	padding: 1.2rem;
+	margin: 0.5rem 0.5rem;
 	padding-bottom: 0.35rem;
+	font-size: 1.8rem;
 }
 th {
 	display: table-row;

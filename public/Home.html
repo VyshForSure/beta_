@@ -147,14 +147,8 @@
 		Value.random = Array.from({length: Value.numX * Value.numY}, () => Math.random());
 		Value.rad = Array.from(Value.random, (x) => Value.minRad + x * Value.radius);
 		var ratio = Value.img.height / Value.img.width;
-		if(canvas.width < canvas.height){
-			Value.imgW = canvas.width;
-			Value.imgH = Value.imgW * ratio;
-		}
-		else{
-			Value.imgH = canvas.height;
-			Value.imgW = Value.imgH / ratio;
-		}
+		Value.imgH = canvas.height;
+		Value.imgW = Value.imgH / ratio;
 		Value.imgX = (canvas.width - Value.imgW)/2; Value.imgY = (canvas.height - Value.imgH)/2;
 	}
 

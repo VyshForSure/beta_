@@ -118,7 +118,11 @@ Template.registerNumber.events({
 			return;
 		}
 		Meteor.call('registerNumber', Meteor.user()._id, t, 
-			(err, val) => { heading.innerHTML = val; });
+
+			(err, val) => { 
+				heading.innerHTML = val;
+				window.Reload._reload();
+			});
 	}
 });
 

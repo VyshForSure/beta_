@@ -1,11 +1,33 @@
-body {
+html, body {
 	padding: 10px;
 	font-family: 'Montserrat', sans-serif;
-	background: url('images/back1.jpg');
-	background-repeat: no-repeat;
+	/*background: url('images/back2.jpg');*/
+	/*background-repeat: no-repeat;*/
     background-size: 100% 100%;
 	color: white;
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
 }
+
+.bg-image {
+  /* The image used */
+  background-image: url("images/back2.jpg");
+
+  /* Add the blur effect */
+  /*filter: blur(8px);*/
+  /*-webkit-filter: blur(8px);*/
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 img {
 	height: 100%;
 	width: 100%;

@@ -16,7 +16,7 @@ Meteor.startup(() => {
   	ServiceConfiguration.configurations.insert({
    		service: "google",
    		clientId: "997189719914-2icchc71sgtjnllup9frnserla46dfa2.apps.googleusercontent.com",
-  		loginStyle: "popup", //This is for nss@iith.ac.in
+  		loginStyle: "popup", //This is for web@elan.org.in
   		secret: "ERMZc8SCOL2Q9KpIH7EBjbyH",
   		// serviceEmail: "nss-iith-meteor@nss-iith.iam.gserviceaccount.com"
   	});

@@ -15,10 +15,10 @@ Meteor.startup(() => {
   	});
   	ServiceConfiguration.configurations.insert({
    		service: "google",
-   		clientId: "871001074249-fc9fd21o3k87s4n2an01l3t1tbuufgjq.apps.googleusercontent.com",
+   		clientId: "997189719914-2icchc71sgtjnllup9frnserla46dfa2.apps.googleusercontent.com",
   		loginStyle: "popup", //This is for nss@iith.ac.in
-  		secret: "ulQSkZdjXf-gbXZ0xdLQWSS9",
-  		serviceEmail: "nss-iith-meteor@nss-iith.iam.gserviceaccount.com"
+  		secret: "ERMZc8SCOL2Q9KpIH7EBjbyH",
+  		// serviceEmail: "nss-iith-meteor@nss-iith.iam.gserviceaccount.com"
   	});
 
     // Accounts.config({ restrictCreationByEmailDomain: 'iith.ac.in' });
@@ -83,11 +83,19 @@ Meteor.methods({
   },
 
   getPosts: (start, end) => {
-    // console.log('getPosts() called');
     var t = end - start;
     if(t < 0) t = 10;
     if(start < 0) start = 0;
-    return Posts.find({}, { limit: t, skip: start, sort: {time: -1} }).fetch();
+    return Posts.find({}, { 
+      limit: t, 
+      skip: start, 
+      sort: {time: -1} ,
+      fields: {
+        content: 1,
+        expiry: 1,
+        score: 1,
+      }
+    }).fetch();
   },
 
   getCAs: (id) => {

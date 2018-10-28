@@ -93,14 +93,20 @@ Template.adminPanel.helpers({
   				var score = document.createElement('td');
   				var email = document.createElement('td');
   				var number = document.createElement('td');
+  				var colgName = document.createElement('td');
+  				var city = document.createElement('td');
   				name.innerHTML = val[i].name;
   				score.innerHTML = val[i].score;
   				email.innerHTML = val[i].services.google.email;
   				number.innerHTML = val[i].phoneNumber;
+  				colgName.innerHTML = val[i].collegeName;
+  				city.innerHTML = val[i].city;
   				row.appendChild(name);
   				row.appendChild(score);
   				row.appendChild(email);
   				row.appendChild(number);
+  				row.appendChild(colgName);
+  				row.appendChild(city);
   				list.appendChild(row);
   			}
 		});
@@ -110,6 +116,8 @@ Template.adminPanel.helpers({
 Template.registerNumber.events({
 	'click #addNumber': () => {
 		var t = document.getElementById('actualNumber').value;
+		var n = document.getElementById('collegeName').value;
+		var c = document.getElementById('city').value;
 
 		var heading = document.getElementById('ThisNeedsToBeSomething');
 
@@ -117,7 +125,16 @@ Template.registerNumber.events({
 			heading.innerHTML = "Please Enter your Correct 10 digit Phone Number";
 			return;
 		}
-		Meteor.call('registerNumber', Meteor.user()._id, t, 
+		if(!n){
+			heading.innerHTML = "Please Enter Your College Name";
+			return;
+		}
+		if(!c){
+			heading.innerHTML = "Please Enter Your City of Residence";
+			return;
+		}
+
+		Meteor.call('registerNumber', Meteor.user()._id, t, n, c,
 			(err, val) => { 
 				heading.innerHTML = val;
 				window.Reload._reload();

@@ -103,7 +103,14 @@ Meteor.methods({
     if(!user.isAdmin) return 'Access Denied';
 
     return Meteor.users.find({}, {
-      fields: {score: 1, name: 1, 'services.google.email': 1, phoneNumber: 1},
+      fields: {
+        score: 1, 
+        name: 1, 
+        'services.google.email': 1, 
+        phoneNumber: 1,
+        collegeName: 1,
+        city: 1
+      },
       sort: { score: -1 }
     }).fetch();
   },
@@ -121,11 +128,15 @@ Meteor.methods({
     return 'Score successfully updated';
   },
 
-  registerNumber: (id, phoneNumber) => {
+  registerNumber: (id, phoneNumber, collegeName, city) => {
     var user = Meteor.users.findOne({_id: id});
     if(!user) return 'User not Found';
 
-    Meteor.users.update({ _id: id }, { $set: {phoneNumber: phoneNumber} });
+    Meteor.users.update({ _id: id }, { $set: {
+      phoneNumber: phoneNumber,
+      collegeName: collegeName,
+      city: city
+    } });
 
     return 'Number Registered successfully, please log in again to continue.';
   }

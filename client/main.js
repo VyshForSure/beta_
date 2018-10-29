@@ -57,9 +57,10 @@ Template.info.helpers({
 					rmBtn.innerHTML = 'Remove';
 					rmBtn.style.color = 'Black';
 					rmBtn.removeID = val[i]._id;
-					rmBtn.addEventListener('click', () => {
-						Meteor.call('removePost', Meteor.user()._id, rmBtn.removeID);
-						table.removeChild(row);
+					rmBtn.row = row;
+					rmBtn.addEventListener('click', (e) => {
+						Meteor.call('removePost', Meteor.user()._id, e.target.removeID);
+						table.removeChild(e.target.row);
 					});
   					row.appendChild(rmBtn);
   				}

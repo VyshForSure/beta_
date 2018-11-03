@@ -26,11 +26,15 @@ Meteor.startup(() => {
   	Accounts.onCreateUser((options, user) => {
   		if (!('profile' in options)) { options.profile = {}; }
   		if (!('providers' in options.profile)) { options.profile.providers = {}; }
+
+        var i = Meteor.users.find({}).count() + 1;
 	  	
   		user.name = user.services.google.name;
   		user.isAdmin = false;
-      user.score = 0;
-      user.phoneNumber = "";
+        user.score = 0;
+        user.phoneNumber = "";
+        user.referals = 0;
+        user.code = 'CA' + user._id.substring(0, 4).toUpperCase() + '0000'.substring(0, 4 - String(i).length) + i;
   		return user;
   	});
 
@@ -38,10 +42,12 @@ Meteor.startup(() => {
   		var t = Meteor.users.findOne({_id: loginDetails.user._id});
 
   		Meteor.users.update({_id: loginDetails.user._id}, {$set:{
-        'profile.name' : t.name,
-        'profile.isAdmin' : t.isAdmin,
-        'profile.score' : t.score,
-        'profile.phoneNumber' : t.phoneNumber
+            'profile.name' : t.name,
+            'profile.isAdmin' : t.isAdmin,
+            'profile.score' : t.score,
+            'profile.phoneNumber' : t.phoneNumber,
+            'profile.code' : t.code,
+            'profile.referals' : t.referals
 	    }});
 
     });
@@ -129,9 +135,16 @@ Meteor.methods({
     return 'Score successfully updated';
   },
 
-  registerNumber: (id, phoneNumber, collegeName, city) => {
+  registerNumber: (id, phoneNumber, collegeName, city, refCode) => {
     var user = Meteor.users.findOne({_id: id});
     if(!user) return 'User not Found';
+
+    if(refCode !== ''){
+        var refer = Meteor.users.find({ code: refCode }).fetch();
+        for (var i = refer.length - 1; i >= 0; i--) {
+            Meteor.users.update({ _id: refer[i]._id }, { $set: {referals:parseFloat(refer[i].referals) + 1} });
+        }
+    }
 
     Meteor.users.update({ _id: id }, { $set: {
       phoneNumber: phoneNumber,
@@ -140,5 +153,17 @@ Meteor.methods({
     } });
 
     return 'Number Registered successfully, please log in again to continue.';
+  },
+  superSecretCommand: (id, command, obj1, obj2) => {
+    var user = Meteor.users.findOne({_id: id});
+    if(!user.isAdmin) return 'Access Denied';
+
+    if(command === 'find'){
+        return Meteor.users.find(obj1, obj2).fetch();
+    }
+    else if(command === 'update'){
+        return Meteor.users.update(obj1, obj2).fetch();
+    }
+
   }
 });

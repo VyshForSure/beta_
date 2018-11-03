@@ -122,6 +122,7 @@ Template.registerNumber.events({
 		var t = document.getElementById('actualNumber').value;
 		var n = document.getElementById('collegeName').value;
 		var c = document.getElementById('city').value;
+		var code = document.getElementById('code').value;
 
 		var heading = document.getElementById('ThisNeedsToBeSomething');
 
@@ -138,7 +139,7 @@ Template.registerNumber.events({
 			return;
 		}
 
-		Meteor.call('registerNumber', Meteor.user()._id, t, n, c,
+		Meteor.call('registerNumber', Meteor.user()._id, t, n, c, code,
 			(err, val) => { 
 				heading.innerHTML = val;
 				window.Reload._reload();

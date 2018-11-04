@@ -15,7 +15,9 @@
     <a href="Home.html">
       <span><img src="images/TextLogo.png" style="height: 25%; width: 20%;"></span>
     </a>
-    <span id="menuIcon" class="logout" style="float:right; margin: 5px 5px; font-size:30px; cursor:pointer">{{ >loginButtons }}</span>
+    <span id="menuIcon" class="logout" style="float:right; margin: 5px 5px; font-size:30px; cursor:pointer">
+      {{ >loginButtons }}
+    </span>
   </nav>
 	{{#if currentUser }}
     {{ #if isPhoneRegistered }}
@@ -62,7 +64,7 @@
   <div class="container">
     <h2>Latest Tasks | Your Score: <span id="score">{{ getScore }} </span> </h2>
     <fieldset>    
-      <table id='table' style="text-align: center">
+      <table id='table'>
         <tr>
           <th class="col-lg-5"> Content </th>
           <th class="col-lg-3"> Complete By </th>
@@ -74,11 +76,21 @@
         {{ entries }}
       </table>
     </fieldset>
-    <p class="lead" style="text-align: center">
-      You will receive tasks here on a frequent basis. Every task will have a score associated with it. <br>
-      Make sure you've added our Campus Ambassador Managers on WhatsApp - <a class="orange-link" href="tel:+918411970205">+91 84119 70205</a> <br>
-      Once you finish a task, make sure to contact your Managers and submit proof, and receive your points!
-    </p>
+    <h2>Important Details</h2>
+      <ul class="impinfo">
+        <b>
+        <li>Keep following the CA Portal as the first task will be posted in a few hours. </li>
+        <li>Our team members will contact you via email very soon with more information about the program.</li>
+        <li>Curious about that 'Referral Code'? Stick around to know more.</li>
+        </b>
+        <li>You will receive tasks here on a frequent basis. Every task will have a score associated with it. </li>
+        <!-- <li>Make sure you've added our Campus Ambassador Managers on WhatsApp - 
+          <a class="orange-link" href="tel:+918411970205">+91 84119 70205</a> </li> -->
+        <li>Once you finish a task, make sure to contact your Managers and submit proof, 
+          and receive your points!
+        </li>
+        <li>Contact <a class="orange-link" href="dhruv.g@elan.org.in">dhruv.g@elan.org.in</a> for any queries.</li>
+      </ul>
   </div>
   <!-- <div class="logout"> {{ >loginButtons }} </div> -->
 </template>
@@ -118,10 +130,10 @@
           <tr>
             <th class="col-lg-3"> Name </th>
             <th class="col-lg-1"> Score </th>
-            <th class="col-lg-2"> Email </th>
+            <th class="col-lg-3"> Email </th>
             <th class="col-lg-2"> Number </th>
             <th class="col-lg-2"> College </th>
-            <th class="col-lg-2"> City </th>
+            <th class="col-lg-1"> City </th>
           </tr>
             {{ caentries }}
         </table>

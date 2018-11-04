@@ -69,11 +69,12 @@ table {
 	width: 100%;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 	display: table;
+	text-align: center;
 }
 tr {
 	color: lightgrey;
-  display: table-row;
-  background: grey;
+	display: table-row;
+	background: grey;
 }
 tr:nth-child(even){
    background: lightgrey;
@@ -131,4 +132,9 @@ th {
 .footerimg {
 	width: 40px;
 	
+}
+.impinfo {
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 1.45em;
 }

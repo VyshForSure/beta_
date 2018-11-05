@@ -116,7 +116,8 @@ Meteor.methods({
         'services.google.email': 1, 
         phoneNumber: 1,
         collegeName: 1,
-        city: 1
+        city: 1,
+        isAdmin: 1
       },
       sort: { score: -1 }
     }).fetch();

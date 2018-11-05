@@ -15,7 +15,7 @@ FlowRouter.route('/*', {
 	}
 });
 
-Template.top.onCreated(function topOnCreated() {
+Template.adminPanel.onCreated( () => {
 });
 
 Template.top.helpers({
@@ -90,8 +90,16 @@ Template.adminPanel.helpers({
   				document.getElementById('listLegend').innerHTML = val;
   				return;
   			}
+
+			numAdmins = 0;
+			numCA = 0;
   			var list = document.getElementById('catable');
   			for(var i = 0; i < val.length; i++){
+  				if(val[i].isAdmin) {
+					numAdmins++;
+  					continue;
+  				}
+  				numCA ++;
   				var row = document.createElement('tr');
   				var name = document.createElement('td');
   				var score = document.createElement('td');
@@ -113,6 +121,9 @@ Template.adminPanel.helpers({
   				row.appendChild(city);
   				list.appendChild(row);
   			}
+
+  			document.getElementById('listLegend').innerHTML = 
+  				'CAs Registered ' + numAdmins + ' Admins and ' + numCA + ' CAs.';
 		});
   	},
 });

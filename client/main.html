@@ -79,8 +79,8 @@
     <h2>Important Details</h2>
       <ul class="impinfo">
         <b>
-        <li>Keep following the CA Portal as the first task will be posted in a few hours. </li>
-        <li>Our team members will contact you via email very soon with more information about the program.</li>
+        <!-- <li>Keep following the CA Portal as the first task will be posted in a few hours. </li> -->
+        <!-- <li>Our team members will contact you via email very soon with more information about the program.</li> -->
         <li>Curious about that 'Referral Code'? Stick around to know more.</li>
         </b>
         <li>You will receive tasks here on a frequent basis. Every task will have a score associated with it. </li>
@@ -124,6 +124,20 @@
     			</table>
     		</form>
     	</fieldset>
+      <fieldset>
+        <legend id='sheetsNotice'>Google Spreadsheets Control</legend>
+        <ul>
+          <li>Create your Ggoogle sheet and share it with: 
+            <p id='servAccName'>{{ getServiceAccount }}</p></li>
+          <li>Make sure you give write Access.</li>
+          <li>Fill in the name of the spreadsheet EXACTLY </li>
+          <li>Press the button </li>
+        </ul>
+            <tr>
+              <td><input type="text" id="nameOfSHeet" value="Name of Spreadsheet"></td>
+              <td><input type="button" class="export" value="Export CA Data"></td>
+            </tr>
+      </fieldset>
       <fieldset>
         <legend id='listLegend'> CAs Registered </legend>
         <table id='catable'>

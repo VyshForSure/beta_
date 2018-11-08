@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "campusambassador-218518",
+  "private_key_id": "f8f4302964ce18657a383b94a564f116bc85b8d4",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC7rCmAyhqUXSZ1\n2O0E8V/lpWsh7HX3uCJ3OuPT96Eb6pCpT95zKJ3viW8VfdsNmLAj8go7ZG67xaZH\nF95traK8FlMEZqDlZt09u1KT0FQfw6aIuIagOZUkfLwmoEqNIOOtqYljF4L0e2kJ\n4vpAB6xTBNHLVTnr9xpE+Rq5UQvenuz3mj4eCuYT9mo94kU9YUaO9m2TkjlRqVRn\nW1AAsi4Hxi8drEupWtdtTnk+7TXbZSziwFuxgpGiDIZPPAYTVgNEz+Rku+mYUA/n\npuXVVD/jAcex+HXGftZsxYT/9qvPME8s+sSDI3fVCpMj6gFlIHGjNpz5TR8Gijm/\n/8zNkKZFAgMBAAECggEAKjGiYSTPRgUNZRiA7YgRLfH7fLSLr0a0ZQcV+u2lSL/7\nhz2AP3blz1mgYn4Z1lw6WdKMr168sLXW1QwOQ61ytYP1ZTtnuDvgyQTJI5eGml+k\nHQATsIlRuVLcAHkwWbuHxN8lluRN2oa2jnT8G5I+Eao3OtZt/9neC5zP/9Mzbnj8\n13RR1Kn5FradTfigYiGUjSAqf1nvg2MqIcYGRtH/Msx/WgL4+yfUCKOeTI7gB/7x\nLHNG3cpKVhwgj+T7hlhdwPkhAotRFRrL/EEFPu1KVck+S2B7lV9CktQh/Tvek/Gk\nfqcuVW7r4eJfIc2xgF2DeZ2K6l02zBNIvJkWUPzfAQKBgQDufpkfXST0NZTHn8q/\nnTotp4UBUuaPpjM9VfStQrmdr9fvb5/6BaK65mF4rafeePXs/GFYDJblVrvbdEOU\nTTq1xBRxLT4n+aH/x97F9Q7FMUTrSJXAg9t8SWaIin41s7NKQa4fGtNheoT/jfA+\nMwglbOHkABUAb7s/4fUO5VmCxQKBgQDJcplkKecNZ03I71FCSZYh72EZAP7M9bcq\nMHjRIkR0N9z556w0e8DQB3ClxFJnuihF6ck50Nb+26tQcskOx1nN/xjEYs7fzNhi\ni+JDlLgXndw8xE7/anZjfhzjpGRan+kdIjUc7mTKt+vHpzsyc0Yf+a1mXpqjFGNC\nY6cM2qbNgQKBgGZyi2QlptIgkiCOS5G0AGHMLB49dj0Or8QRQGGM4B8UgjWgRaAo\n+5Y9kHE+Z3Xxj/KVF1uzTL6HW3sRnlX+NtINwJo9TQ3u9d/iA5gVhJrAZ1KKg4mH\nGqlw/lJ46242GzYysJE7/MFK2AbO+fw9/6nT89T1FBBz7oOqlJIpgyHhAoGALVOF\nxA3RmSh3ThDa/clE6JnOBSw+KKvY7Ls/U/8b2/J93BUOoDiAJ86kwAeuavxt910l\nE8czuOCAaXeKWbLtN/aAAiAhYCXdQj8rR/18doPkfB/HjpzLypMjuOzST7nPX+jE\nfp/9OcesW537KdzaGHO7Wl9K+AqsUtHNUo0YHwECgYEAizYYkX7PyvktoL9OYoEB\nctEF4CFa/cqOKIEovmN6kIOtfL+nrv9juSwYTbyzxufb8GEq9xVkcpiYBtcXoLUE\nrLf1p7MKh28RDQLHbO6w1YmuVOFzX/Z7UU11pmYc5urhwYxuSazDzr1BnCpc3pP0\naPNzgpHnv2oRcz8gzgj9vaI=\n-----END PRIVATE KEY-----\n",
+  "client_email": "campusambassadorserviceaccount@campusambassador-218518.iam.gserviceaccount.com",
+  "client_id": "112623554956781489141",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/campusambassadorserviceaccount%40campusambassador-218518.iam.gserviceaccount.com"
+}

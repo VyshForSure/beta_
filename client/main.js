@@ -126,6 +126,13 @@ Template.adminPanel.helpers({
   				'CAs Registered ' + numAdmins + ' Admins and ' + numCA + ' CAs.';
 		});
   	},
+  	getServiceAccount(){
+  		if(Meteor.user() && Meteor.user().profile && Meteor.user().profile.isAdmin){	
+	  		Meteor.call('getServiceAccount', Meteor.user()._id, (err, val) => {
+	  			document.getElementById('servAccName').innerHTML = val;
+	  		});
+	  	}
+  	}
 });
 
 Template.registerNumber.events({
@@ -169,7 +176,7 @@ Template.adminPanel.events({
 		if(!content || !score || !expiry)
 			i = 'Invalid Content';
 		else{
-			i = 'Submitted and waiting for response...';
+			i = 'Request Submitted.';
 			Meteor.call('submitContent',
 			 	content, new Date(), new Date(expiry), score,
 			 	Meteor.user()._id,
@@ -203,5 +210,20 @@ Template.adminPanel.events({
 			);
 		}
 		bel.innerHTML = i;
+	},
+	'click .export' : () => {
+  		if(Meteor.user() && Meteor.user().profile && Meteor.user().profile.isAdmin){
+			var name = document.getElementById('nameOfSHeet').value;
+			var i = 'Submitted and waiting for response...';
+			if(!name)
+				i = 'Invalid Name';
+			else{
+				Meteor.call('writeSpreadSheet',
+				 	Meteor.user()._id, 
+				 	name
+				);
+			}
+			document.getElementById('sheetsNotice').innerHTML = i;
+		}
 	}
 });

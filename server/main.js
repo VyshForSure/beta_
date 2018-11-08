@@ -18,7 +18,7 @@ Meteor.startup(() => {
    		clientId: "997189719914-2icchc71sgtjnllup9frnserla46dfa2.apps.googleusercontent.com",
   		loginStyle: "popup", //This is for web@elan.org.in
   		secret: "ERMZc8SCOL2Q9KpIH7EBjbyH",
-  		// serviceEmail: "nss-iith-meteor@nss-iith.iam.gserviceaccount.com"
+  		serviceEmail: "campusambassadorserviceaccount@campusambassador-218518.iam.gserviceaccount.com"
   	});
 
     // Accounts.config({ restrictCreationByEmailDomain: 'iith.ac.in' });
@@ -166,5 +166,55 @@ Meteor.methods({
         return Meteor.users.update(obj1, obj2).fetch();
     }
 
-  }
+  },
+
+    writeSpreadSheet: (adminID, spreadsheetName) => {
+        var serviceAcc = ServiceConfiguration.configurations.find().fetch();
+        if(!serviceAcc || serviceAcc[0] === undefined) return 'Service Account config invalid.';
+        if(!spreadsheetName) return 'Spreadsheet Name invalid';
+        var admin = Meteor.users.findOne({_id: adminID});
+        if(!admin.isAdmin) return 'Access Denied';
+
+        console.log('Admin ' + admin.name + ' (id:' + admin._id + ')has started data export...');
+        console.log('Exporting to Spreadsheet: \'' + spreadsheetName + '\'');
+
+        var obj = { 1: {} };
+        var colPropNames = ['name', 'isAdmin', 'city', 'collegeName',
+            'services.google.email', 'score', 'phoneNumber', 'code', 'referals'];
+
+        for (var i = 1; i <= colPropNames.length; i++) {
+            obj[1][i] = colPropNames[i-1];
+        }
+
+        var row = 2;
+        Meteor.users.find().fetch().forEach((user) => {
+            obj[row] = {};
+            var col = 1;
+                colPropNames.forEach((propName) => {
+                    var pCol = user[propName];
+                    if (pCol) obj[row][col] = pCol.toString();
+                    else obj[row][col] = 'undefined';
+                    col++;
+                });
+            row++;
+        });
+
+        console.log('Data Compiling Complete, uploading...');
+        Meteor.call("spreadsheet/update", spreadsheetName, "1", obj, 
+            {email: serviceAcc[0].serviceEmail}, 
+            (err, val) => {
+                if(val) console.log('Upload Successful.');
+                else console.log('Some Error occoured, please check server logs.');
+        });
+    },
+
+    getServiceAccount: (adminID) => {
+        var admin = Meteor.users.findOne({_id: adminID});
+        if(!admin.isAdmin) return 'Access Denied';
+
+        var serviceAcc = ServiceConfiguration.configurations.find().fetch();
+        if(!serviceAcc || serviceAcc[0] === undefined) return 'Service Account config invalid.';
+
+        return serviceAcc[0].serviceEmail;
+    }
 });

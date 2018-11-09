@@ -39,7 +39,7 @@
       <h2 id="ThisNeedsToBeSomething" class="heading" style="margin-bottom: 20px"> Please Enter your details: </h2>
       <h3 class="heading" style="margin-bottom: 20px;"><small> (You can Leave the Ref Code field blank) </small></h3>
       <div class="col-lg-4" style="font-size: 1.4em; text-align: center">
-        Phone Number:<br> <input type="number" id="actualNumber" style="color: black !important">
+        WhatsApp Number:<br> <input type="number" id="actualNumber" style="color: black !important">
       </div>
       <div class="col-lg-4" style="font-size: 1.4em; text-align: center">
         College Name:<br> <input type="text" id="collegeName" style="color: black !important">
@@ -66,11 +66,15 @@
     <fieldset>    
       <table id='table'>
         <tr>
-          <th class="col-lg-5"> Content </th>
-          <th class="col-lg-3"> Complete By </th>
-          <th class="col-lg-2"> Score </th>
             {{ #if isAdmin }}
-              <th class="col-lg-1"> Admin </th>
+              <th class="col-lg-5"> Content </th>
+              <th class="col-lg-3"> Complete By </th>
+              <th class="col-lg-2"> Score </th>
+              <th class="col-lg-2"> Admin </th>
+            {{ else }}
+              <th class="col-lg-7"> Content </th>
+              <th class="col-lg-3"> Complete By </th>
+              <th class="col-lg-2"> Score </th>
             {{ /if }}
         </tr>
         {{ entries }}
@@ -79,20 +83,16 @@
     <h2>Important Details</h2>
       <ul class="impinfo">
         <b>
-        <!-- <li>Keep following the CA Portal as the first task will be posted in a few hours. </li> -->
         <li>Our team members will contact you very soon with more information about the program.</li>
-        <!-- <li>Curious about that 'Referral Code'? Stick around to know more.</li> -->
         </b>
+        <li>Your referrals are counted at the top. Their score will be added soon.</li>
         <li>You will receive tasks here on a frequent basis. Every task will have a score associated with it. </li>
-        <!-- <li>Make sure you've added our Campus Ambassador Managers on WhatsApp - 
-          <a class="orange-link" href="tel:+918411970205">+91 84119 70205</a> </li> -->
         <li>Once you finish a task, make sure to contact your Managers and submit proof, 
           and receive your points!
         </li>
         <li>Contact <a class="orange-link" href="dhruv.g@elan.org.in">dhruv.g@elan.org.in</a> for any queries.</li>
       </ul>
   </div>
-  <!-- <div class="logout"> {{ >loginButtons }} </div> -->
 </template>
 
 <template name="adminPanel">
@@ -133,21 +133,20 @@
           <li>Fill in the name of the spreadsheet EXACTLY </li>
           <li>Press the button </li>
         </ul>
-            <tr>
-              <td><input type="text" id="nameOfSHeet" value="Name of Spreadsheet"></td>
-              <td><input type="button" class="export" value="Export CA Data"></td>
-            </tr>
+          <input type="text" id="nameOfSHeet" value="Name of Spreadsheet">
+          <input type="button" class="export" value="Export CA Data">
+          <hr>
       </fieldset>
       <fieldset>
         <legend id='listLegend'> CAs Registered </legend>
         <table id='catable'>
           <tr>
-            <th class="col-lg-3"> Name </th>
-            <th class="col-lg-1"> Score </th>
-            <th class="col-lg-3"> Email </th>
-            <th class="col-lg-2"> Number </th>
-            <th class="col-lg-2"> College </th>
-            <th class="col-lg-1"> City </th>
+            <td> Name </td>
+            <td> Score </td>
+            <td> Email </td>
+            <td> Number </td>
+            <td> College </td>
+            <td> City </td>
           </tr>
             {{ caentries }}
         </table>

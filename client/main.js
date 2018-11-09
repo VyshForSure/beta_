@@ -47,7 +47,7 @@ Template.info.helpers({
   				var expiry = document.createElement('td');
   				var admin = document.createElement('td');
   				content.innerHTML = val[i].content;
-  				expiry.innerHTML = val[i].expiry.toLocaleDateString();
+  				expiry.innerHTML = val[i].expiry.toDateString();
   				admin.innerHTML = val[i].score;
   				row.appendChild(content);
   				row.appendChild(expiry);

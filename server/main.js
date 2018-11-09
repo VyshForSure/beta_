@@ -140,14 +140,17 @@ Meteor.methods({
     var user = Meteor.users.findOne({_id: id});
     if(!user) return 'User not Found';
 
+    var del = 0;
     if(refCode !== ''){
         var refer = Meteor.users.find({ code: refCode }).fetch();
         for (var i = refer.length - 1; i >= 0; i--) {
             Meteor.users.update({ _id: refer[i]._id }, { $set: {referals:parseFloat(refer[i].referals) + 1} });
         }
+        if(refer.length > 0){
+            del += 5;
+        }
     }
 
-    var del = 0;
     if(refCode === 'WACELAN'){
         del += 15;
     }

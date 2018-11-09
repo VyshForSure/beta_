@@ -214,7 +214,7 @@ Template.adminPanel.events({
 	'click .export' : () => {
   		if(Meteor.user() && Meteor.user().profile && Meteor.user().profile.isAdmin){
 			var name = document.getElementById('nameOfSHeet').value;
-			var i = 'Submitted and waiting for response...';
+			var i = 'Request Submitted.';
 			if(!name)
 				i = 'Invalid Name';
 			else{

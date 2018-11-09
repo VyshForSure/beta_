@@ -188,16 +188,24 @@ Meteor.methods({
 
         var row = 2;
         Meteor.users.find().fetch().forEach((user) => {
+            // console.log(user.name);
+            // console.log(user["services"]["google"]["email"]); 
             obj[row] = {};
             var col = 1;
                 colPropNames.forEach((propName) => {
-                    var pCol = user[propName];
+                    var props = propName.split(".");
+                    var pCol = user;
+                    for(var i = 0; i < props.length; i++){
+                        var t = (props[i]).toString();
+                        pCol = pCol[t];
+                    }
                     if (pCol) obj[row][col] = pCol.toString();
-                    else obj[row][col] = 'undefined';
+                    else obj[row][col] = '';
                     col++;
                 });
             row++;
         });
+        // console.log(obj);
 
         console.log('Data Compiling Complete, uploading...');
         Meteor.call("spreadsheet/update", spreadsheetName, "1", obj, 

@@ -147,10 +147,16 @@ Meteor.methods({
         }
     }
 
+    var del = 0;
+    if(refCode === 'WACELAN'){
+        del += 15;
+    }
+
     Meteor.users.update({ _id: id }, { $set: {
       phoneNumber: phoneNumber,
       collegeName: collegeName,
-      city: city
+      city: city,
+      score: del
     } });
 
     return 'Number Registered successfully, please log in again to continue.';

@@ -1,212 +1,209 @@
 <head>
-  <title>CA Portal</title>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto+Slab" rel="stylesheet">
+	<title>CA Portal</title>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto+Slab" rel="stylesheet">
 </head>
 
 <body>
-  <!-- <img src="images/back2.jpg" class="bg-image" /> -->
-  <div class="bg-image">
-    {{ > top }}
-  </div>
+	<!-- <img src="images/back2.jpg" class="bg-image" /> -->
+	<div class="bg-image">
+		{{ > top }}
+	</div>
 </body>
 
 <template name="top">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
-    <a href="Home.html">
-      <span><img src="images/TextLogo.png" style="height: 25%; width: 20%;"></span>
-    </a>
-    <span id="menuIcon" class="logout" style="float:right; margin: 5px 5px; font-size:30px; cursor:pointer">
-      {{ >loginButtons }}
-    </span>
-  </nav>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+		<a href="Home.html">
+			<span>
+				<img src="images/TextLogo.png" style="height: 25%; width: 20%;">
+			</span>
+		</a>
+		<span id="menuIcon" class="logout" style="float:right; margin: 5px 5px; font-size:30px; cursor:pointer"> {{ >loginButtons }} </span>
+	</nav>
 	{{#if currentUser }}
-    {{ #if isPhoneRegistered }}
-    	{{ > info }}
-      {{#if currentUser.profile.isAdmin }}
-        {{ > adminPanel }}
-      {{ /if }}
-    {{ else }}
-      {{ > registerNumber }}
-    {{ /if }}
-  {{else}}
-    {{ > home }}
-  {{ /if }}
+		{{ #if isPhoneRegistered }}
+			{{ > info }}
+			{{#if currentUser.profile.isAdmin }}
+				{{ > adminPanel }}
+			{{ /if }}
+		{{ else }}
+			{{ > registerNumber }}
+		{{ /if }}
+	{{else}}
+		{{ > home }}
+	{{ /if }}
 </template>
 
 <template name="registerNumber">
-  <div class="container" style="margin: auto auto">
-    <div class="row" style="margin-top: 20vh">
-      <h2 id="ThisNeedsToBeSomething" class="heading" style="margin-bottom: 20px"> Please Enter your details: </h2>
-      <h3 class="heading" style="margin-bottom: 20px;"><small> (You can Leave the Ref Code field blank) </small></h3>
-      <div class="col-lg-4" style="font-size: 1.4em; text-align: center">
-        WhatsApp Number:<br> <input type="number" id="actualNumber" style="color: black !important">
-      </div>
-      <div class="col-lg-4" style="font-size: 1.4em; text-align: center">
-        College Name:<br> <input type="text" id="collegeName" style="color: black !important">
-      </div>
-      <div class="col-lg-4" style="font-size: 1.4em; text-align: center">
-        City:<br> <input type="text" id="city" style="color: black !important">
-      </div>
-      <div class="col-lg-4" style="font-size: 1.4em; text-align: center">
-        RefCode:<br> <input type="text" id="code" style="color: black !important">
-      </div>
-    </div>
-    <div style="text-align: center; margin-top: 10px"> <input type="button" value="Register" id="addNumber" style="color: black !important"></div>
-  </div>
+	<div class="container" style="margin: auto auto">
+		<div class="row" style="margin-top: 20vh">
+			<h2 id="ThisNeedsToBeSomething" class="heading" style="margin-bottom: 20px"> Please Enter your details: </h2>
+			<h3 class="heading" style="margin-bottom: 20px;">
+				<small> (You can Leave the Ref Code field blank) </small>
+			</h3>
+			<div class="col-lg-4" style="font-size: 1.4em; text-align: center">
+				WhatsApp Number:<br> 
+				<input type="number" id="actualNumber" style="color: black !important">
+			</div>
+			<div class="col-lg-4" style="font-size: 1.4em; text-align: center">
+				College Name:<br> 
+				<input type="text" id="collegeName" style="color: black !important">
+			</div>
+			<div class="col-lg-4" style="font-size: 1.4em; text-align: center">
+				City:<br> 
+				<input type="text" id="city" style="color: black !important">
+			</div>
+			<div class="col-lg-4" style="font-size: 1.4em; text-align: center">
+				RefCode:<br> 
+				<input type="text" id="code" style="color: black !important">
+			</div>
+		</div>
+		<div style="text-align: center; margin-top: 10px"> <input type="button" value="Register" id="addNumber" style="color: black !important">
+		</div>
+	</div>
 </template>
 
 <template name="info">
-  <h1 class="heading"> 
-    Welcome, {{ currentUser.profile.name }}! <br>
-    Your Referral Code is {{ currentUser.profile.code }}. <br>
-    {{ currentUser.profile.referals }} people have used your Referral Code.
-  </h1>
-  <div class="container">
-    <h2>Latest Tasks | Your Score: <span id="score">{{ currentUser.profile.score }} </span> </h2>
-    <fieldset>    
-      <table id='table'>
-        <tr>
-            {{ #if currentUser.profile.isAdmin }}
-              <th class="col-lg-5"> Content </th>
-              <th class="col-lg-3"> Complete By </th>
-              <th class="col-lg-2"> Score </th>
-              <th class="col-lg-2"> Admin </th>
-            {{ else }}
-              <th class="col-lg-7"> Content </th>
-              <th class="col-lg-3"> Complete By </th>
-              <th class="col-lg-2"> Score </th>
-            {{ /if }}
-        </tr>
-        {{ entries }}
-      </table>
-    </fieldset>
-    <h2>Important Details</h2>
-      <ul class="impinfo">
-        <b>
-        <li>Our team members will contact you very soon with more information about the program.</li>
-        </b>
-        <li>Your referrals are counted at the top. Their score will be added soon.</li>
-        <li>You will receive tasks here on a frequent basis. Every task will have a score associated with it. </li>
-        <li>Once you finish a task, make sure to contact your Managers and submit proof, 
-          and receive your points!
-        </li>
-        <li>Contact <a class="orange-link" href="dhruv.g@elan.org.in">dhruv.g@elan.org.in</a> for any queries.</li>
-      </ul>
-      <fieldset>
-        <legend> Leaderboards </legend>
-        <table id='leaderboards'>
-          <tr>
-            <td class="adminEntries"> Name </td>
-            <td class="adminEntries"> Score </td>
-            <td class="adminEntries"> Email </td>
-          </tr>
-            {{ displayLeaderBoards }}
-        </table>
-      </fieldset>
-  </div>
+	<h1 class="heading"> 
+		Welcome, {{ currentUser.profile.name }}! <br>
+		Your Referral Code is {{ currentUser.profile.code }}. <br>
+		{{ currentUser.profile.referals }} people have used your Referral Code.
+	</h1>
+	<div class="container">
+		<h2>Latest Tasks | Your Score: <span id="score">{{ currentUser.profile.score }} </span> </h2>
+		<fieldset>
+			<table id='table'>
+				<tr>
+					{{ #if currentUser.profile.isAdmin }}
+						<th class="col-lg-5"> Content </th>
+						<th class="col-lg-3"> Complete By </th>
+						<th class="col-lg-2"> Score </th>
+						<th class="col-lg-2"> Admin </th>
+					{{ else }}
+						<th class="col-lg-7"> Content </th>
+						<th class="col-lg-3"> Complete By </th>
+						<th class="col-lg-2"> Score </th>
+					{{ /if }}
+				</tr>
+				{{ entries }}
+			</table>
+		</fieldset>
+		<h2>Important Details</h2>
+		<ul class="impinfo">
+			<li><b> Our team members will contact you very soon with more information about the program. </b></li>
+			<li>Your referrals are counted at the top. Their score will be added soon.</li>
+			<li>You will receive tasks here on a frequent basis. Every task will have a score associated with it. </li>
+			<li>Once you finish a task, make sure to contact your Managers and submit proof, and receive your points!</li>
+			<li>Contact <a class="orange-link" href="dhruv.g@elan.org.in">dhruv.g@elan.org.in</a> for any queries.</li>
+		</ul>
+		<fieldset>
+			<legend> Leaderboards </legend>
+			<table id='leaderboards'>
+				<tr>
+					<td class="adminEntries col-lg-1"> Rank </td>
+					<td class="adminEntries"> Name </td>
+					<td class="adminEntries col-lg-1"> Score </td>
+					<td class="adminEntries"> Email </td>
+				</tr>
+				{{ displayLeaderBoards }}
+			</table>
+		</fieldset>
+	</div>
 </template>
 
 <template name="adminPanel">
-  <div class="container">
-    <h2>Administrator Controls</h2>
-    <fieldset>
-    	<legend id='legend'> Add Post to CA Feed </legend>
-    		<form>
-    			<table>
-    				<tr>
-    					<th class="col-lg-4"> Content </th>
-              <th class="col-lg-4"> Add Score </th>
-    				</tr>
-    				<tr>
-    					<td>
-                Content: <input type="text" id="content"><br>
-                Score: <input type="number" id="postScore"><br>
-                Task Expiry: <input type="date" id="postExpiry"><br>
-              </td>
-              <td> 
-                Score: <input type="number" id="delScore"><br>
-                Email of CA: <input type="email" id="idOfCA"><br>
-              </td>
-    				</tr>
-            <tr>
-              <td><input type="button" class="submit" value="Submit Post"></td>
-              <td><input type="button" class="update" value="Add Score"></td>
-            </tr>
-    			</table>
-    		</form>
-    	</fieldset>
-      <fieldset>
-        <legend id='sheetsNotice'>Google Spreadsheets Control</legend>
-        <ul>
-          <li>Create your Ggoogle sheet and share it with: 
-            <p id='servAccName'>{{ getServiceAccount }}</p></li>
-          <li>Make sure you give write Access.</li>
-          <li>Fill in the name of the spreadsheet EXACTLY </li>
-          <li>Press the button </li>
-        </ul>
-          <input type="text" id="nameOfSHeet" value="Name of Spreadsheet">
-          <input type="button" class="export" value="Export CA Data">
-          <hr>
-      </fieldset>
-      <fieldset>
-        <legend id='listLegend'> CAs Registered </legend>
-        <table id='catable'>
-          <tr>
-            <td class="adminEntries"> Name </td>
-            <td class="adminEntries"> Score </td>
-            <td class="adminEntries"> Email </td>
-            <td class="adminEntries"> Number </td>
-            <td class="adminEntries"> College </td>
-            <td class="adminEntries"> City </td>
-          </tr>
-            {{ caentries }}
-        </table>
-      </fieldset>
-  </div>
+	<div class="container">
+		<h2>Administrator Controls</h2>
+		<fieldset>
+			<legend id='legend'> Add Post to CA Feed </legend>
+			<form>
+				<table>
+					<tr>
+						<th class="col-lg-4"> Content </th>
+						<th class="col-lg-4"> Add Score </th>
+					</tr>
+					<tr>
+						<td>
+							Content: <input type="text" id="content"><br>
+							Score: <input type="number" id="postScore"><br>
+							Task Expiry: <input type="date" id="postExpiry"><br>
+						</td>
+						<td> 
+							Score: <input type="number" id="delScore"><br>
+							Email of CA: <input type="email" id="idOfCA"><br>
+						</td>
+					</tr>
+					<tr>
+						<td><input type="button" class="submit" value="Submit Post"></td>
+						<td><input type="button" class="update" value="Add Score"></td>
+					</tr>
+				</table>
+			</form>
+		</fieldset>
+		<fieldset>
+			<legend id='sheetsNotice'>Google Spreadsheets Control</legend>
+			<ul>
+				<li>Create your Ggoogle sheet and share it with: 
+					<p id='servAccName'>{{ getServiceAccount }}</p></li>
+				<li>Make sure you give write Access.</li>
+				<li>Fill in the name of the spreadsheet EXACTLY </li>
+				<li>Press the button </li>
+			</ul>
+			<input type="text" id="nameOfSHeet" value="Name of Spreadsheet">
+			<input type="button" class="export" value="Export CA Data">
+			<hr>
+		</fieldset>
+		<fieldset>
+			<legend id='listLegend'> CAs Registered </legend>
+			<table id='catable'>
+				<tr>
+					<td class="adminEntries"> Name </td>
+					<td class="adminEntries"> Score </td>
+					<td class="adminEntries"> Email </td>
+					<td class="adminEntries"> Number </td>
+					<td class="adminEntries"> College </td>
+					<td class="adminEntries"> City </td>
+				</tr>
+				{{ caentries }}
+			</table>
+		</fieldset>
+	</div>
 </template>
 
 <template name="home">
-    <main role="main" class="container">
-      <div style="margin: 40px 0 20px; padding-bottom: 9px">
-        <h1 class="heading"> 
-          CAMPUS AMBASSADOR PROGRAMME 
-        </h1>
-      </div>
-      <div class="container" style="text-align: center">
-        <img src="banner.jpg" style="width: 80%; margin: auto auto" />
-      </div>
-      <div class="starter-template" >
-        <!-- <h1>CAMPUS AMBASSADOR PROGRAMME</h1> -->
-        <p class="lead"> 
-          This is a call for college students across the city to become 
-          Campus Ambassadors for <strong>ELAN & ηvision 2019</strong>, 
-          the techno-cultural fest of IIT Hyderabad. ELAN and ​η​vision is Hyderabad’s 
-          largest techno-cultural fest, with a footfall of <strong>over 9,000</strong>. With thousands of participants and the likes 
-          of <strong>Nikhil Chinappa, Benny Dayal and Kailash Kher</strong>, the fest has previously 
-          partnered with <strong>Cyient, KTM, MTv Beats</strong> among others.
-        </p>
-
-        <p class="lead">
-          The Campus Ambassador Programme is a chance for you to be a part of this fest 
-          as more than just a participant. Note that students from all colleges and institutes can
-          be a part of The Campus Ambassador Programme. <strong>The registrations are open to all.</strong>
-          You will be a point of contact for ELAN & ηvision 2019 and your college. 
-          The primary goal you will be expected to accomplish will be to promote 
-          our events in your college and especially connect us with your clubs.
-        </p>
-        <br>
-        <h1>Perks</h1>
-        <p class="lead">
-          Internship Opportunities <br>
-          VIP Passes for Concert <br>
-          Free Merchandise <br>
-          Perks and discounts for all major events <br>
-        </p>
-        <br>
-
-        <div class="logout" style="margin: auto auto; font-size:20px; cursor:pointer"> {{ >loginButtons }} </div>
-
-      </div>
-    </main>
-
+	<main role="main" class="container">
+		<div style="margin: 40px 0 20px; padding-bottom: 9px">
+			<h1 class="heading"> CAMPUS AMBASSADOR PROGRAMME </h1>
+		</div>
+		<div class="container" style="text-align: center">
+			<img src="banner.jpg" style="width: 80%; margin: auto auto" />
+		</div>
+		<div class="starter-template" >
+			<p class="lead"> 
+			This is a call for college students across the city to become 
+			Campus Ambassadors for <strong>ELAN & ηvision 2019</strong>, 
+			the techno-cultural fest of IIT Hyderabad. ELAN and ​η​vision is Hyderabad’s 
+			largest techno-cultural fest, with a footfall of <strong>over 9,000</strong>. With thousands of participants and the likes 
+			of <strong>Nikhil Chinappa, Benny Dayal and Kailash Kher</strong>, the fest has previously 
+			partnered with <strong>Cyient, KTM, MTv Beats</strong> among others.
+			</p>
+			<p class="lead">
+				The Campus Ambassador Programme is a chance for you to be a part of this fest 
+				as more than just a participant. Note that students from all colleges and institutes can
+				be a part of The Campus Ambassador Programme. <strong>The registrations are open to all.</strong>
+				You will be a point of contact for ELAN & ηvision 2019 and your college. 
+				The primary goal you will be expected to accomplish will be to promote 
+				our events in your college and especially connect us with your clubs.
+			</p>
+			<br>
+			<h1>Perks</h1>
+			<p class="lead">
+				Internship Opportunities <br>
+				VIP Passes for Concert <br>
+				Free Merchandise <br>
+				Perks and discounts for all major events <br>
+			</p>
+			<br>
+			<div class="logout" style="margin: auto auto; font-size:20px; cursor:pointer"> {{ >loginButtons }} </div>
+		</div>
+	</main>
 </template>

@@ -53,19 +53,22 @@ Template.info.helpers({
   	displayLeaderBoards() {
   		Meteor.call('fetchLeaderBoards', (err, val) => {
   			var list = document.getElementById('leaderboards');
-  			val.forEach((leader) => {
+  			for(var i = 0; i < val.length; i++){
   				var name = document.createElement('td'),
+  					rank = document.createElement('td'),
   					score = document.createElement('td'),
   					email = document.createElement('td');
-  				name.innerHTML = leader.name;
-  				score.innerHTML = leader.score;
-  				email.innerHTML = leader.services.google.email;
+  				rank.innerHTML = i + 1;
+  				name.innerHTML = val[i].name;
+  				score.innerHTML = val[i].score;
+  				email.innerHTML = val[i].services.google.email;
   				var row = document.createElement('tr');
+				row.appendChild(rank);
 				row.appendChild(name);
 				row.appendChild(score);
 				row.appendChild(email);
   				list.appendChild(row);
-  			});
+  			};
   		});
   	}
 });

@@ -2,36 +2,23 @@ html, body {
 	padding: 10px;
 	font-family: 'Montserrat', sans-serif;
 	background: url('images/back2.jpg');
-	/*background-repeat: no-repeat;*/
-    background-size: 100% 100%;
+	background-size: 100% 100%;/*background-repeat: no-repeat;*/
 	color: white;
 	height: 100%;
 	width: 100%;
 	margin: 0;
 	padding: 0;
 }
-
 .login-display-name {
 	display: none !important;
 }
-
 .bg-image {
-  /* The image used */
-  background-image: url("images/back2.jpg");
-
-  /* Add the blur effect */
-  /*filter: blur(8px);*/
-  /*-webkit-filter: blur(8px);*/
-
-  /* Full height */
-  height: 100%; 
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+	background-image: url("images/back2.jpg");/* The image used */
+	height: 100%; /* Full height */
+	background-position: center;/* Center and scale the image nicely */
+	background-repeat: no-repeat;
+	background-size: cover;
 }
-
 img {
 	height: 100%;
 	width: 100%;
@@ -68,10 +55,10 @@ table, legend {
 	color: darkgrey;
 }
 .adminEntries { 
-    max-width: 100px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+	max-width: 100px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 table {
 	margin: 0 0 40px 0;
@@ -87,10 +74,10 @@ tr {
 	background: grey;
 }
 tr:nth-child(even){
-   background: lightgrey;
+	background: lightgrey;
 }
 td {
-  	word-wrap: break-word;
+	word-wrap: break-word;
 	color: #101010;
 	display: table-cell;
 	padding: 1.2rem;
@@ -104,25 +91,20 @@ th {
 	padding: 1rem; 
 	text-align: center;
 }
-
 .orange-link {
 	color: orange;
 }
-
 .orange-link:hover { 
-    color: orange;
+	color: orange;
 }
-
 .logout {
 	text-align: center;
 	height: 3rem;
 }
-
 .nav-item {
 	padding-left: 2.5vw;
 	padding-top: 2vw;
 	font-size: 20px; 
-
 }
 .navbar-nav .nav-item .nav-link {
 	color: white;
@@ -131,7 +113,6 @@ th {
 	background-color:pink; 
 }
 .dropdown-menu a:hover {
-
 	background-color: #FAA570;
 }
 .dropdown-menu .dropdown-item {
@@ -142,7 +123,6 @@ th {
 }
 .footerimg {
 	width: 40px;
-	
 }
 .impinfo {
 	text-align: center;

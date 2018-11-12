@@ -122,6 +122,19 @@ Meteor.methods({
       sort: { score: -1 }
     }).fetch();
   },
+
+  fetchLeaderBoards: () => {
+    return Meteor.users.find({ isAdmin: false }, 
+        { 
+            fields: {
+                name: 1, 
+                score: 1, 
+                'services.google.email': 1
+            },
+            sort: { score: -1 }, 
+            limit: 20 
+        }).fetch();
+  },
   
   updateScore: (score, Email) => {
     // console.log('updateScore() called', score, Email);

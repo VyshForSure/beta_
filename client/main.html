@@ -22,7 +22,7 @@
 	{{#if currentUser }}
     {{ #if isPhoneRegistered }}
     	{{ > info }}
-      {{#if isAdmin }}
+      {{#if currentUser.profile.isAdmin }}
         {{ > adminPanel }}
       {{ /if }}
     {{ else }}
@@ -57,16 +57,16 @@
 
 <template name="info">
   <h1 class="heading"> 
-    Welcome, {{ getName }}! <br>
+    Welcome, {{ currentUser.profile.name }}! <br>
     Your Referral Code is {{ currentUser.profile.code }}. <br>
     {{ currentUser.profile.referals }} people have used your Referral Code.
   </h1>
   <div class="container">
-    <h2>Latest Tasks | Your Score: <span id="score">{{ getScore }} </span> </h2>
+    <h2>Latest Tasks | Your Score: <span id="score">{{ currentUser.profile.score }} </span> </h2>
     <fieldset>    
       <table id='table'>
         <tr>
-            {{ #if isAdmin }}
+            {{ #if currentUser.profile.isAdmin }}
               <th class="col-lg-5"> Content </th>
               <th class="col-lg-3"> Complete By </th>
               <th class="col-lg-2"> Score </th>
@@ -92,6 +92,17 @@
         </li>
         <li>Contact <a class="orange-link" href="dhruv.g@elan.org.in">dhruv.g@elan.org.in</a> for any queries.</li>
       </ul>
+      <fieldset>
+        <legend> Leaderboards </legend>
+        <table id='leaderboards'>
+          <tr>
+            <td class="adminEntries"> Name </td>
+            <td class="adminEntries"> Score </td>
+            <td class="adminEntries"> Email </td>
+          </tr>
+            {{ displayLeaderBoards }}
+        </table>
+      </fieldset>
   </div>
 </template>
 
@@ -141,12 +152,12 @@
         <legend id='listLegend'> CAs Registered </legend>
         <table id='catable'>
           <tr>
-            <td> Name </td>
-            <td> Score </td>
-            <td> Email </td>
-            <td> Number </td>
-            <td> College </td>
-            <td> City </td>
+            <td class="adminEntries"> Name </td>
+            <td class="adminEntries"> Score </td>
+            <td class="adminEntries"> Email </td>
+            <td class="adminEntries"> Number </td>
+            <td class="adminEntries"> College </td>
+            <td class="adminEntries"> City </td>
           </tr>
             {{ caentries }}
         </table>

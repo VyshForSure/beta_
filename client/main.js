@@ -3,28 +3,13 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
-FlowRouter.route('/ca', {
-	action(){
-		// BlazeLayout.render('top');
-	}
-});
+FlowRouter.route('/ca', {});
 
-FlowRouter.route('/*', {
-	action(){
-		window.location.href='/Home.html';
-	}
-});
-
-Template.adminPanel.onCreated( () => {
-});
+FlowRouter.notFound = {
+	action: () => window.location.href='/Home.html' 
+};
 
 Template.top.helpers({
-  	isAdmin() {
-  		if(Meteor.user()){
-  			return Meteor.user().profile.isAdmin;
-  		}
-  		return false;
-  	},
   	isPhoneRegistered() {
   		if(Meteor.user()){
   			return !(Meteor.user().profile.phoneNumber === "");
@@ -33,9 +18,6 @@ Template.top.helpers({
 });
 
 Template.info.helpers({
-	getName() {
-		return Meteor.user().profile.name;
-	},
   	entries() {
   		Meteor.call('getPosts', 0, 100,
   		(err, val) => { 
@@ -68,18 +50,24 @@ Template.info.helpers({
   			}
 		});
   	},
-  	getScore() {
-  		if(Meteor.user()){
-  			return Meteor.user().profile.score;
-  		}
-  		return false;
-  	},
-  	isAdmin() {
-  		if(Meteor.user()){
-  			return Meteor.user().profile.isAdmin;
-  		}
-  		return false;
-  	},
+  	displayLeaderBoards() {
+  		Meteor.call('fetchLeaderBoards', (err, val) => {
+  			var list = document.getElementById('leaderboards');
+  			val.forEach((leader) => {
+  				var name = document.createElement('td'),
+  					score = document.createElement('td'),
+  					email = document.createElement('td');
+  				name.innerHTML = leader.name;
+  				score.innerHTML = leader.score;
+  				email.innerHTML = leader.services.google.email;
+  				var row = document.createElement('tr');
+				row.appendChild(name);
+				row.appendChild(score);
+				row.appendChild(email);
+  				list.appendChild(row);
+  			});
+  		});
+  	}
 });
 
 Template.adminPanel.helpers({
@@ -100,13 +88,13 @@ Template.adminPanel.helpers({
   					continue;
   				}
   				numCA ++;
-  				var row = document.createElement('tr');
-  				var name = document.createElement('td');
-  				var score = document.createElement('td');
-  				var email = document.createElement('td');
-  				var number = document.createElement('td');
-  				var colgName = document.createElement('td');
-  				var city = document.createElement('td');
+  				var row = document.createElement('tr'),
+  					name = document.createElement('td'),
+  					score = document.createElement('td'),
+  					email = document.createElement('td'),
+  					number = document.createElement('td'),
+  					colgName = document.createElement('td'),
+  					city = document.createElement('td');
   				name.innerHTML = val[i].name;
   				score.innerHTML = val[i].score;
   				email.innerHTML = val[i].services.google.email;

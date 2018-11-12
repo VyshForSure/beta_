@@ -67,7 +67,7 @@ h2. h3 {
 table, legend {
 	color: darkgrey;
 }
-td { 
+.adminEntries { 
     max-width: 100px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -90,6 +90,7 @@ tr:nth-child(even){
    background: lightgrey;
 }
 td {
+  	word-wrap: break-word;
 	color: #101010;
 	display: table-cell;
 	padding: 1.2rem;

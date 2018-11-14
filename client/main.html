@@ -20,6 +20,7 @@
 		<span id="menuIcon" class="logout" style="float:right; margin: 5px 5px; font-size:30px; cursor:pointer"> {{ >loginButtons }} </span>
 	</nav>
 	{{#if currentUser }}
+		{{> notifications}}
 		{{ #if isPhoneRegistered }}
 			{{ > info }}
 			{{#if currentUser.profile.isAdmin }}

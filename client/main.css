@@ -9,9 +9,6 @@ html, body {
 	margin: 0;
 	padding: 0;
 }
-ul.notifications {
-position: fixed;
-}
 .login-display-name {
 	display: none !important;
 }

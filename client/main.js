@@ -3,10 +3,6 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
-// serverMessages = new ServerMessages();
-
-Notifications.info('Test Notification', 'This is a test Notification.');
-
 FlowRouter.route('/ca', {});
 
 FlowRouter.notFound = {

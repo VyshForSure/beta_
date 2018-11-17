@@ -5,9 +5,20 @@ import './main.html';
 
 FlowRouter.route('/ca', {});
 
-FlowRouter.notFound = {
-	action: () => window.location.href='/Home.html' 
-};
+FlowRouter.route('/*', {
+	action: () => {
+		window.location.href='/Home.html' 
+	}
+});
+
+Accounts.onLogin((loginDetails) => {
+	if(Meteor.userId())
+		Meteor.ClientCall.setClientId(Meteor.userId())
+});
+
+Accounts.onLogout((param) => {
+	Meteor.ClientCall.setClientId(undefined);
+});
 
 Template.top.helpers({
   	isPhoneRegistered() {
@@ -216,5 +227,34 @@ Template.adminPanel.events({
 			}
 			document.getElementById('sheetsNotice').innerHTML = i;
 		}
+	},
+	'click .notify' : () => {
+		var title = document.getElementById('notifTitle').value;
+		var text = document.getElementById('notifContent').value;
+		var bel = document.getElementById('legend');
+		var i = 'Notification Request given to server.';
+		if(!title || !text)
+			i = 'Invalid entry';
+		else {
+			Meteor.call('sendNotifications',
+				Meteor.userId(),
+				title, 
+				text
+			);
+		}
+		bel.innerHTML = i;
 	}
+});
+
+Meteor.ClientCall.methods({
+	'notify': function(title, message) {
+		console.log('Called');
+		if(!webNotification) return;
+		webNotification.showNotification(title, {
+			body: message,
+			icon: '/images/logo.png',
+			onClick: () => {},
+			autoClose: 4000
+		}, function onShow(error, hide) {});
+	},
 });

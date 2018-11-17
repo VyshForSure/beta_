@@ -13,7 +13,8 @@
     "google-spreadsheets": "^2.0.0",
     "googleapis": "^32.0.0",
     "meteor-node-stubs": "^0.4.1",
-    "mysql": "^2.16.0"
+    "mysql": "^2.16.0",
+    "simple-web-notification": "^1.0.31"
   },
   "meteor": {
     "mainModule": {

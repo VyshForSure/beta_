@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Pronites Test</title>
+	<style>
+		@font-face {
+		    font-family: "black";
+		    src:url("assets/blackpersonaluse.ttf");
+		}
+		body { 
+			margin: 0 5% 0 5%;
+			font-family: "black";
+		}
+		canvas { 
+			position: absolute;
+			width: 100%; 
+			height: 100%; 
+			z-index: -1;
+		}
+		ul { 
+			position: relative;
+			overflow-x: hidden;
+			height: 100%;
+			width: 125%;
+			left: -25%;
+			margin: 0;
+			overflow-y: scroll;
+			direction: rtl;
+			list-style: none;
+		}
+		h1 { 
+			width: 80vw;
+			height: 40vh;
+			font-size: 12vw	;
+			word-break: break-all;
+		}
+		.left { right: 0; }
+		.light { color: white; }
+		.grey { color: lightgrey; }
+		.right {
+			left: 0;
+			width: 50%;
+		}
+		#div {
+			position: fixed;
+			left: 0;
+			top: 0;
+			z-index: -1;
+		}
+		.scrollpanel {
+			background: rgba(0, 0, 0, 0.85);
+			height: 20vh;
+			overflow: hidden;
+			padding: 2%;
+			font-size: 10vw;
+		}
+		.info {
+			text-align: center;
+			font-size: 5vw;
+		}
+		.content {
+			transform: skew(20deg);
+			margin: 15vh 0 12vh 0;
+			height: 80%;
+			width: 25%;
+			overflow: hidden;
+			display: inline;
+			position: absolute;
+			transition: all 0.25s ease-in-out;
+			z-index: 0;
+			object-fit: scale-down;
+		}
+		.content:hover {
+			z-index: 1;	
+			width: 90%;
+		}
+		.content-mid:hover {
+			transform: translateX(-32.5vw) skew(0deg);
+		}
+		.content-left:hover {
+			transform: translateX(-7.5vw) skew(0deg);
+		}
+		.content-right:hover {
+			transform: translateX(7.5vw) skew(0deg);
+		}
+		.register-panel {
+			text-align: center;
+			width: 90vw;
+			height: 90vh;
+			margin-top: 110vh;
+			margin-bottom: 5vh; 
+			background: url('assets/back4.jpg');
+  			background-position: center center;
+		}
+		.register-panel img {
+			width: inherit;
+			height: auto;
+		}
+		.register-panel input {
+			transform: translateY(65vh);
+		}
+		@media screen and (max-width: 1000px){
+			.content img {
+   				-webkit-transform: translateY(-50%) translateX(-50%);
+			}
+			body {
+				background: url("assets/mobile-back-1.jpg");
+  				background-position: center center;
+  				background-attachment: fixed;
+  			}
+		}
+	</style>
+</head>
+<body>
+	<div class="light right">
+		<h1>Pronites</h1>
+		<p class="info"> Scroll To See More </p>
+	</div>
+	<div id="div"></div>
+	<div class="scrollpanel">
+		<ul class="left	grey">
+			<li> First Blood </li>
+			<li> Double Kill </li>
+			<li> Multi Kill </li>
+			<li> Ultra Kill </li>
+			<li> Road Rage </li>
+			<li> <small> Vehicular Manslaughter </small></li>
+			<li> <big> God Like </big></li>
+		</ul>
+	</div>
+	<div>
+		<div class="content content-left" style="left: 12.5%">
+			<img src='assets/back1.jpg'>
+		</div>
+		<div class="content content-mid" style="left: 37.5%; right: 40%; ">
+			<img src='assets/back2.jpg'>
+		</div>
+		<div class="content content-right" style="right: 12.5%">
+			<img src='assets/back3.jpg'>
+		</div>
+	</div>
+	<div class="register-panel">
+		<!-- <img src='assets/back4.jpg'> -->
+		<input type="button" value="Register Now!"/>
+	</div>
+	<script src="assets/three.js"></script>
+	<script src="assets/objloader.js"></script>
+	<script src="assets/dotscreenshader.js"></script>
+	<script src="assets/effectcomposer.js"></script>
+	<script src="assets/shaderpass.js"></script>
+	<script src="assets/copyshader.js"></script>
+	<script src="assets/renderpass.js"></script>
+	<script type="text/javascript">
+		if(!window.matchMedia("(max-width: 1000px)").matches){
+			var scene = new THREE.Scene();
+			var camera = new THREE.PerspectiveCamera( 
+				75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+
+			var renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth	, window.innerHeight );
+			var composer = new THREE.EffectComposer( renderer );
+			var dotScreenEffect = new THREE.ShaderPass( THREE.DotScreenShader );
+			var renderPass = new THREE.RenderPass( scene, camera ) ;
+
+			dotScreenEffect.uniforms[ 'scale' ].value = 2.8;
+			dotScreenEffect.renderToScreen = true;
+			renderPass.renderToScreen = true;
+			composer.addPass( renderPass );
+			// composer.addPass( dotScreenEffect );
+
+			var mouseX = 0, mouseY = 0, camSensitivity = 0.001, 
+				orbitRad = 5.5, horizAngle = 0, vertAngle = 0;
+			var colorPeriod = 1000, startTime = undefined; // Milliseconds
+			var nextColor = getNewColor();
+
+			var skull = undefined;
+			var logo = undefined;
+
+			new THREE.TextureLoader().load('assets/TextLogo.png', ( texture ) => {
+				logo = new THREE.Mesh(
+					new THREE.PlaneGeometry(70, 70, 1, 1),
+					new THREE.MeshBasicMaterial( {
+						color: 0xffffff, 
+						map: texture,
+						transparent: true
+					})
+				);
+			});
+
+			
+			var directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
+
+			new THREE.OBJLoader().load(
+				// 'assets/skull.obj',
+				'assets/Concert Stage.obj',
+				function ( object ) {
+					skull = object.children[0];
+					loadScene();
+				},
+				function ( xhr ) {}, function ( error ) {}
+			);
+			
+
+			document.addEventListener('mousemove', onMouseMove, false);
+			document.addEventListener('touchstart', onTouchStart, false);
+			document.addEventListener('touchmove', onTouchMove, false);
+
+
+			var animate = function () {
+				requestAnimationFrame( animate );
+				var dt = new Date();
+
+				var del = (dt.getSeconds() - startTime.getSeconds()) * 1000 
+					+ dt.getMilliseconds() 
+					- startTime.getMilliseconds();
+				if(del < 0) del += 60000; //Fix change if minute delT calc issue
+				var factor = (del / colorPeriod);
+
+				skull.material.color.r += (nextColor.r - skull.material.color.r) * factor;
+				skull.material.color.g += (nextColor.g - skull.material.color.g) * factor;
+				skull.material.color.b += (nextColor.b - skull.material.color.b) * factor;
+
+				if(skull.material.color.r === NaN || skull.material.color.r > 1){
+					skull.material.color = {r:1,g:1,b:1};
+				}
+				scene.background = getBackgroundColor(skull.material.color);
+
+					if(del > colorPeriod){
+					startTime = dt;
+					skull.material.color = nextColor;
+					nextColor = getNewColor();
+				}
+
+				horizAngle += camSensitivity * mouseX;
+				vertAngle += camSensitivity * mouseY;
+				if(vertAngle > 3.14/6) vertAngle = 3.14/6; 
+				if(vertAngle < -3.14/6) vertAngle = -3.14/6;
+
+				camera.position.x = orbitRad * Math.cos(horizAngle) * Math.cos(vertAngle);
+				camera.position.z = orbitRad * Math.sin(horizAngle) * Math.cos(vertAngle);
+				camera.position.y = orbitRad * Math.sin(vertAngle);
+
+				camera.lookAt(scene.position);
+
+				composer.render(scene, camera);
+			};
+
+			var loadScene = function () {
+				document.getElementById("div").appendChild( renderer.domElement );
+				skull.material = new THREE.MeshPhongMaterial( { color: 0xff00ff } );
+				// skull.position.y -= 3;
+				skull.position.y = -125;
+				skull.position.z = -25;
+				skull.rotation.y = 1.57;
+				logo.rotation.y = 1.57;
+				logo.position.x = -71; //between -70 and -72
+				logo.position.z = -25;
+				logo.position.y = -18;
+
+				scene.add( directionalLight );
+				scene.add(logo);
+				scene.add( skull );
+
+				camera.position.z = orbitRad;
+				directionalLight.position.z = 0.2;
+
+				startTime = new Date();
+
+				animate();
+			}
+
+			function onMouseMove (event) {
+				mouseX = event.clientX / (window.innerWidth / 2) - 1;
+				mouseY = event.clientY / (window.innerHeight / 2) - 1;
+			}
+			function onTouchStart (event) {
+				if(event.touches.length === 1){
+					event.preventDefault();
+					mouseX = event.touches[0].pageX / (window.innerWidth / 2) - 1;
+					mouseY = event.touches[0].pageY / (window.innerHeight / 2) - 1;
+				}
+			}
+			function onTouchMove (event) {
+				if(event.touches.length === 1){
+					event.preventDefault();
+					mouseX = event.touches[0].pageX / (window.innerWidth / 2) - 1;
+					mouseY = event.touches[0].pageY / (window.innerHeight / 2) - 1;
+				}
+			}
+			function getNewColor(){
+				return {
+					r: Math.random(), 
+					g: Math.random(),
+					b: Math.random()
+				};
+			}
+			function getBackgroundColor(color){
+				return new THREE.Color(
+					(1 - color.r)*0.1, 
+					(1 - color.g)*0.1, 
+					(1 - color.b)*0.1);
+			}
+		}
+	</script>
+
+</body>
+</html>

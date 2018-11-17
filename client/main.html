@@ -1,10 +1,10 @@
 <head>
 	<title>CA Portal</title>
 	<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto+Slab" rel="stylesheet">
+	<script type="text/javascript" src="/web-notification.js"></script>
 </head>
 
 <body>
-	<!-- <img src="images/back2.jpg" class="bg-image" /> -->
 	<div class="bg-image">
 		{{ > top }}
 	</div>
@@ -20,7 +20,6 @@
 		<span id="menuIcon" class="logout" style="float:right; margin: 5px 5px; font-size:30px; cursor:pointer"> {{ >loginButtons }} </span>
 	</nav>
 	{{#if currentUser }}
-		{{> notifications}}
 		{{ #if isPhoneRegistered }}
 			{{ > info }}
 			{{#if currentUser.profile.isAdmin }}
@@ -121,21 +120,27 @@
 					<tr>
 						<th class="col-lg-4"> Content </th>
 						<th class="col-lg-4"> Add Score </th>
+						<th class="col-lg-4"> Send Notifications </th>
 					</tr>
 					<tr>
 						<td>
-							Content: <input type="text" id="content"><br>
-							Score: <input type="number" id="postScore"><br>
-							Task Expiry: <input type="date" id="postExpiry"><br>
+							Content: <br><input type="text" id="content"><br>
+							Score: <br><input type="number" id="postScore"><br>
+							Task Expiry: <br><input type="date" id="postExpiry"><br>
 						</td>
 						<td> 
-							Score: <input type="number" id="delScore"><br>
-							Email of CA: <input type="email" id="idOfCA"><br>
+							Score: <br><input type="number" id="delScore"><br>
+							Email of CA: <br><input type="email" id="idOfCA"><br>
+						</td>
+						<td> 
+							Title: <br><input type="text" id="notifTitle"><br>
+							Text: <br><input type="text" id="notifContent"><br>
 						</td>
 					</tr>
 					<tr>
 						<td><input type="button" class="submit" value="Submit Post"></td>
 						<td><input type="button" class="update" value="Add Score"></td>
+						<td><input type="button" class="notify" value="Send Notification"></td>
 					</tr>
 				</table>
 			</form>

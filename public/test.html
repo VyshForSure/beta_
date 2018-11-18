@@ -4,10 +4,10 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Pronites Test</title>
-	<style>
+	<style>	
 		@font-face {
 		    font-family: "black";
-		    src:url("assets/blackpersonaluse.ttf");
+		    src: url("assets/blackpersonaluse.ttf");
 		}
 		body { 
 			margin: 0 5% 0 5%;
@@ -61,35 +61,33 @@
 			font-size: 5vw;
 		}
 		.content {
-			transform: skew(20deg);
-			margin: 15vh 0 12vh 0;
-			height: 80%;
-			width: 25%;
+			height: 110vw;
+			width: 17vw;
+			margin-top: 15vh;
 			overflow: hidden;
-			display: inline;
-			position: absolute;
-			transition: all 0.25s ease-in-out;
 			z-index: 0;
-			object-fit: scale-down;
+			transition: all 0.25s ease-in-out;
+			position: absolute;
 		}
 		.content:hover {
 			z-index: 1;	
-			width: 90%;
+			width: 90vw;
+			transform: skew(0deg);
 		}
-		.content-mid:hover {
-			transform: translateX(-32.5vw) skew(0deg);
+		.content-left {
+			transform: translateX(25vw) skew(15deg);
 		}
-		.content-left:hover {
-			transform: translateX(-7.5vw) skew(0deg);
+		.content-mid {
+			transform: translateX(42vw) skew(15deg);
 		}
-		.content-right:hover {
-			transform: translateX(7.5vw) skew(0deg);
+		.content-right {
+			transform:  translateX(59vw) skew(15deg);
 		}
 		.register-panel {
 			text-align: center;
 			width: 90vw;
 			height: 90vh;
-			margin-top: 110vh;
+			margin-top: 150vh;
 			margin-bottom: 5vh; 
 			background: url('assets/back4.jpg');
   			background-position: center center;
@@ -100,14 +98,32 @@
 		}
 		@media screen and (max-width: 1000px){
 			.content img {
+				height: 200%;
+				object-fit: scale-down;
    				-webkit-transform: translateY(-50%) translateX(-50%);
 			}
 			body {
+				background: black;
 				background: url("assets/mobile-back-1.jpg");
 				background-size: cover;
   				background-position: center center;
   				background-attachment: fixed;
   			}
+  			.content {
+				width: 20vw;
+			}
+			.content-left {
+				transform: translateX(15vw) skew(20deg);
+			}
+			.content-mid {
+				transform: translateX(35vw) skew(20deg);
+			}
+			.content-right {
+				transform:  translateX(55vw) skew(20deg);
+			}
+			.register-panel {
+				margin-top: 90vh;
+			}
 		}
 	</style>
 </head>
@@ -128,14 +144,14 @@
 			<li> <big> God Like </big></li>
 		</ul>
 	</div>
-	<div>
-		<div class="content content-left" style="left: 12.5%">
+	<div class="contentPanel">
+		<div class="content content-left">
 			<img src='assets/back1.jpg'>
 		</div>
-		<div class="content content-mid" style="left: 37.5%; right: 40%; ">
+		<div class="content content-mid">
 			<img src='assets/back2.jpg'>
 		</div>
-		<div class="content content-right" style="right: 12.5%">
+		<div class="content content-right">
 			<img src='assets/back3.jpg'>
 		</div>
 	</div>

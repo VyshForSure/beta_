@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Pronites Test</title>
 	<style>
 		@font-face {
@@ -92,10 +93,7 @@
 			margin-bottom: 5vh; 
 			background: url('assets/back4.jpg');
   			background-position: center center;
-		}
-		.register-panel img {
-			width: inherit;
-			height: auto;
+  			background-size: cover;
 		}
 		.register-panel input {
 			transform: translateY(65vh);
@@ -106,6 +104,7 @@
 			}
 			body {
 				background: url("assets/mobile-back-1.jpg");
+				background-size: cover;
   				background-position: center center;
   				background-attachment: fixed;
   			}
@@ -141,7 +140,6 @@
 		</div>
 	</div>
 	<div class="register-panel">
-		<!-- <img src='assets/back4.jpg'> -->
 		<input type="button" value="Register Now!"/>
 	</div>
 	<script src="assets/three.js"></script>
@@ -169,7 +167,7 @@
 			composer.addPass( renderPass );
 			// composer.addPass( dotScreenEffect );
 
-			var mouseX = 0, mouseY = 0, camSensitivity = 0.001, 
+			var mouseX = 0, mouseY = 0, camSensitivity = 0.005, 
 				orbitRad = 5.5, horizAngle = 0, vertAngle = 0;
 			var colorPeriod = 1000, startTime = undefined; // Milliseconds
 			var nextColor = getNewColor();

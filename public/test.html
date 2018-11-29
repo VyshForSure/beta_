@@ -96,6 +96,69 @@
 		.register-panel input {
 			transform: translateY(65vh);
 		}
+
+		.hamburger {
+			position: fixed;
+			text-align: center;
+			border-radius: 1vw;
+			z-index: 3;
+			top: 10%;
+			right: 5%;
+			color: white;
+			font-size: 4vw;
+			cursor: pointer;
+			background: blue;
+			opacity: 0.5;
+			box-shadow: 0 0 4vh blue;
+			transition: all 0.2s ease-in-out;	
+		}
+		.hamburger:hover{
+			opacity: 1.0;
+		}.hamburger a{
+			padding: 0 15px 0 15px;
+		}
+		.nav {
+			z-index: 1;
+			display: none;
+			top: 10%;
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			color: white;
+			font-size: 2vw;
+			transition: all 0.5s ease-in-out;
+			text-align: center;
+		}
+		.nav-top-left{
+			top: 15%; left: 15%;
+		}
+		.nav-top-right{
+			top: 15%; right: 15%;
+		}
+		.nav-bottom-right{
+			bottom: 15%; right: 15%;
+		}
+		.nav-bottom-left{
+			bottom: 15%; left: 15%;
+		}
+		.nav-center{
+			top: 50%; left: 50%;
+		}
+		.nav-item {
+			text-align: center;
+			cursor: pointer;
+			position: fixed;
+		}
+		.lol {
+			display: block;
+			position: fixed;
+			width: 150px;
+			height: 150px;
+			border-radius: 50%;
+			z-index: 0;
+			pointer-events: none;
+			transform: scale(0);
+		}
 		@media screen and (max-width: 1000px){
 			.content img {
 				height: 200%;
@@ -103,11 +166,11 @@
    				-webkit-transform: translateY(-50%) translateX(-50%);
 			}
 			body {
-				background: black;
-				background: url("assets/mobile-back-1.jpg");
-				background-size: cover;
+				background: url("assets/mobile-back-1.jpg"), black;
+				background-size: contain;
   				background-position: center center;
   				background-attachment: fixed;
+    			background-repeat: no-repeat;
   			}
   			.content {
 				width: 20vw;
@@ -123,6 +186,10 @@
 			}
 			.register-panel {
 				margin-top: 90vh;
+			}
+			.lol {
+				width: 80px;
+				height: 80px;
 			}
 		}
 	</style>
@@ -158,6 +225,21 @@
 	<div class="register-panel">
 		<input type="button" value="Register Now!"/>
 	</div>
+	<div class="hamburger" onclick="clicked()" id="ham">
+		<a>Me!</a>
+	</div>
+	<div class="nav" id="nav">
+		<a class="nav-item nav-top-left"> This </a>
+		<a class="nav-item nav-top-right"> This </a>
+		<a class="nav-item nav-bottom-left"> This </a>
+		<a class="nav-item nav-bottom-right"> This </a>
+		<a class="nav-item nav-center"> This </a>
+	</div>
+		<a class="lol nav-top-left" style="background: gold"></a>
+		<a class="lol nav-top-right" style="background: red"></a>
+		<a class="lol nav-bottom-left" style="background: blue"></a>
+		<a class="lol nav-bottom-right" style="background: green"></a>
+		<a class="lol nav-center" style="background: cyan"></a>
 	<script src="assets/three.js"></script>
 	<script src="assets/objloader.js"></script>
 	<script src="assets/dotscreenshader.js"></script>
@@ -166,7 +248,33 @@
 	<script src="assets/copyshader.js"></script>
 	<script src="assets/renderpass.js"></script>
 	<script type="text/javascript">
-		if(!window.matchMedia("(max-width: 1000px)").matches){
+		function clicked(){
+			var v = document.getElementById("nav");
+			var t = document.getElementById("ham");
+			var x = {
+				duration: 200,
+				iterations: 1,
+				fill: 'forwards',
+			};
+			if(v.style.display === 'none') {
+				t.style.top = '25%';
+				v.style.display = 'block';
+			}
+			else {
+				t.style.top = '10%';
+				v.style.display = 'none';
+				x.direction = 'reverse';
+			}
+			var d = document.getElementsByClassName('lol');
+			var s = Math.min()
+			for(var i = 0; i < d.length; i++){
+				d[i].animate([{ transform: 'scale(0)'}, { transform: 'scale(7)'}], x);
+			}
+		}
+	</script>
+	<script type="text/javascript">
+		document.getElementById("nav").style.display = 'none';
+		if(!window.matchMedia("(max-width: 1000px)").matches & false){
 			var scene = new THREE.Scene();
 			var camera = new THREE.PerspectiveCamera( 
 				75, window.innerWidth/window.innerHeight, 0.1, 1000 );
@@ -201,7 +309,6 @@
 					})
 				);
 			});
-
 			
 			var directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
 
@@ -249,7 +356,9 @@
 				horizAngle += camSensitivity * mouseX;
 				vertAngle += camSensitivity * mouseY;
 				if(vertAngle > 3.14/6) vertAngle = 3.14/6; 
-				if(vertAngle < -3.14/6) vertAngle = -3.14/6;
+				else if(vertAngle < -3.14/6) vertAngle = -3.14/6;
+				if(horizAngle > 3.14/4) horizAngle = 3.14/4;
+				else if(horizAngle < -3.14/4) horizAngle = -3.14/4;
 
 				camera.position.x = orbitRad * Math.cos(horizAngle) * Math.cos(vertAngle);
 				camera.position.z = orbitRad * Math.sin(horizAngle) * Math.cos(vertAngle);

@@ -159,7 +159,7 @@ Meteor.methods({
 				del += 5;
 		}
 
-		if(refCode === 'WACELAN') del += 15;
+		if(refCode.toUpperCase() === 'TECHNOBYTES') del += 100;
 
 		Meteor.users.update({ _id: id }, { $set: {
 			phoneNumber: phoneNumber,
